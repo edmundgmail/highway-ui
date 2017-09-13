@@ -1,21 +1,18 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import { DynamicFormService, DynamicFormControlModel } from "@ng2-dynamic-forms/core";
-
+import { Component, OnInit } from '@angular/core';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
-  selector: 'app-add-new-highway',
-  templateUrl: './add-new-highway.component.html',
-  styleUrls: ['./add-new-highway.component.css']
+  selector: 'app-edit-directions',
+  templateUrl: './edit-directions.component.html',
+  styleUrls: ['./edit-directions.component.css']
 })
-
-export class AddNewHighwayComponent implements OnInit {
+export class EditDirectionsComponent implements OnInit {
   newRoadForm: FormGroup;
   roadNameControl;
   title;
 
   constructor(private formBuilder: FormBuilder) {
-    this.title = 'Add New Road';
+    this.title = 'Edit Road and Directions';
     this.buildForm();
   }
 
@@ -51,10 +48,7 @@ export class AddNewHighwayComponent implements OnInit {
     console.log(this.newRoadForm.value);
   }
 
-
-
   ngOnInit() {
   }
-
 
 }

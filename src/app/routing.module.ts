@@ -5,6 +5,7 @@ import { HeroesComponent } from './heroes/heroes.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import {AddNewHighwayComponent} from './add-new-highway/add-new-highway.component';
+import {EditDirectionsComponent} from './edit-directions/edit-directions.component';
 
 const routes: Routes = [
   {
@@ -26,7 +27,12 @@ const routes: Routes = [
   {
     path: 'add-new-highway',
     component: AddNewHighwayComponent
+  },
+  {
+    path: 'edit-directions',
+    component: EditDirectionsComponent
   }
+
 ];
 
 @NgModule({
