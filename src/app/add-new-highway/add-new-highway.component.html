@@ -46,6 +46,12 @@
   <table class="example-full-width" cellspacing="0"><tr>
     <td><md-form-field class="example-half-width">
       <input mdInput formControlName="cardinalDirection" type="text" placeholder="Cardinal Direction">
+      <md-select formControlName="cardinalDirection" placeholder=""Cardinal Direction>
+        <md-option *ngFor="let dir of dirs" [value]="dir.value">
+          {{dir.viewValue}}
+        </md-option>
+      </md-select>
+
     </md-form-field></td>
     <td><md-form-field class="example-half-width">
       <input mdInput formControlName="nonCardinalDirection" type="text" placeholder="Non-cardinal Direction">

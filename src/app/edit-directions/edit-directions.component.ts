@@ -10,9 +10,11 @@ export class EditDirectionsComponent implements OnInit {
   newRoadForm: FormGroup;
   roadNameControl;
   title;
+  directions;
 
   constructor(private formBuilder: FormBuilder) {
     this.title = 'Edit Road and Directions';
+    this.directions = ['E','W','S','N'];
     this.buildForm();
   }
 
