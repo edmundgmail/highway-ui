@@ -4,7 +4,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { RoutingModule } from './routing.module';
-import { MaterialModule } from '@angular/material';
+import {MaterialModule, MdNativeDateModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
@@ -40,7 +40,8 @@ import { EditDirectionsComponent } from './edit-directions/edit-directions.compo
     BrowserAnimationsModule,
     MdFormFieldModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MdNativeDateModule
   ],
   providers: [HeroService],
   bootstrap: [AppComponent],
