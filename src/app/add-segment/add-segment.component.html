@@ -2,7 +2,7 @@
 
 
 <form class="example-form" novalidate [formGroup]="highwayForm" (ngSubmit)="onSubmitForm()">
-  <md-form-field floatPlaceholder="never">
+  <md-form-field floatPlaceholder="never" class="example-full-width">
     <input mdInput placeholder="Enter Highway Name" formControlName="roadName"  [mdAutocomplete]="reactiveAuto" [formControl]="highwayCtrl">
     <md-autocomplete #reactiveAuto="mdAutocomplete" [displayWith]="displayFn">
       <md-option *ngFor="let highway of reactiveHighways | async" [value]="highway">
@@ -11,5 +11,7 @@
       </md-option>
     </md-autocomplete>
   </md-form-field>
-
+<p></p>
+  <button md-raised-button type="submit" [disabled]="!highwayForm.valid">Submit</button>
+  <button md-raised-button type="button" (click)="onResetForm()">Reset</button>
 </form>

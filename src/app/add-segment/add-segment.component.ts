@@ -31,7 +31,7 @@ export class AddSegmentComponent implements OnInit {
 
   private buildForm() {
     this.highwayForm = this.formBuilder.group({
-        roadName: this.formBuilder.control(null, [Validators.required, Validators.minLength(20)]),
+        roadName: this.formBuilder.control(null),
       },
       {
         validator: Validators.required
@@ -55,6 +55,7 @@ export class AddSegmentComponent implements OnInit {
   }
 
   onSubmitForm() {
+    console.log('value=' + this.highwayCtrl.value());
     console.log(this.highwayForm.value);
   }
 
