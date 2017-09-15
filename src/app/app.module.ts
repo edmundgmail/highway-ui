@@ -4,7 +4,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { RoutingModule } from './routing.module';
-import { MaterialModule } from '@angular/material';
+import {MaterialModule, MdNativeDateModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
@@ -18,6 +18,7 @@ import { InMemoryDataService } from './services/in-memory-data.service';
 import { AddNewHighwayComponent } from './add-new-highway/add-new-highway.component';
 import { MdFormFieldModule } from '@angular/material';
 import { EditDirectionsComponent } from './edit-directions/edit-directions.component';
+import { AddSegmentComponent } from './add-segment/add-segment.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { EditDirectionsComponent } from './edit-directions/edit-directions.compo
     HeroSearchComponent,
     SelectedHeroDialog,
     AddNewHighwayComponent,
-    EditDirectionsComponent
+    EditDirectionsComponent,
+    AddSegmentComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,8 @@ import { EditDirectionsComponent } from './edit-directions/edit-directions.compo
     BrowserAnimationsModule,
     MdFormFieldModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MdNativeDateModule
   ],
   providers: [HeroService],
   bootstrap: [AppComponent],

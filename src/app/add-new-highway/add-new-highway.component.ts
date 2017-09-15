@@ -12,15 +12,23 @@ export class AddNewHighwayComponent implements OnInit {
   newRoadForm: FormGroup;
   roadNameControl;
   title;
+  dirs;
 
   constructor(private formBuilder: FormBuilder) {
     this.title = 'Add New Road';
+    this.dirs = [
+      {value: 'E', viewValue: 'East'},
+      {value: 'W', viewValue: 'West'},
+      {value: 'S', viewValue: 'South'},
+      {value: 'N', viewValue: 'North'}
+    ];
+
     this.buildForm();
   }
 
   private buildForm() {
     this.newRoadForm = this.formBuilder.group({
-        roadName: this.formBuilder.control(null, [Validators.required, Validators.minLength(2)]),
+        roadName: this.formBuilder.control(null, [Validators.required, Validators.minLength(20)]),
         jurisdictionType: this.formBuilder.control(null),
         ownership: this.formBuilder.control(null),
         prefixCode: this.formBuilder.control(null),
@@ -35,6 +43,7 @@ export class AddNewHighwayComponent implements OnInit {
         routeAlternateName: this.formBuilder.control(null),
         beginPlace: this.formBuilder.control(null),
         endPlace: this.formBuilder.control(null),
+        editDate: this.formBuilder.control(null),
       },
       {
         validator: Validators.required

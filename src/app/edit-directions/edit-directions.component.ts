@@ -14,7 +14,6 @@ export class EditDirectionsComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) {
     this.title = 'Edit Road and Directions';
-    this.directions = ['E','W','S','N'];
     this.buildForm();
   }
 

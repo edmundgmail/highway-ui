@@ -8,4 +8,5 @@
 * npm install -g @angular/cli
 * git clone https://github.com/jamzi/Angular2Workshop-material2.git
 * npm install 
+* npm install enhanced-resolve@3.3.0
 * ng serve
