@@ -18,6 +18,7 @@ import { InMemoryDataService } from './services/in-memory-data.service';
 import { AddNewHighwayComponent } from './add-new-highway/add-new-highway.component';
 import { MdFormFieldModule } from '@angular/material';
 import { EditDirectionsComponent } from './edit-directions/edit-directions.component';
+import { AddSegmentComponent } from './add-segment/add-segment.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { EditDirectionsComponent } from './edit-directions/edit-directions.compo
     HeroSearchComponent,
     SelectedHeroDialog,
     AddNewHighwayComponent,
-    EditDirectionsComponent
+    EditDirectionsComponent,
+    AddSegmentComponent
   ],
   imports: [
     BrowserModule,

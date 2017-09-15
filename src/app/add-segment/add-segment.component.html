@@ -1,0 +1,15 @@
+<h2> {{title}} </h2>
+
+
+<form class="example-form" novalidate [formGroup]="highwayForm" (ngSubmit)="onSubmitForm()">
+  <md-form-field floatPlaceholder="never">
+    <input mdInput placeholder="Enter Highway Name" formControlName="roadName"  [mdAutocomplete]="reactiveAuto" [formControl]="highwayCtrl">
+    <md-autocomplete #reactiveAuto="mdAutocomplete" [displayWith]="displayFn">
+      <md-option *ngFor="let highway of reactiveHighways | async" [value]="highway">
+        <span>{{ highway.name }}</span>
+        <span class="demo-secondary-text"> ({{highway.id}}) </span>
+      </md-option>
+    </md-autocomplete>
+  </md-form-field>
+
+</form>
