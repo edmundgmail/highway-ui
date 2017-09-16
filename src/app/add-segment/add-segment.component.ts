@@ -20,18 +20,20 @@ export class AddSegmentComponent implements OnInit {
   ];
 
   constructor(private formBuilder: FormBuilder) {
-    this.title = 'Add Segment'
+    this.title = 'Add Segment';
     this.buildForm();
     this.highwayCtrl = new FormControl();
     this.reactiveHighways = this.highwayCtrl.valueChanges
       .startWith(this.highwayCtrl.value)
       .map(val => this.displayFn(val))
       .map(name => this.filterStates(name));
+
+      this.buildForm();
   }
 
   private buildForm() {
     this.highwayForm = this.formBuilder.group({
-        roadName: this.formBuilder.control(null),
+       roadName: this.formBuilder.control(null)
       },
       {
         validator: Validators.required
@@ -55,7 +57,6 @@ export class AddSegmentComponent implements OnInit {
   }
 
   onSubmitForm() {
-    console.log('value=' + this.highwayCtrl.value());
     console.log(this.highwayForm.value);
   }
 
