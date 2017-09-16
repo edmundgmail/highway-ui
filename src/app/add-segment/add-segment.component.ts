@@ -38,7 +38,6 @@ export class AddSegmentComponent implements OnInit {
 
   private buildForm() {
     this.highwayForm = this.formBuilder.group({
-       roadName: this.formBuilder.control(null),
         direction: this.formBuilder.control(null)
       },
       {
@@ -47,7 +46,7 @@ export class AddSegmentComponent implements OnInit {
   }
 
   roadSelected(v): boolean  {
-    const sel = this.highways.indexOf(this.highwayForm.get('roadName').value) !== -1;
+    const sel = this.highways.indexOf(this.highwayCtrl.value) !== -1;
     if(sel) {
 
     }
