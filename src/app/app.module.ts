@@ -8,26 +8,18 @@ import {MaterialModule, MdNativeDateModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { HeroesComponent, SelectedHeroDialog } from './heroes/heroes.component';
-import { HeroDetailComponent } from './hero-detail/hero-detail.component';
-import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
-import { HeroService } from './services/hero.service';
-import { InMemoryDataService } from './services/in-memory-data.service';
 import { AddNewHighwayComponent } from './add-new-highway/add-new-highway.component';
 import { MdFormFieldModule } from '@angular/material';
 import { EditDirectionsComponent } from './edit-directions/edit-directions.component';
 import { AddSegmentComponent } from './add-segment/add-segment.component';
+import {HighwayService} from "app/services/highway.service";
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeroesComponent,
-    HeroDetailComponent,
     DashboardComponent,
-    HeroSearchComponent,
-    SelectedHeroDialog,
     AddNewHighwayComponent,
     EditDirectionsComponent,
     AddSegmentComponent
@@ -37,7 +29,6 @@ import { AddSegmentComponent } from './add-segment/add-segment.component';
     FormsModule,
     HttpModule,
     RoutingModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService),
     MaterialModule,
     BrowserAnimationsModule,
     MdFormFieldModule,
@@ -45,8 +36,8 @@ import { AddSegmentComponent } from './add-segment/add-segment.component';
     ReactiveFormsModule,
     MdNativeDateModule
   ],
-  providers: [HeroService],
+  providers: [HighwayService],
   bootstrap: [AppComponent],
-  entryComponents: [SelectedHeroDialog]
+  entryComponents: [DashboardComponent]
 })
 export class AppModule { }

@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Highway} from '../models/highway';
+import {HighwayService} from "../services/highway.service";
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/startWith';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-add-segment',
@@ -10,6 +14,7 @@ import {Highway} from '../models/highway';
 
 export class AddSegmentComponent implements OnInit {
   title;
+  dirs;
   highwayForm: FormGroup;
   highwayCtrl: FormControl;
   reactiveHighways: any;
@@ -19,8 +24,9 @@ export class AddSegmentComponent implements OnInit {
     {'id': 404, 'name' : 'Queen Elizabeth Way'}
   ];
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, highwayService: HighwayService) {
     this.title = 'Add Segment';
+    this.dirs = highwayService.getDirs();
     this.buildForm();
     this.highwayCtrl = new FormControl();
     this.reactiveHighways = this.highwayCtrl.valueChanges
@@ -28,17 +34,26 @@ export class AddSegmentComponent implements OnInit {
       .map(val => this.displayFn(val))
       .map(name => this.filterStates(name));
 
-      this.buildForm();
   }
 
   private buildForm() {
     this.highwayForm = this.formBuilder.group({
-       roadName: this.formBuilder.control(null)
+       roadName: this.formBuilder.control(null),
+        direction: this.formBuilder.control(null)
       },
       {
         validator: Validators.required
       });
   }
+
+  roadSelected(v): boolean  {
+    const sel = this.highways.indexOf(this.highwayForm.get('roadName').value) !== -1;
+    if(sel) {
+
+    }
+    return sel;
+  }
+
 
   displayFn(value: any): string {
     return value && typeof value === 'object' ? value.name : value;
@@ -52,6 +67,7 @@ export class AddSegmentComponent implements OnInit {
     const filterValue = val.toLowerCase();
     return highways.filter(highway => highway.name.toLowerCase().startsWith(filterValue));
   }
+
   onResetForm() {
     this.highwayForm.reset();
   }

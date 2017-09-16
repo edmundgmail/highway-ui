@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { DynamicFormService, DynamicFormControlModel } from "@ng2-dynamic-forms/core";
+import {HighwayService} from "../services/highway.service";
 
 
 @Component({
@@ -15,15 +16,9 @@ export class AddNewHighwayComponent implements OnInit {
   title;
   dirs;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private highwayService: HighwayService) {
     this.title = 'Add New Road';
-    this.dirs = [
-      {value: 'E', viewValue: 'East'},
-      {value: 'W', viewValue: 'West'},
-      {value: 'S', viewValue: 'South'},
-      {value: 'N', viewValue: 'North'}
-    ];
-
+    this.dirs = highwayService.getDirs();
     this.buildForm();
   }
 
