@@ -16,7 +16,6 @@ export class AddSegmentComponent implements OnInit {
   title;
   dirs;
   highwayForm: FormGroup;
-  highwayCtrl: FormControl;
   reactiveHighways: any;
   highways: Highway[] = [
     {'id': 401, 'name' : 'Highway of Hero'},
