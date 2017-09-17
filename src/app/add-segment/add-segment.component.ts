@@ -28,16 +28,16 @@ export class AddSegmentComponent implements OnInit {
     this.title = 'Add Segment';
     this.dirs = highwayService.getDirs();
     this.buildForm();
-    this.highwayCtrl = new FormControl();
-    this.reactiveHighways = this.highwayCtrl.valueChanges
-      .startWith(this.highwayCtrl.value)
+    const highwayCtrl = this.highwayForm.get('roadName');
+    this.reactiveHighways = highwayCtrl.valueChanges
+      .startWith(highwayCtrl.value)
       .map(val => this.displayFn(val))
       .map(name => this.filterStates(name));
-
   }
 
   private buildForm() {
     this.highwayForm = this.formBuilder.group({
+        roadName: this.formBuilder.control(null),
         direction: this.formBuilder.control(null)
       },
       {
@@ -46,7 +46,8 @@ export class AddSegmentComponent implements OnInit {
   }
 
   roadSelected(v): boolean  {
-    const sel = this.highways.indexOf(this.highwayCtrl.value) !== -1;
+    const highwayCtrl = this.highwayForm.get('roadName');
+    const sel = this.highways.indexOf(highwayCtrl.value) !== -1;
     if(sel) {
 
     }
