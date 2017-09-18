@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import { DynamicFormService, DynamicFormControlModel } from "@ng2-dynamic-forms/core";
 import {HighwayService} from "../services/highway.service";
 
 
