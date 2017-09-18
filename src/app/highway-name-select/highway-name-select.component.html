@@ -1,0 +1,8 @@
+<md-form-field floatPlaceholder="never" class="example-full-width">
+  <input mdInput placeholder="Enter Highway Name" [formControl]="highwayCtrl"  [mdAutocomplete]="reactiveAuto">
+  <md-autocomplete #reactiveAuto="mdAutocomplete" [displayWith]="displayFn" >
+    <md-option *ngFor="let highway of reactiveHighways | async" [value]="highway"  (onSelectionChange)="onChange($event,highway)">
+      <span>{{ highway.name }}</span>
+    </md-option>
+  </md-autocomplete>
+</md-form-field>
