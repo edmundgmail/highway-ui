@@ -50,10 +50,6 @@ export class EditDirectionsComponent implements OnInit {
     console.log(this.newRoadForm.value);
   }
 
-  onRoadNameChange($event) {
-      this.myRoadName=$event.value;
-  }
-
   ngOnInit() {
   }
 

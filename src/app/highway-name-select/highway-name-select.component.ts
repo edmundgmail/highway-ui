@@ -8,7 +8,7 @@ import {FormControl} from "@angular/forms";
   styleUrls: ['./highway-name-select.component.css']
 })
 export class HighwayNameSelectComponent implements OnInit {
-  private highwayCtrl = new FormControl;
+  highwayCtrl;
 
   reactiveHighways: any;
   highways: Highway[] = [
@@ -17,6 +17,7 @@ export class HighwayNameSelectComponent implements OnInit {
     {'id': 404, 'name' : 'Queen Elizabeth Way'}];
 
   constructor() {
+    this.highwayCtrl = new FormControl();
     this.reactiveHighways = this.highwayCtrl.valueChanges
       .startWith(this.highwayCtrl.value)
       .map(val => this.displayFn(val))

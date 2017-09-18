@@ -14,24 +14,15 @@ import 'rxjs/add/operator/map';
 
 export class AddSegmentComponent implements OnInit {
   title;
+  roadName;
   dirs;
   highwayForm: FormGroup;
-  reactiveHighways: any;
-  highways: Highway[] = [
-    {'id': 401, 'name' : 'Highway of Hero'},
-    {'id': 400, 'name' : 'Barrie Highway'},
-    {'id': 404, 'name' : 'Queen Elizabeth Way'}
-  ];
 
   constructor(private formBuilder: FormBuilder, highwayService: HighwayService) {
     this.title = 'Add Segment';
     this.dirs = highwayService.getDirs();
     this.buildForm();
     const highwayCtrl = this.highwayForm.get('roadName');
-    this.reactiveHighways = highwayCtrl.valueChanges
-      .startWith(highwayCtrl.value)
-      .map(val => this.displayFn(val))
-      .map(name => this.filterStates(name));
   }
 
   private buildForm() {
@@ -44,27 +35,13 @@ export class AddSegmentComponent implements OnInit {
       });
   }
 
-  roadSelected(v): boolean  {
-    const highwayCtrl = this.highwayForm.get('roadName');
-    const sel = this.highways.indexOf(highwayCtrl.value) !== -1;
-    if(sel) {
-
-    }
-    return sel;
+  onRoadNameChange($event) {
+    this.roadName = $event.value;
+    alert(this.roadName);
   }
 
-
-  displayFn(value: any): string {
-    return value && typeof value === 'object' ? value.name : value;
-  }
-
-  filterStates(val: string) {
-    return val ? this._filter(this.highways, val) : this.highways;
-  }
-
-  private _filter(highways: Highway[], val: string) {
-    const filterValue = val.toLowerCase();
-    return highways.filter(highway => highway.name.toLowerCase().startsWith(filterValue));
+  roadSelected(v) {
+    return true;
   }
 
   onResetForm() {

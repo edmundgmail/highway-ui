@@ -2,15 +2,7 @@
 
 
 <form class="example-form" novalidate [formGroup]="highwayForm" (ngSubmit)="onSubmitForm()">
-  <md-form-field floatPlaceholder="never" class="example-full-width">
-    <input mdInput placeholder="Enter Highway Name" formControlName="roadName"  [mdAutocomplete]="reactiveAuto" >
-    <md-autocomplete #reactiveAuto="mdAutocomplete" [displayWith]="displayFn">
-      <md-option *ngFor="let highway of reactiveHighways | async" [value]="highway">
-        <span>{{ highway.name }}</span>
-      </md-option>
-    </md-autocomplete>
-  </md-form-field>
-
+  <app-highway-name-select (roadNameChange)="onRoadNameChange($event)"> </app-highway-name-select>
   <section *ngIf="roadSelected()" class="example-full-width">
     <table class="example-full-width" cellspacing="0"><tr>
     <td>

@@ -1,9 +1,6 @@
 <h2> {{title}} </h2>
 
 <form class="example-form" novalidate [formGroup]="newRoadForm" (ngSubmit)="onSubmitForm()">
-
-  <app-highway-name-select (roadNameChange)="onRoadNameChange($event)"> </app-highway-name-select>
-  {{myRoadName | json}}
   <md-form-field class="example-full-width">
     <input mdInput formControlName="roadName" type="text" placeholder="New Road Name">
     <div *ngIf="roadNameControl.errors" class="errors">
