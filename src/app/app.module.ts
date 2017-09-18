@@ -15,6 +15,7 @@ import { MdFormFieldModule } from '@angular/material';
 import { EditDirectionsComponent } from './edit-directions/edit-directions.component';
 import { AddSegmentComponent } from './add-segment/add-segment.component';
 import {HighwayService} from "app/services/highway.service";
+import { HighwayNameSelectComponent } from './highway-name-select/highway-name-select.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {HighwayService} from "app/services/highway.service";
     DashboardComponent,
     AddNewHighwayComponent,
     EditDirectionsComponent,
-    AddSegmentComponent
+    AddSegmentComponent,
+    HighwayNameSelectComponent
   ],
   imports: [
     BrowserModule,
