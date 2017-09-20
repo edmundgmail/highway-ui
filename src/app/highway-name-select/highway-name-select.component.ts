@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Highway} from "../models/highway";
 import {FormControl} from "@angular/forms";
+import {HighwayService} from "../services/highway.service";
 
 @Component({
   selector: 'app-highway-name-select',
@@ -9,15 +10,11 @@ import {FormControl} from "@angular/forms";
 })
 export class HighwayNameSelectComponent implements OnInit {
   highwayCtrl;
-
+  highways;
   reactiveHighways: any;
-  highways: Highway[] = [
-    {'id': 401, 'name' : 'Highway of Hero'},
-    {'id': 400, 'name' : 'Barrie Highway'},
-    {'id': 404, 'name' : 'Queen Elizabeth Way'}];
-
-  constructor() {
+  constructor(highwayService: HighwayService) {
     this.highwayCtrl = new FormControl();
+    this.highways = highwayService.getHighways();
     this.reactiveHighways = this.highwayCtrl.valueChanges
       .startWith(this.highwayCtrl.value)
       .map(val => this.displayFn(val))

@@ -22,7 +22,6 @@ export class AddSegmentComponent implements OnInit {
     this.title = 'Add Segment';
     this.dirs = highwayService.getDirs();
     this.buildForm();
-    const highwayCtrl = this.highwayForm.get('roadName');
   }
 
   private buildForm() {
