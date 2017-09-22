@@ -13,6 +13,7 @@
       </md-select>
     </td>
     </table>
+    <app-select-segment-point (uponChange)="onSegmentPointChange($event)"></app-select-segment-point>
   </section>
   <p></p>
   <button md-raised-button type="submit" [disabled]="!highwayForm.valid">Submit</button>

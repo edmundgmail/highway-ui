@@ -20,6 +20,7 @@ export class AddSegmentComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, highwayService: HighwayService) {
     this.title = 'Add Segment';
+    this.roadName='';
     this.dirs = highwayService.getDirs();
     this.buildForm();
   }
@@ -39,8 +40,12 @@ export class AddSegmentComponent implements OnInit {
     alert(this.roadName);
   }
 
+  onSegmentPointChange($event) {
+    alert($event.value);
+  }
+
   roadSelected(v) {
-    return true;
+     return !this.roadName.isEmpty;
   }
 
   onResetForm() {
