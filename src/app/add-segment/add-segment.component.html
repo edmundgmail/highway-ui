@@ -3,7 +3,7 @@
 
 <form class="example-form" novalidate [formGroup]="highwayForm" (ngSubmit)="onSubmitForm()">
   <app-highway-name-select (roadNameChange)="onRoadNameChange($event)"> </app-highway-name-select>
-  <section *ngIf="roadSelected()" class="example-full-width">
+  <section class="example-full-width">
     <table class="example-full-width" cellspacing="0"><tr>
     <td>
       <md-select mdInput formControlName="direction" placeholder="Direction">
@@ -13,7 +13,9 @@
       </md-select>
     </td>
     </table>
-    <app-select-segment-point (uponChange)="onSegmentPointChange($event)"></app-select-segment-point>
+    <app-select-segment-point type="start" (uponChange)="onSegmentPointChange($event, 'start')"></app-select-segment-point>
+    <app-select-segment-point type="end" (uponChange)="onSegmentPointChange($event, 'end')"></app-select-segment-point>
+
   </section>
   <p></p>
   <button md-raised-button type="submit" [disabled]="!highwayForm.valid">Submit</button>

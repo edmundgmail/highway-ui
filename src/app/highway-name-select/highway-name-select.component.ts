@@ -27,9 +27,7 @@ export class HighwayNameSelectComponent implements OnInit {
   }
 
   private onChange(event, highway){
-    this.roadNameChange.emit({
-        value: highway
-      })
+    this.roadNameChange.emit(highway);
   }
 
   displayFn(value: any): string {

@@ -14,20 +14,21 @@ import 'rxjs/add/operator/map';
 
 export class AddSegmentComponent implements OnInit {
   title;
-  roadName;
+  highway;
   dirs;
   highwayForm: FormGroup;
+  start;
+  end;
 
   constructor(private formBuilder: FormBuilder, highwayService: HighwayService) {
     this.title = 'Add Segment';
-    this.roadName='';
+    this.highway = '';
     this.dirs = highwayService.getDirs();
     this.buildForm();
   }
 
   private buildForm() {
     this.highwayForm = this.formBuilder.group({
-        roadName: this.formBuilder.control(null),
         direction: this.formBuilder.control(null)
       },
       {
@@ -36,16 +37,20 @@ export class AddSegmentComponent implements OnInit {
   }
 
   onRoadNameChange($event) {
-    this.roadName = $event.value;
-    alert(this.roadName);
+    this.highway = $event;
   }
 
-  onSegmentPointChange($event) {
-    alert($event.value);
+  onSegmentPointChange($event, type) {
+    if (type === 'start') {
+      this.start = $event;
+    }
+    else if (type === 'end') {
+      this.end = $event;
+    }
   }
 
   roadSelected(v) {
-     return !this.roadName.isEmpty;
+     return this.highway !== null;
   }
 
   onResetForm() {
@@ -54,6 +59,9 @@ export class AddSegmentComponent implements OnInit {
 
   onSubmitForm() {
     console.log(this.highwayForm.value);
+    console.log('highway=' + JSON.stringify(this.highway));
+    console.log('startRP=' + JSON.stringify(this.start));
+    console.log('endRP=' + JSON.stringify(this.end));
   }
 
   ngOnInit() {
