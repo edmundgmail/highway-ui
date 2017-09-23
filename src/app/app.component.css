@@ -1,3 +1,21 @@
 .main-content {
   padding: 32px;
 }
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.example-half-width {
+  width: 50%;
+}
+
+.example-1third-width {
+  width: 33%;
+}

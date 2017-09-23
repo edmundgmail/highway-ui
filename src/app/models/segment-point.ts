@@ -11,9 +11,11 @@ export class RP {
 export class SegmentPoint {
   rp: RP;
   offset: number;
+  connect: boolean;
 
-  constructor(rp: RP, offset: number) {
+  constructor(rp: RP, offset: number, connect:boolean) {
     this.rp  = rp;
     this.offset = offset;
+    this.connect=connect;
   }
 }

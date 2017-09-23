@@ -1,5 +1,5 @@
 <table class="example-full-width" cellspacing="0">
-  <td class="example-half-width">
+  <td>
 <md-select mdInput [formControl]="rpCtrl" placeholder="Select {{type}} RP">
   <md-option *ngFor="let rp of rps" [value]="rp.name" >
     {{rp.name}}
@@ -7,8 +7,14 @@
 </md-select>
   </td>
 
-  <md-form-field class="example-half-width">
-    <input mdInput [formControl]="offsetCtrl" type="text" placeholder="Offset">
-  </md-form-field>
+  <td>
+    <md-form-field>
+    <input mdInput [formControl]="offsetCtrl"  placeholder="Offset">
+    </md-form-field>
+  </td>
+
+  <td class="example-1third-width">
+    <md-slide-toggle [formControl]="connectCtrl"> Connect </md-slide-toggle>
+  </td>
 
 </table>
