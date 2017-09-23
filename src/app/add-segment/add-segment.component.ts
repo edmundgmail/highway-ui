@@ -6,6 +6,7 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
 
+
 @Component({
   selector: 'app-add-segment',
   templateUrl: './add-segment.component.html',
@@ -18,11 +19,24 @@ export class AddSegmentComponent implements OnInit {
   highwayForm: FormGroup;
   start;
   end;
+  rows = [];
+  headers = [
+  {value: 'Name', type: 'TextField', width: 200},
+  {value: 'Address', type: 'TextField', width: 200},
+  {value: 'Phone', type: 'TextField', width: 200},
+  {value: 'Date', type: 'DatePicker', width: 200},
+  {value: 'Enabled', type: 'Toggle', width: 50},
+  {value: 'Last Edited By', type: 'ReadOnly', width: 100}
+];
 
   constructor(private formBuilder: FormBuilder, highwayService: HighwayService) {
     this.highway = '';
     this.dirs = highwayService.getDirs();
     this.buildForm();
+  }
+
+  onChange = (row) => {
+    console.log(row);
   }
 
   private buildForm() {
