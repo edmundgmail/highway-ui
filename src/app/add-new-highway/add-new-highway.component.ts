@@ -12,11 +12,9 @@ import {HighwayService} from "../services/highway.service";
 export class AddNewHighwayComponent implements OnInit {
   newRoadForm: FormGroup;
   roadNameControl;
-  title;
   dirs;
 
   constructor(private formBuilder: FormBuilder, private highwayService: HighwayService) {
-    this.title = 'Add New Road';
     this.dirs = highwayService.getDirs();
     this.buildForm();
   }

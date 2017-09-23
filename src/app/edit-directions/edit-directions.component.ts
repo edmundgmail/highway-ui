@@ -9,12 +9,9 @@ import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class EditDirectionsComponent implements OnInit {
   newRoadForm: FormGroup;
   roadNameControl;
-  myRoadName={};
-  title;
   directions;
 
   constructor(private formBuilder: FormBuilder) {
-    this.title = 'Edit Road and Directions';
     this.buildForm();
   }
 

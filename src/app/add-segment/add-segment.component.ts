@@ -13,7 +13,6 @@ import 'rxjs/add/operator/map';
 })
 
 export class AddSegmentComponent implements OnInit {
-  title;
   highway;
   dirs;
   highwayForm: FormGroup;
@@ -21,7 +20,6 @@ export class AddSegmentComponent implements OnInit {
   end;
 
   constructor(private formBuilder: FormBuilder, highwayService: HighwayService) {
-    this.title = 'Add Segment';
     this.highway = '';
     this.dirs = highwayService.getDirs();
     this.buildForm();
