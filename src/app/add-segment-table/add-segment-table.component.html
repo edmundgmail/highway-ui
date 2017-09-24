@@ -1,4 +1,5 @@
-<md-table #table [dataSource]="dataSource">
+<md-card class="example-container">
+<md-table #table [dataSource]="dataSource" class="example-half-width">
 
   <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
@@ -33,3 +34,8 @@
     (click)="selection.toggle(row.position)">
   </md-row>
 </md-table>
+  <div align="end">
+  <button md-raised-button type="button">Add New</button>
+  <button md-raised-button type="button">Remove</button>
+  </div>
+</md-card>
