@@ -21,21 +21,21 @@
   </ng-container>
 
 <!-- Name Column -->
-  <ng-container mdColumnDef="name">
-    <md-header-cell *mdHeaderCellDef> Name </md-header-cell>
-    <md-cell *mdCellDef="let element" contenteditable="true"> {{element.name}} </md-cell>
+  <ng-container mdColumnDef="startRP">
+    <md-header-cell *mdHeaderCellDef> Start Point/RP </md-header-cell>
+    <md-cell *mdCellDef="let element"> {{element.startRP}} </md-cell>
   </ng-container>
 
   <!-- Weight Column -->
-  <ng-container mdColumnDef="weight">
-    <md-header-cell *mdHeaderCellDef> Weight </md-header-cell>
-    <md-cell *mdCellDef="let element"> {{element.weight}} </md-cell>
+  <ng-container mdColumnDef="endRP">
+    <md-header-cell *mdHeaderCellDef> End Point/RP </md-header-cell>
+    <md-cell *mdCellDef="let element"> {{element.endRP}} </md-cell>
   </ng-container>
 
   <!-- Color Column -->
-  <ng-container mdColumnDef="symbol">
-    <md-header-cell *mdHeaderCellDef> Symbol </md-header-cell>
-    <md-cell *mdCellDef="let element"> {{element.symbol}} </md-cell>
+  <ng-container mdColumnDef="distance">
+    <md-header-cell *mdHeaderCellDef> Distance </md-header-cell>
+    <md-cell *mdCellDef="let element"> {{element.distance}} </md-cell>
   </ng-container>
 
   <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
