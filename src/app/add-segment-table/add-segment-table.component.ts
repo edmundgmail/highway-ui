@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {DataSource, SelectionModel} from "@angular/cdk/collections";
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {HighwayService} from "app/services/highway.service";
 
 @Component({
   selector: 'app-add-segment-table',
@@ -10,12 +12,29 @@ import 'rxjs/add/observable/of';
 })
 export class AddSegmentTableComponent implements OnInit {
   dataSource = new NewSegmentDataSource();
-  displayedColumns = ['startRP', 'endRP', 'distance', 'checked'];
+  displayedColumns = ['startNewRP', 'endNewRP', 'distance', 'checked'];
   selection = new SelectionModel<number>(true, []);
+  rpForm: FormGroup;
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder, highwayService: HighwayService) {
+    this.buildForm();
+  }
 
   ngOnInit() {
+  }
+
+  private buildForm() {
+    this.rpForm = this.formBuilder.group({
+        startNewRP: this.formBuilder.control(null),
+        endNewRP: this.formBuilder.control(null),
+        Distance: this.formBuilder.control(null)
+      },
+      {
+        validator: Validators.required
+      });
+  }
+
+  onSubmitRPForm() {
   }
 
   isAllSelected(): boolean {
@@ -38,13 +57,13 @@ export class AddSegmentTableComponent implements OnInit {
 
 export interface Element {
   position: number;
-  startRP: string;
-  endRP: string;
+  startNewRP: string;
+  endNewRP: string;
   distance: number;
 }
 
 const data: Element[] = [
-  {position: 1, startRP: 'RP1', endRP: 'RP2', distance: 1.5},
+  {position: 1, startNewRP: 'RP1', endNewRP: 'RP2', distance: 1.5},
 ];
 
 

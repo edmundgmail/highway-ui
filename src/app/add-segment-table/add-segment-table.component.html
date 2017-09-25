@@ -1,4 +1,4 @@
-<md-card class="example-container">
+<md-card class="example-container-half">
 <md-table #table [dataSource]="dataSource" class="example-half-width">
 
   <!--- Note that these columns can be defined in any order.
@@ -7,15 +7,15 @@
   <!-- Position Column -->
 
 <!-- Name Column -->
-  <ng-container mdColumnDef="startRP">
+  <ng-container mdColumnDef="startNewRP">
     <md-header-cell *mdHeaderCellDef> Start Point/RP </md-header-cell>
-    <md-cell *mdCellDef="let element"> {{element.startRP}} </md-cell>
+    <md-cell *mdCellDef="let element"> {{element.startNewRP}} </md-cell>
   </ng-container>
 
   <!-- Weight Column -->
-  <ng-container mdColumnDef="endRP">
+  <ng-container mdColumnDef="endNewRP">
     <md-header-cell *mdHeaderCellDef> End Point/RP </md-header-cell>
-    <md-cell *mdCellDef="let element"> {{element.endRP}} </md-cell>
+    <md-cell *mdCellDef="let element"> {{element.endNewRP}} </md-cell>
   </ng-container>
 
   <!-- Color Column -->
@@ -45,8 +45,19 @@
     (click)="selection.toggle(row.position)">
   </md-row>
 </md-table>
-  <div align="end">
-  <button md-raised-button type="button">Add New</button>
-  <button md-raised-button type="button" [disabled]="selection.isEmpty()">Remove</button>
+  <div class="example-container" align="center">
+    <form class="example-form" novalidate [formGroup]="rpForm" (ngSubmit)="onSubmitRPForm()">
+      <md-form-field>
+        <input mdInput placeholder="Select Start RP" >
+      </md-form-field>
+    <md-form-field>
+        <input mdInput  placeholder="Select End RP">
+    </md-form-field>
+    <md-form-field>
+        <input mdInput placeholder="Distance">
+      </md-form-field>
+      <button md-raised-button type="button">Add New</button>
+      <button md-raised-button type="button" [disabled]="selection.isEmpty()">Remove</button>
+    </form>
   </div>
 </md-card>
