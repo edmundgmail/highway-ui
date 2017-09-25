@@ -10,8 +10,8 @@ import 'rxjs/add/observable/of';
 })
 export class AddSegmentTableComponent implements OnInit {
   dataSource = new NewSegmentDataSource();
-  displayedColumns = ['checked', 'startRP', 'endRP', 'distance'];
-  selection = new SelectionModel<string>(true, []);
+  displayedColumns = ['startRP', 'endRP', 'distance', 'checked'];
+  selection = new SelectionModel<number>(true, []);
 
   constructor() { }
 
@@ -29,7 +29,7 @@ export class AddSegmentTableComponent implements OnInit {
     if (this.isAllSelected()) {
       this.selection.clear();
     } else {
-      this.dataSource.getData().forEach(data => this.selection.select(data.startRP));
+      this.dataSource.getData().forEach(data => this.selection.select(data.position));
     }
   }
 
@@ -37,14 +37,14 @@ export class AddSegmentTableComponent implements OnInit {
 
 
 export interface Element {
-  checked: number;
+  position: number;
   startRP: string;
   endRP: string;
   distance: number;
 }
 
 const data: Element[] = [
-  {checked: 1, startRP: 'RP1', endRP: 'RP2', distance: 1.5},
+  {position: 1, startRP: 'RP1', endRP: 'RP2', distance: 1.5},
 ];
 
 

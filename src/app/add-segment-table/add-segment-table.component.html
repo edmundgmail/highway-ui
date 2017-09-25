@@ -5,20 +5,6 @@
         The actual rendered columns are set as a property on the row definition" -->
 
   <!-- Position Column -->
-  <ng-container mdColumnDef="checked">
-    <md-header-cell *mdHeaderCellDef>
-      <md-checkbox (change)="$event ? masterToggle() : null"
-                   [checked]="isAllSelected()"
-                   [indeterminate]="selection.hasValue() && !isAllSelected()">
-      </md-checkbox>
-    </md-header-cell>
-    <md-cell *mdCellDef="let row">
-      <md-checkbox (click)="$event.stopPropagation()"
-                   (change)="$event ? selection.toggle(row.id) : null"
-                   [checked]="selection.isSelected(row.id)">
-      </md-checkbox>
-    </md-cell>
-  </ng-container>
 
 <!-- Name Column -->
   <ng-container mdColumnDef="startRP">
@@ -38,14 +24,29 @@
     <md-cell *mdCellDef="let element"> {{element.distance}} </md-cell>
   </ng-container>
 
+  <ng-container mdColumnDef="checked">
+    <md-header-cell *mdHeaderCellDef>
+      <md-checkbox (change)="$event ? masterToggle() : null"
+                   [checked]="isAllSelected()"
+                   [indeterminate]="selection.hasValue() && !isAllSelected()">
+      </md-checkbox>
+    </md-header-cell>
+    <md-cell *mdCellDef="let row">
+      <md-checkbox (click)="$event.stopPropagation()"
+                   (change)="$event ? selection.toggle(row.position) : null"
+                   [checked]="selection.isSelected(row.position)">
+      </md-checkbox>
+    </md-cell>
+  </ng-container>
+
   <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
   <md-row *mdRowDef="let row; columns: displayedColumns;"
-    [class.example-selected-row]="selection.isSelected(row.checked)"
-    (click)="selection.toggle(row.checked)">
+    [class.example-selected-row]="selection.isSelected(row.position)"
+    (click)="selection.toggle(row.position)">
   </md-row>
 </md-table>
   <div align="end">
   <button md-raised-button type="button">Add New</button>
-  <button md-raised-button type="button">Remove</button>
+  <button md-raised-button type="button" [disabled]="selection.isEmpty()">Remove</button>
   </div>
 </md-card>
