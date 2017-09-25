@@ -45,16 +45,20 @@
     (click)="selection.toggle(row.position)">
   </md-row>
 </md-table>
-  <div class="example-container" align="center">
+  <div class="example-container">
     <form class="example-form" novalidate [formGroup]="rpForm" (ngSubmit)="onSubmitRPForm()">
-      <md-form-field>
-        <input mdInput placeholder="Select Start RP" >
-      </md-form-field>
+        <md-select mdInput formControlName="startNewRP" placeholder="Select Start RP" >
+          <md-option *ngFor="let rp of rps" [value]="rp.name" >
+            {{rp.name}}
+          </md-option>
+        </md-select>
+      <md-select mdInput formControlName="endNewRP" placeholder="Select End RP" >
+        <md-option *ngFor="let rp of rps" [value]="rp.name" >
+          {{rp.name}}
+        </md-option>
+      </md-select>
     <md-form-field>
-        <input mdInput  placeholder="Select End RP">
-    </md-form-field>
-    <md-form-field>
-        <input mdInput placeholder="Distance">
+        <input mdInput formControlName="Distance" placeholder="Distance">
       </md-form-field>
       <button md-raised-button type="button">Add New</button>
       <button md-raised-button type="button" [disabled]="selection.isEmpty()">Remove</button>

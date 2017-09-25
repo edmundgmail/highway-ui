@@ -15,8 +15,10 @@ export class AddSegmentTableComponent implements OnInit {
   displayedColumns = ['startNewRP', 'endNewRP', 'distance', 'checked'];
   selection = new SelectionModel<number>(true, []);
   rpForm: FormGroup;
+  rps;
 
   constructor(private formBuilder: FormBuilder, highwayService: HighwayService) {
+    this.rps=[];
     this.buildForm();
   }
 
