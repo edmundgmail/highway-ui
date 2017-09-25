@@ -4,6 +4,8 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HighwayService} from "app/services/highway.service";
+import {NewRPElement} from "../models/new-rpelement";
+import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
   selector: 'app-add-segment-table',
@@ -37,6 +39,11 @@ export class AddSegmentTableComponent implements OnInit {
   }
 
   onSubmitRPForm() {
+    console.log(this.rpForm.value);
+  }
+
+  onRemoveSelected() {
+    this.selection.selected.forEach( e => this.dataSource.removePosition(e));
   }
 
   isAllSelected(): boolean {
@@ -57,31 +64,29 @@ export class AddSegmentTableComponent implements OnInit {
 }
 
 
-export interface Element {
-  position: number;
-  startNewRP: string;
-  endNewRP: string;
-  distance: number;
-}
-
-const data: Element[] = [
-  {position: 1, startNewRP: 'RP1', endNewRP: 'RP2', distance: 1.5},
-];
-
-
 export class NewSegmentDataSource extends DataSource<any> {
   /** Connect function called by the table to retrieve one stream containing the data to render. */
-  connect(): Observable<Element[]> {
-    return Observable.of(data);
+  private data: NewRPElement[] = [];
+
+  connect(): Observable<NewRPElement[]> {
+    return Observable.of(this.data);
   }
 
   disconnect() {}
 
   getDataLength() {
-    return data.length;
+    return this.data.length;
   }
 
   getData() {
-    return data;
+    return this.data;
+  }
+
+  addData(e: NewRPElement) {
+    this.data.push(e);
+  }
+
+  removePosition(position: number) {
+    this.data = this.data.filter(e => e.position === position);
   }
 }
