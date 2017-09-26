@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DataSource, SelectionModel} from "@angular/cdk/collections";
 import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
+import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/map';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HighwayService} from "app/services/highway.service";
@@ -15,7 +15,8 @@ import {BehaviorSubject} from "rxjs/BehaviorSubject";
   styleUrls: ['./add-segment-table.component.css']
 })
 export class AddSegmentTableComponent implements OnInit {
-  dataSource = new NewSegmentDataSource();
+  exampleDatabase = new ExampleDatabase();
+  dataSource = new NewSegmentDataSource(this.exampleDatabase);
   displayedColumns = ['startNewRP', 'endNewRP', 'distance', 'checked'];
   selection = new SelectionModel<number>(true, []);
   rpForm: FormGroup;
@@ -41,16 +42,16 @@ export class AddSegmentTableComponent implements OnInit {
   }
 
   onSubmitRPForm() {
-    this.dataSource.addData(new NewRPElement(0, this.rpForm.get("startNewRP").value, this.rpForm.get("endNewRP").value, this.rpForm.get("Distance").value));
+    this.exampleDatabase.addUser(new NewRPElement(0, this.rpForm.get("startNewRP").value, this.rpForm.get("endNewRP").value, this.rpForm.get("Distance").value));
   }
 
   onRemoveSelected() {
-    this.selection.selected.forEach( e => this.dataSource.removePosition(e));
+    this.exampleDatabase.removeUser(this.selection.selected);
   }
 
   isAllSelected(): boolean {
     if (this.selection.isEmpty()) { return false; }
-    return this.selection.selected.length === this.dataSource.getDataLength();
+    return this.selection.selected.length === this.exampleDatabase.data.length;
   }
 
   masterToggle() {
@@ -59,7 +60,7 @@ export class AddSegmentTableComponent implements OnInit {
     if (this.isAllSelected()) {
       this.selection.clear();
     } else {
-      this.dataSource.getData().forEach(data => this.selection.select(data.position));
+      this.exampleDatabase.data.forEach(data => this.selection.select(data.position));
     }
   }
 
@@ -73,6 +74,11 @@ export class ExampleDatabase {
   constructor() {
   }
 
+  removeUser(e: number[]) {
+    const copiedData = this.data.filter( d=>e.indexOf(d.position) < 0).slice();
+    this.dataChange.next(copiedData);
+  }
+
   /** Adds a new user to the database. */
   addUser(e: NewRPElement) {
     const copiedData = this.data.slice();
@@ -84,31 +90,17 @@ export class ExampleDatabase {
 
 export class NewSegmentDataSource extends DataSource<any> {
   /** Connect function called by the table to retrieve one stream containing the data to render. */
-  private data: NewRPElement[] = [];
+  constructor(private _exampleDatabase: ExampleDatabase)
+  {
+   super();
+  }
 
   connect(): Observable<NewRPElement[]> {
-
-    return Observable.of(this.data);
-
+    const displayDataChanges = [this._exampleDatabase.dataChange];
+    return Observable.merge(...displayDataChanges).map(() => {
+      return this._exampleDatabase.data.slice();
+    });
   }
 
   disconnect() {}
-
-  getDataLength() {
-    return this.data.length;
-  }
-
-  getData() {
-    return this.data;
-  }
-
-  addData(e: NewRPElement) {
-    this.data.push(e.setPosition(this.data.length));
-    this.data=this.data.slice();
-
-  }
-
-  removePosition(position: number) {
-    this.data = this.data.filter(e => e.position === position);
-  }
 }
