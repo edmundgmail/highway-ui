@@ -28,7 +28,7 @@ export class SelectSegmentPointComponent implements OnInit {
     this.rp = null;
     this.offset = 0.0;
     this.connect=false;
-    this.rps = [{"name":"rp1", "id":1}, {"name":"rp2", "id":2}];
+    this.rps = highwayService.getRPs(null);
   }
 
   @Input()  type;

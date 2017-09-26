@@ -1,4 +1,3 @@
-import {start} from "repl";
 export class NewRPElement {
   position: number;
   startNewRP: string;
@@ -12,7 +11,8 @@ export class NewRPElement {
     this.distance = distance;
   }
 
-  setPosition(position: number) {
+  setPosition(position: number) : NewRPElement{
     this.position = position;
+    return this;
   }
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {SelectObject} from "../models/select-object";
 import {Highway} from "../models/highway";
+import {RP} from "../models/segment-point";
 
 @Injectable()
 export class HighwayService {
@@ -23,5 +24,9 @@ constructor() { }
 
   getHighways(): Highway[] {
     return this.highways;
+  }
+
+  getRPs(highway:Highway) : RP[] {
+    return [{"name":"rp1", "id":1}, {"name":"rp2", "id":2}];
   }
 }
