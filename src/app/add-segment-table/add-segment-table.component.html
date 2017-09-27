@@ -47,16 +47,12 @@
 </md-table>
   <div class="example-container">
     <form class="example-form" novalidate [formGroup]="rpForm" (ngSubmit)="onSubmitRPForm()">
-        <md-select mdInput formControlName="startNewRP" placeholder="Select Start RP" >
-          <md-option *ngFor="let rp of rps" [value]="rp.name" >
-            {{rp.name}}
-          </md-option>
-        </md-select>
-      <md-select mdInput formControlName="endNewRP" placeholder="Select End RP" >
-        <md-option *ngFor="let rp of rps" [value]="rp.name" >
-          {{rp.name}}
-        </md-option>
-      </md-select>
+        <md-form-field>
+          <input mdInput formControlName="startNewRP" placeholder="Start RP" >
+        </md-form-field>
+     <md-form-field>
+        <input mdInput formControlName="endNewRP" placeholder="End RP" >
+     </md-form-field>
     <md-form-field>
         <input mdInput formControlName="Distance" placeholder="Distance">
       </md-form-field>

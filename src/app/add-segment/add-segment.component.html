@@ -12,7 +12,12 @@
     </table>
     <app-select-segment-point type="start" (uponChange)="onSegmentPointChange($event, 'start')"></app-select-segment-point>
     <app-select-segment-point type="end" (uponChange)="onSegmentPointChange($event, 'end')"></app-select-segment-point>
-  <app-add-segment-table></app-add-segment-table>
+  <app-add-segment-table (segmentTableChange)="onSegmentTableChange()"></app-add-segment-table>
+      <md-select mdInput formControlName="projectCtrl" placeholder="Project">
+        <md-option *ngFor="let project of projects" [value]="project.id">
+          {{project.name}}
+        </md-option>
+      </md-select>
   </section>
   <p></p>
   <button md-raised-button type="submit" [disabled]="!highwayForm.valid">Submit</button>

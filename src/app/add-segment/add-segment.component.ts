@@ -15,10 +15,12 @@ import 'rxjs/add/operator/map';
 
 export class AddSegmentComponent implements OnInit {
   highway;
-  dirs;
-  highwayForm: FormGroup;
   start;
   end;
+  newseg;
+  dirs;
+  projects;
+  highwayForm: FormGroup;
   rows = [];
   headers = [
   {value: 'Name', type: 'TextField', width: 200},
@@ -30,8 +32,8 @@ export class AddSegmentComponent implements OnInit {
 ];
 
   constructor(private formBuilder: FormBuilder, highwayService: HighwayService) {
-    this.highway = '';
     this.dirs = highwayService.getDirs();
+    this.projects = highwayService.getProjects();
     this.buildForm();
   }
 
@@ -39,9 +41,11 @@ export class AddSegmentComponent implements OnInit {
     console.log(row);
   }
 
+
   private buildForm() {
     this.highwayForm = this.formBuilder.group({
-        direction: this.formBuilder.control(null)
+        direction: this.formBuilder.control(null),
+        projectCtrl: this.formBuilder.control(null)
       },
       {
         validator: Validators.required
@@ -61,6 +65,10 @@ export class AddSegmentComponent implements OnInit {
     }
   }
 
+  onSegmentTableChange($event) {
+    this.newseg = $event;
+  }
+
   roadSelected(v) {
      return this.highway !== null;
   }
@@ -74,6 +82,7 @@ export class AddSegmentComponent implements OnInit {
     console.log('highway=' + JSON.stringify(this.highway));
     console.log('startRP=' + JSON.stringify(this.start));
     console.log('endRP=' + JSON.stringify(this.end));
+    console.log('newseg=' + this.newseg);
   }
 
   ngOnInit() {

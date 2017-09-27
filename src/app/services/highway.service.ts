@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {SelectObject} from "../models/select-object";
 import {Highway} from "../models/highway";
 import {RP} from "../models/segment-point";
+import {Project} from "../models/project";
 
 @Injectable()
 export class HighwayService {
@@ -17,7 +18,17 @@ export class HighwayService {
     {'id': 400, 'name' : 'Barrie Highway'},
     {'id': 404, 'name' : 'Queen Elizabeth Way'}];
 
+  projects = [
+    {'id' : 1, 'name' : '401 project'},
+    {'id' : 2, 'name' : '402 project'},
+    {'id' : 3, 'name' : '403 project'}
+  ];
 constructor() { }
+
+  getProjects() : Project[]
+  {
+    return this.projects;
+  }
   getDirs(): SelectObject[] {
     return this.dirs;
   }

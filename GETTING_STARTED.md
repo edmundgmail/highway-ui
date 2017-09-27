@@ -150,7 +150,7 @@ Styling can be added to app.component.css file.
 ## MULTIPLE COMPONENTS
 ---------------------
 
-Let's first extract Hero class to separate file. Create hero.ts in the /models folder.
+Let's first extract Hero class to separate file. Create in the /models folder.
 
     export class Hero {
         id: number;

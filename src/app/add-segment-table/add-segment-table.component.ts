@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {DataSource, SelectionModel} from "@angular/cdk/collections";
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/merge';
@@ -20,10 +20,8 @@ export class AddSegmentTableComponent implements OnInit {
   displayedColumns = ['startNewRP', 'endNewRP', 'distance', 'checked'];
   selection = new SelectionModel<number>(true, []);
   rpForm: FormGroup;
-  rps;
 
   constructor(private formBuilder: FormBuilder, highwayService: HighwayService) {
-    this.rps = highwayService.getRPs(null);
     this.buildForm();
   }
 
@@ -41,12 +39,16 @@ export class AddSegmentTableComponent implements OnInit {
       });
   }
 
+  @Output() segmentTableChange = new EventEmitter();
+
   onSubmitRPForm() {
     this.exampleDatabase.addUser(new NewRPElement(0, this.rpForm.get("startNewRP").value, this.rpForm.get("endNewRP").value, this.rpForm.get("Distance").value));
+    this.segmentTableChange.emit(this.exampleDatabase.dataString);
   }
 
   onRemoveSelected() {
     this.exampleDatabase.removeUser(this.selection.selected);
+    this.segmentTableChange.emit(this.exampleDatabase.dataString);
   }
 
   isAllSelected(): boolean {
@@ -70,6 +72,11 @@ export class ExampleDatabase {
   /** Stream that emits whenever the data has been modified. */
   dataChange: BehaviorSubject<NewRPElement[]> = new BehaviorSubject<NewRPElement[]>([]);
   get data(): NewRPElement[] { return this.dataChange.value; }
+
+  get dataString() {
+      const x = this.data.map(x=> x.startNewRP + "," + x.distance).join(",").split(",");
+      return x.slice(1, x.length).join(",")
+  }
 
   constructor() {
   }
