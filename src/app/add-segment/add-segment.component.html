@@ -1,16 +1,8 @@
 <form class="example-form" novalidate [formGroup]="highwayForm" (ngSubmit)="onSubmitForm()">
-  <app-highway-name-select (roadNameChange)="onRoadNameChange($event)"> </app-highway-name-select>
+  <app-highway-name-select> </app-highway-name-select>
   <section class="example-full-width">
-    <table class="example-full-width" cellspacing="0"><tr>
-    <td>
-      <md-select mdInput formControlName="direction" placeholder="Direction">
-        <md-option *ngFor="let dir of dirs" [value]="dir.value">
-          {{dir.viewValue}}
-        </md-option>
-      </md-select>
-    </td>
-    </table>
-    <app-select-segment-point type="start" (uponChange)="onSegmentPointChange($event, 'start')"></app-select-segment-point>
+    <app-select-direction></app-select-direction>
+    <app-select-segment-point type="start" (uponChange)="onSegmentPointChange($event,'start')"></app-select-segment-point>
     <app-select-segment-point type="end" (uponChange)="onSegmentPointChange($event, 'end')"></app-select-segment-point>
   <app-add-segment-table (segmentTableChange)="onSegmentTableChange()"></app-add-segment-table>
       <md-select mdInput formControlName="projectCtrl" placeholder="Project">

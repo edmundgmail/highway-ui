@@ -12,7 +12,7 @@ export class HighwayNameSelectComponent implements OnInit {
   highwayCtrl;
   highways;
   reactiveHighways: any;
-  constructor(highwayService: HighwayService) {
+  constructor(private highwayService: HighwayService) {
     this.highwayCtrl = new FormControl();
     this.highways = highwayService.getHighways();
     this.reactiveHighways = this.highwayCtrl.valueChanges
@@ -21,13 +21,11 @@ export class HighwayNameSelectComponent implements OnInit {
       .map(name => this.filterStates(name));
   }
 
-  @Output() roadNameChange = new EventEmitter();
-
   ngOnInit() {
   }
 
   private onChange(event, highway){
-    this.roadNameChange.emit(highway);
+    this.highwayService.announceHighway(highway);
   }
 
   displayFn(value: any): string {

@@ -18,6 +18,7 @@ import {HighwayService} from "app/services/highway.service";
 import { HighwayNameSelectComponent } from './highway-name-select/highway-name-select.component';
 import { SelectSegmentPointComponent } from './select-segment-point/select-segment-point.component';
 import { AddSegmentTableComponent } from './add-segment-table/add-segment-table.component';
+import { SelectDirectionComponent } from './select-direction/select-direction.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AddSegmentTableComponent } from './add-segment-table/add-segment-table.
     AddSegmentComponent,
     HighwayNameSelectComponent,
     SelectSegmentPointComponent,
-    AddSegmentTableComponent
+    AddSegmentTableComponent,
+    SelectDirectionComponent
   ],
   imports: [
     BrowserModule,

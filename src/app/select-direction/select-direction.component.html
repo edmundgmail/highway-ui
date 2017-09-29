@@ -1,0 +1,9 @@
+<table class="example-full-width" cellspacing="0"><tr>
+  <td>
+    <md-select mdInput [formControl]="directionCtrl" placeholder="Direction">
+      <md-option *ngFor="let dir of dirs" [value]="dir.value">
+        {{dir.viewValue}}
+      </md-option>
+    </md-select>
+  </td>
+</table>

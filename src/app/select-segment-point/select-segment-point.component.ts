@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {HighwayService} from "../services/highway.service";
 import {FormControl} from "@angular/forms";
 import {RP, SegmentPoint} from "../models/segment-point";
+import {Highway} from "../models/highway";
 
 @Component({
   selector: 'app-select-segment-point',
@@ -17,18 +18,30 @@ export class SelectSegmentPointComponent implements OnInit {
   rp;
   connect;
   rps;
-  constructor(highwayService: HighwayService) {
+  currentHighway : Highway;
+  currentDir: string;
+
+  constructor(private highwayService: HighwayService) {
     this.rpCtrl = new FormControl();
     this.offsetCtrl = new FormControl();
     this.connectCtrl = new FormControl();
 
-    this.offsetCtrl.valueChanges.subscribe(value=>this.onOffsetChange(value));
-    this.rpCtrl.valueChanges.subscribe(value=>this.onRPChange(value));
-    this.connectCtrl.valueChanges.subscribe(value=>this.onConnectChange(value));
+    this.offsetCtrl.valueChanges.subscribe(value => this.onOffsetChange(value));
+    this.rpCtrl.valueChanges.subscribe(value => this.onRPChange(value));
+    this.connectCtrl.valueChanges.subscribe(value => this.onConnectChange(value));
     this.rp = null;
     this.offset = 0.0;
-    this.connect=false;
-    this.rps = highwayService.getRPs(null);
+    this.connect = false;
+
+    this.highwayService.currentHighwaySelected$.subscribe(value=> {this.currentHighway=value; this.getRps();});
+    this.highwayService.currentDirSelected$.subscribe(value=>{ this.currentDir= value; this.getRps();});
+  }
+
+ private getRps() {
+      if(this.type ==='start')
+        this.rps = this.highwayService.getSegmentStartRPs(this.currentHighway.id, this.currentDir);
+      else
+        this.rps = this.highwayService.getSegmentEndRPs(this.currentHighway.id, this.currentDir);
   }
 
   @Input()  type;

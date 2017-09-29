@@ -18,21 +18,10 @@ export class AddSegmentComponent implements OnInit {
   start;
   end;
   newseg;
-  dirs;
   projects;
   highwayForm: FormGroup;
-  rows = [];
-  headers = [
-  {value: 'Name', type: 'TextField', width: 200},
-  {value: 'Address', type: 'TextField', width: 200},
-  {value: 'Phone', type: 'TextField', width: 200},
-  {value: 'Date', type: 'DatePicker', width: 200},
-  {value: 'Enabled', type: 'Toggle', width: 50},
-  {value: 'Last Edited By', type: 'ReadOnly', width: 100}
-];
 
   constructor(private formBuilder: FormBuilder, highwayService: HighwayService) {
-    this.dirs = highwayService.getDirs();
     this.projects = highwayService.getProjects();
     this.buildForm();
   }
@@ -50,10 +39,6 @@ export class AddSegmentComponent implements OnInit {
       {
         validator: Validators.required
       });
-  }
-
-  onRoadNameChange($event) {
-    this.highway = $event;
   }
 
   onSegmentPointChange($event, type) {

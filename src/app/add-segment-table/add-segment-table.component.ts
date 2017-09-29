@@ -43,6 +43,7 @@ export class AddSegmentTableComponent implements OnInit {
 
   onSubmitRPForm() {
     this.exampleDatabase.addUser(new NewRPElement(0, this.rpForm.get("startNewRP").value, this.rpForm.get("endNewRP").value, this.rpForm.get("Distance").value));
+    this.rpForm.reset();
     this.segmentTableChange.emit(this.exampleDatabase.dataString);
   }
 

@@ -3,6 +3,8 @@ import {SelectObject} from "../models/select-object";
 import {Highway} from "../models/highway";
 import {RP} from "../models/segment-point";
 import {Project} from "../models/project";
+import {Subject} from "rxjs/Subject";
+import {isUndefined} from "util";
 
 @Injectable()
 export class HighwayService {
@@ -23,7 +25,23 @@ export class HighwayService {
     {'id' : 2, 'name' : '402 project'},
     {'id' : 3, 'name' : '403 project'}
   ];
+
+  private currentHighway = new Subject<Highway>();
+  private currentDir = new Subject<string> ();
+
+  currentHighwaySelected$ = this.currentHighway.asObservable();
+  currentDirSelected$ = this.currentDir.asObservable();
+
+  announceHighway(highway : Highway) {
+    this.currentHighway.next(highway);
+  }
+
+  announceDir(dir: string) {
+    this.currentDir.next(dir);
+  }
+
 constructor() { }
+
 
   getProjects() : Project[]
   {
@@ -37,7 +55,18 @@ constructor() { }
     return this.highways;
   }
 
-  getRPs(highway:Highway) : RP[] {
+  getRPs(roadID: number, dir: String) : RP[] {
     return [{"name":"rp1", "id":1}, {"name":"rp2", "id":2}];
   }
+
+  getSegmentStartRPs(roadID: number, dir:String): RP[]{
+    if(isUndefined(roadID) || isUndefined(dir)) return [];
+    return this.getRPs(roadID, dir);
+  }
+
+  getSegmentEndRPs(roadID: number, dir:String): RP[] {
+    if(isUndefined(roadID) || isUndefined(dir)) return [];
+    return this.getRPs(roadID, dir);
+  }
+
 }
