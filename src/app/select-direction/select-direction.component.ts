@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HighwayService} from "../services/highway.service";
 import {FormControl} from "@angular/forms";
+import {Segment} from "../models/segment";
 
 @Component({
   selector: 'app-select-direction',
@@ -8,12 +9,11 @@ import {FormControl} from "@angular/forms";
   styleUrls: ['./select-direction.component.css']
 })
 export class SelectDirectionComponent implements OnInit {
-  dirs;
-  directionCtrl = new FormControl();
+  segments: Segment[];
+  segmentCtrl = new FormControl();
 
   constructor(private highwayService: HighwayService) {
-    this.dirs = highwayService.dirs;
-    this.directionCtrl.valueChanges.subscribe(value=>this.highwayService.announceDir(value));
+
   }
 
   ngOnInit() {

@@ -19,6 +19,8 @@ import { HighwayNameSelectComponent } from './highway-name-select/highway-name-s
 import { SelectSegmentPointComponent } from './select-segment-point/select-segment-point.component';
 import { AddSegmentTableComponent } from './add-segment-table/add-segment-table.component';
 import { SelectDirectionComponent } from './select-direction/select-direction.component';
+import { EditLanesComponent } from './edit-lanes/edit-lanes.component';
+import { SelectSegmentComponent } from './select-segment/select-segment.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { SelectDirectionComponent } from './select-direction/select-direction.co
     HighwayNameSelectComponent,
     SelectSegmentPointComponent,
     AddSegmentTableComponent,
-    SelectDirectionComponent
+    SelectDirectionComponent,
+    EditLanesComponent,
+    SelectSegmentComponent
   ],
   imports: [
     BrowserModule,

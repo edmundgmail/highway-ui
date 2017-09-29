@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {AddNewHighwayComponent} from './add-new-highway/add-new-highway.component';
 import {EditDirectionsComponent} from './edit-directions/edit-directions.component';
 import {AddSegmentComponent} from './add-segment/add-segment.component';
+import {EditLanesComponent} from "./edit-lanes/edit-lanes.component";
 
 const routes: Routes = [
   {
@@ -22,7 +23,12 @@ const routes: Routes = [
   {
     path: 'add-segment',
     component: AddSegmentComponent
+  },
+  {
+    path: 'edit-lanes',
+    component: EditLanesComponent
   }
+
 
 
 ];

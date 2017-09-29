@@ -42,7 +42,6 @@ export class HighwayService {
 
 constructor() { }
 
-
   getProjects() : Project[]
   {
     return this.projects;

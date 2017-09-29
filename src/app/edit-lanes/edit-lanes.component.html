@@ -1,0 +1,19 @@
+<form class="example-form" novalidate [formGroup]="editLanesForm" (ngSubmit)="onSubmitForm()">
+  <app-highway-name-select> </app-highway-name-select>
+  <section class="example-full-width">
+    <app-select-direction></app-select-direction>
+
+    <app-add-segment-table (segmentTableChange)="onSegmentTableChange()"></app-add-segment-table>
+    <md-select mdInput formControlName="projectCtrl" placeholder="Project">
+      <md-option *ngFor="let project of projects" [value]="project.id">
+        {{project.name}}
+      </md-option>
+    </md-select>
+  </section>
+  <p></p>
+  <button md-raised-button type="submit" [disabled]="!highwayForm.valid">Submit</button>
+  <button md-raised-button type="button" (click)="onResetForm()">Reset</button>
+</form>
+
+
+
