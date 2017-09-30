@@ -5,6 +5,7 @@ import {HighwayService} from "../services/highway.service";
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
+import {Project} from "../models/project";
 
 
 @Component({
@@ -14,15 +15,13 @@ import 'rxjs/add/operator/map';
 })
 
 export class AddSegmentComponent implements OnInit {
-  highway;
   start;
   end;
   newseg;
-  projects;
   highwayForm: FormGroup;
+  project: Project;
 
   constructor(private formBuilder: FormBuilder, highwayService: HighwayService) {
-    this.projects = highwayService.getProjects();
     this.buildForm();
   }
 
@@ -30,11 +29,12 @@ export class AddSegmentComponent implements OnInit {
     console.log(row);
   }
 
+  private onProjectChange($event) {
+    this.project = $event;
+  }
 
   private buildForm() {
     this.highwayForm = this.formBuilder.group({
-        direction: this.formBuilder.control(null),
-        projectCtrl: this.formBuilder.control(null)
       },
       {
         validator: Validators.required
@@ -54,20 +54,16 @@ export class AddSegmentComponent implements OnInit {
     this.newseg = $event;
   }
 
-  roadSelected(v) {
-     return this.highway !== null;
-  }
-
   onResetForm() {
     this.highwayForm.reset();
   }
 
   onSubmitForm() {
     console.log(this.highwayForm.value);
-    console.log('highway=' + JSON.stringify(this.highway));
     console.log('startRP=' + JSON.stringify(this.start));
     console.log('endRP=' + JSON.stringify(this.end));
     console.log('newseg=' + this.newseg);
+    console.log("project=" + this.project);
   }
 
   ngOnInit() {

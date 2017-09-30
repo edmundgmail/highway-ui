@@ -1,0 +1,90 @@
+<md-card class="example-container-half">
+  <md-table #table [dataSource]="dataSource" class="example-full-width">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+
+    <!-- Name Column -->
+    <ng-container mdColumnDef="fromRP">
+      <md-header-cell *mdHeaderCellDef> From RP </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.fromRP}} </md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="fromOffset">
+      <md-header-cell *mdHeaderCellDef> Offset </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.fromOffset}} </md-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container mdColumnDef="toRP">
+      <md-header-cell *mdHeaderCellDef> To RP </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.toRP}} </md-cell>
+    </ng-container>
+
+    <!-- Color Column -->
+    <ng-container mdColumnDef="toOffset">
+      <md-header-cell *mdHeaderCellDef> Offset </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.toOffset}} </md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="nLanes">
+      <md-header-cell *mdHeaderCellDef> # of Lanes </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.nLanes}} </md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="laneWidth">
+      <md-header-cell *mdHeaderCellDef> Lane Width </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.laneWidth}} </md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="checked">
+      <md-header-cell *mdHeaderCellDef>
+        <md-checkbox (change)="$event ? masterToggle() : null"
+                     [checked]="isAllSelected()"
+                     [indeterminate]="selection.hasValue() && !isAllSelected()">
+        </md-checkbox>
+      </md-header-cell>
+      <md-cell *mdCellDef="let row">
+        <md-checkbox (click)="$event.stopPropagation()"
+                     (change)="$event ? selection.toggle(row.position) : null"
+                     [checked]="selection.isSelected(row.position)">
+        </md-checkbox>
+      </md-cell>
+    </ng-container>
+
+    <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+    <md-row *mdRowDef="let row; columns: displayedColumns;"
+            [class.example-selected-row]="selection.isSelected(row.position)"
+            (click)="selection.toggle(row.position)">
+    </md-row>
+  </md-table>
+  <div class="example-container">
+    <form class="example-form" novalidate [formGroup]="rpForm" (ngSubmit)="onSubmitRPForm()">
+      <md-form-field>
+        <input mdInput formControlName="fromRP" placeholder="From RP" >
+      </md-form-field>
+      <md-form-field>
+        <input mdInput formControlName="fromOffset" placeholder="Offset" >
+      </md-form-field>
+
+      <md-form-field>
+        <input mdInput formControlName="toRP" placeholder="To RP" >
+      </md-form-field>
+      <md-form-field>
+        <input mdInput formControlName="toOffset" placeholder="Offset">
+      </md-form-field>
+
+      <md-form-field>
+        <input mdInput formControlName="nLanes" placeholder="# of Lanes" >
+      </md-form-field>
+      <md-form-field>
+        <input mdInput formControlName="laneWidth" placeholder="laneWidth">
+      </md-form-field>
+
+      <button md-raised-button type="submit">Add New</button>
+      <button md-raised-button type="button" [disabled]="selection.isEmpty()" (click)="onRemoveSelected()">Remove</button>
+    </form>
+  </div>
+</md-card>

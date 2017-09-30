@@ -1,23 +1,21 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {DataSource, SelectionModel} from "@angular/cdk/collections";
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/observable/merge';
-import 'rxjs/add/operator/map';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {HighwayService} from "app/services/highway.service";
-import {NewRPElement} from "../models/new-rpelement";
-import {forEach} from "@angular/router/src/utils/collection";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {HighwayService} from "../services/highway.service";
+import {Highway} from "../models/highway";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {Observable} from "rxjs/Observable";
+import {DataSource, SelectionModel} from "@angular/cdk/collections";
+import {LaneElement} from "../models/lane-element";
 
 @Component({
-  selector: 'app-add-segment-table',
-  templateUrl: './add-segment-table.component.html',
-  styleUrls: ['./add-segment-table.component.css']
+  selector: 'app-select-segment',
+  templateUrl: './select-segment-table.component.html',
+  styleUrls: ['./select-segment-table.component.css']
 })
-export class AddSegmentTableComponent implements OnInit {
+export class SelectSegmentTableComponent implements OnInit {
   exampleDatabase = new ExampleDatabase();
   dataSource = new NewSegmentDataSource(this.exampleDatabase);
-  displayedColumns = ['startNewRP', 'endNewRP', 'distance', 'checked'];
+  displayedColumns = ['fromRP', 'fromOffset', 'toRP', 'toOffset', "nLanes", "laneWidth",'checked'];
   selection = new SelectionModel<number>(true, []);
   rpForm: FormGroup;
 
@@ -30,9 +28,12 @@ export class AddSegmentTableComponent implements OnInit {
 
   private buildForm() {
     this.rpForm = this.formBuilder.group({
-        startNewRP: this.formBuilder.control(null),
-        endNewRP: this.formBuilder.control(null),
-        Distance: this.formBuilder.control(null)
+        fromRP: this.formBuilder.control(null),
+        fromOffset: this.formBuilder.control(null),
+        toRP: this.formBuilder.control(null),
+        toOffset: this.formBuilder.control(null),
+        nLanes: this.formBuilder.control(null),
+        laneWidth: this.formBuilder.control(null)
       },
       {
         validator: Validators.required
@@ -42,7 +43,9 @@ export class AddSegmentTableComponent implements OnInit {
   @Output() segmentTableChange = new EventEmitter();
 
   onSubmitRPForm() {
-    this.exampleDatabase.addUser(new NewRPElement(0, this.rpForm.get("startNewRP").value, this.rpForm.get("endNewRP").value, this.rpForm.get("Distance").value));
+    this.exampleDatabase.addUser(new LaneElement(0, this.rpForm.get("fromRP").value, this.rpForm.get("fromOffset").value, this.rpForm.get("toRP").value
+    ,this.rpForm.get("toOffset").value, this.rpForm.get("nLanes").value, this.rpForm.get("laneWidth").value))
+    ;
     this.rpForm.reset();
     this.segmentTableChange.emit(this.exampleDatabase.dataString);
   }
@@ -71,12 +74,11 @@ export class AddSegmentTableComponent implements OnInit {
 
 class ExampleDatabase {
   /** Stream that emits whenever the data has been modified. */
-  dataChange: BehaviorSubject<NewRPElement[]> = new BehaviorSubject<NewRPElement[]>([]);
-  get data(): NewRPElement[] { return this.dataChange.value; }
+  dataChange: BehaviorSubject<LaneElement[]> = new BehaviorSubject<LaneElement[]>([]);
+  get data(): LaneElement[] { return this.dataChange.value; }
 
   get dataString() {
-      const x = this.data.map(x=> x.startNewRP + "," + x.distance).join(",").split(",");
-      return x.slice(1, x.length).join(",")
+    return '';
   }
 
   constructor() {
@@ -88,7 +90,7 @@ class ExampleDatabase {
   }
 
   /** Adds a new user to the database. */
-  addUser(e: NewRPElement) {
+  addUser(e: LaneElement) {
     const copiedData = this.data.slice();
     copiedData.push(e.setPosition(copiedData.length));
     this.dataChange.next(copiedData);
@@ -100,10 +102,10 @@ class NewSegmentDataSource extends DataSource<any> {
   /** Connect function called by the table to retrieve one stream containing the data to render. */
   constructor(private _exampleDatabase: ExampleDatabase)
   {
-   super();
+    super();
   }
 
-  connect(): Observable<NewRPElement[]> {
+  connect(): Observable<LaneElement[]> {
     const displayDataChanges = [this._exampleDatabase.dataChange];
     return Observable.merge(...displayDataChanges).map(() => {
       return this._exampleDatabase.data.slice();

@@ -1,0 +1,5 @@
+<md-select mdInput [formControl]="projectCtrl" placeholder="Project">
+  <md-option *ngFor="let project of projects" [value]="project.id">
+    {{project.name}}
+  </md-option>
+</md-select>

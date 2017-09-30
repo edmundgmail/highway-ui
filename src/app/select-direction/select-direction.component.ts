@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {HighwayService} from "../services/highway.service";
 import {FormControl} from "@angular/forms";
 import {Segment} from "../models/segment";
@@ -9,11 +9,10 @@ import {Segment} from "../models/segment";
   styleUrls: ['./select-direction.component.css']
 })
 export class SelectDirectionComponent implements OnInit {
-  segments: Segment[];
-  segmentCtrl = new FormControl();
-
+  dirs = this.highwayService.getDirs();
+  directionCtrl = new FormControl();
   constructor(private highwayService: HighwayService) {
-
+    this.directionCtrl.valueChanges.subscribe(value=> this.highwayService.announceDir(value));
   }
 
   ngOnInit() {

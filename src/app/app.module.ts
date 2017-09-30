@@ -20,7 +20,8 @@ import { SelectSegmentPointComponent } from './select-segment-point/select-segme
 import { AddSegmentTableComponent } from './add-segment-table/add-segment-table.component';
 import { SelectDirectionComponent } from './select-direction/select-direction.component';
 import { EditLanesComponent } from './edit-lanes/edit-lanes.component';
-import { SelectSegmentComponent } from './select-segment/select-segment.component';
+import { SelectSegmentTableComponent } from './select-segment-table/select-segment-table.component';
+import { SelectProjectComponent } from './select-project/select-project.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { SelectSegmentComponent } from './select-segment/select-segment.componen
     AddSegmentTableComponent,
     SelectDirectionComponent,
     EditLanesComponent,
-    SelectSegmentComponent
+    SelectSegmentTableComponent,
+    SelectProjectComponent
   ],
   imports: [
     BrowserModule,

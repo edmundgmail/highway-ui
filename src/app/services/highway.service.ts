@@ -4,7 +4,8 @@ import {Highway} from "../models/highway";
 import {RP} from "../models/segment-point";
 import {Project} from "../models/project";
 import {Subject} from "rxjs/Subject";
-import {isUndefined} from "util";
+import {isNullOrUndefined, isUndefined} from "util";
+import {Segment} from "../models/segment";
 
 @Injectable()
 export class HighwayService {
@@ -58,14 +59,19 @@ constructor() { }
     return [{"name":"rp1", "id":1}, {"name":"rp2", "id":2}];
   }
 
-  getSegmentStartRPs(roadID: number, dir:String): RP[]{
-    if(isUndefined(roadID) || isUndefined(dir)) return [];
+  getSegmentStartRPs(roadID: number, dir: string): RP[]{
+    if(isNullOrUndefined(roadID) || isNullOrUndefined(dir)) return [];
     return this.getRPs(roadID, dir);
   }
 
-  getSegmentEndRPs(roadID: number, dir:String): RP[] {
-    if(isUndefined(roadID) || isUndefined(dir)) return [];
+  getSegmentEndRPs(roadID: number, dir: string): RP[] {
+    if(isNullOrUndefined(roadID) || isNullOrUndefined(dir)) return [];
     return this.getRPs(roadID, dir);
+  }
+
+  getSegments(roadID : number, dir: string)  : Segment[]{
+    if(isNullOrUndefined(roadID) || isNullOrUndefined(dir)) return [];
+    return [];
   }
 
 }
