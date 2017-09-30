@@ -1,4 +1,4 @@
-<form class="example-form" novalidate [formGroup]="highwayForm" (ngSubmit)="onSubmitForm()">
+<form class="example-form" novalidate (ngSubmit)="onSubmitForm()">
   <app-highway-name-select> </app-highway-name-select>
   <section class="example-full-width">
     <app-select-direction></app-select-direction>
@@ -8,7 +8,7 @@
     <app-select-project (uponChange)="onProjectChange($event)"></app-select-project>
   </section>
   <p></p>
-  <button md-raised-button type="submit" [disabled]="!highwayForm.valid">Submit</button>
+  <button md-raised-button type="submit" >Submit</button>
   <button md-raised-button type="button" (click)="onResetForm()">Reset</button>
 </form>
 

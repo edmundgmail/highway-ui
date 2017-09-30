@@ -18,11 +18,9 @@ export class AddSegmentComponent implements OnInit {
   start;
   end;
   newseg;
-  highwayForm: FormGroup;
   project: Project;
 
   constructor(private formBuilder: FormBuilder, highwayService: HighwayService) {
-    this.buildForm();
   }
 
   onChange = (row) => {
@@ -31,14 +29,6 @@ export class AddSegmentComponent implements OnInit {
 
   private onProjectChange($event) {
     this.project = $event;
-  }
-
-  private buildForm() {
-    this.highwayForm = this.formBuilder.group({
-      },
-      {
-        validator: Validators.required
-      });
   }
 
   onSegmentPointChange($event, type) {
@@ -55,11 +45,9 @@ export class AddSegmentComponent implements OnInit {
   }
 
   onResetForm() {
-    this.highwayForm.reset();
   }
 
   onSubmitForm() {
-    console.log(this.highwayForm.value);
     console.log('startRP=' + JSON.stringify(this.start));
     console.log('endRP=' + JSON.stringify(this.end));
     console.log('newseg=' + this.newseg);

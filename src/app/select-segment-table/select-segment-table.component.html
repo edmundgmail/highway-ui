@@ -62,16 +62,21 @@
   </md-table>
   <div class="example-container">
     <form class="example-form" novalidate [formGroup]="rpForm" (ngSubmit)="onSubmitRPForm()">
-      <md-form-field>
-        <input mdInput formControlName="fromRP" placeholder="From RP" >
-      </md-form-field>
+      <md-select mdInput formControlName="fromRP" placeholder="From RP">
+        <md-option *ngFor="let rp of rps" [value]="rp" >
+          {{rp.name}}
+        </md-option>
+      </md-select>
       <md-form-field>
         <input mdInput formControlName="fromOffset" placeholder="Offset" >
       </md-form-field>
 
-      <md-form-field>
-        <input mdInput formControlName="toRP" placeholder="To RP" >
-      </md-form-field>
+      <md-select mdInput formControlName="toRP" placeholder="To RP">
+        <md-option *ngFor="let rp of rps" [value]="rp" >
+          {{rp.name}}
+        </md-option>
+      </md-select>
+
       <md-form-field>
         <input mdInput formControlName="toOffset" placeholder="Offset">
       </md-form-field>

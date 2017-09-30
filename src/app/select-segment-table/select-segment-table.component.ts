@@ -40,19 +40,19 @@ export class SelectSegmentTableComponent implements OnInit {
       });
   }
 
-  @Output() segmentTableChange = new EventEmitter();
+  @Output() selectSegmentTableChange = new EventEmitter();
 
   onSubmitRPForm() {
     this.exampleDatabase.addUser(new LaneElement(0, this.rpForm.get("fromRP").value, this.rpForm.get("fromOffset").value, this.rpForm.get("toRP").value
     ,this.rpForm.get("toOffset").value, this.rpForm.get("nLanes").value, this.rpForm.get("laneWidth").value))
     ;
     this.rpForm.reset();
-    this.segmentTableChange.emit(this.exampleDatabase.dataString);
+    this.selectSegmentTableChange.emit(this.exampleDatabase.data);
   }
 
   onRemoveSelected() {
     this.exampleDatabase.removeUser(this.selection.selected);
-    this.segmentTableChange.emit(this.exampleDatabase.dataString);
+    this.selectSegmentTableChange.emit(this.exampleDatabase.data);
   }
 
   isAllSelected(): boolean {
@@ -76,10 +76,6 @@ class ExampleDatabase {
   /** Stream that emits whenever the data has been modified. */
   dataChange: BehaviorSubject<LaneElement[]> = new BehaviorSubject<LaneElement[]>([]);
   get data(): LaneElement[] { return this.dataChange.value; }
-
-  get dataString() {
-    return '';
-  }
 
   constructor() {
   }

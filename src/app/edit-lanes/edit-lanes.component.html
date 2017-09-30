@@ -1,8 +1,8 @@
-<form class="example-form" novalidate [formGroup]="editLanesForm" (ngSubmit)="onSubmitForm()">
+<form class="example-form" novalidate (ngSubmit)="onSubmitForm()">
   <app-highway-name-select> </app-highway-name-select>
   <section class="example-full-width">
     <app-select-direction></app-select-direction>
-    <app-select-segment></app-select-segment>
+    <app-select-segment (selectSegmentTableChange)="uponSelectSegmentTableChange($event)"></app-select-segment>
   </section>
   <p></p>
   <button md-raised-button type="submit">Submit</button>
