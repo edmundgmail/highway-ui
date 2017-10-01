@@ -6,6 +6,7 @@ import {AddNewHighwayComponent} from './add-new-highway/add-new-highway.componen
 import {EditDirectionsComponent} from './edit-directions/edit-directions.component';
 import {AddSegmentComponent} from './add-segment/add-segment.component';
 import {EditLanesComponent} from "./edit-lanes/edit-lanes.component";
+import {EditPavementLayersComponent} from "./edit-pavement-layers/edit-pavement-layers.component";
 
 const routes: Routes = [
   {
@@ -29,6 +30,11 @@ const routes: Routes = [
     component: EditLanesComponent
   }
 
+  ,
+  {
+    path: 'edit-pavement-layers',
+    component: EditPavementLayersComponent
+  }
 
 
 ];

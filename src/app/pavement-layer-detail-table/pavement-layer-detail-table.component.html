@@ -1,0 +1,102 @@
+<md-card class="example-container-half">
+  <md-table #table [dataSource]="dataSource" class="example-full-width">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+
+    <!-- Name Column -->
+    <ng-container mdColumnDef="fromRP">
+      <md-header-cell *mdHeaderCellDef> From RP </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.fromRP}} </md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="fromOffset">
+      <md-header-cell *mdHeaderCellDef> Offset </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.fromOffset}} </md-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container mdColumnDef="toRP">
+      <md-header-cell *mdHeaderCellDef> To RP </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.toRP}} </md-cell>
+    </ng-container>
+
+    <!-- Color Column -->
+    <ng-container mdColumnDef="toOffset">
+      <md-header-cell *mdHeaderCellDef> Offset </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.toOffset}} </md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="nLanes">
+      <md-header-cell *mdHeaderCellDef> Lanes </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.nLanes}} </md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="treatment">
+      <md-header-cell *mdHeaderCellDef> Treatment </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.treatment}}  </md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="checked">
+      <md-header-cell *mdHeaderCellDef>
+        <md-checkbox (change)="$event ? masterToggle() : null"
+                     [checked]="isAllSelected()"
+                     [indeterminate]="selection.hasValue() && !isAllSelected()">
+        </md-checkbox>
+      </md-header-cell>
+      <md-cell *mdCellDef="let row">
+        <md-checkbox (click)="$event.stopPropagation()"
+                     (change)="$event ? selection.toggle(row.position) : null"
+                     [checked]="selection.isSelected(row.position)">
+        </md-checkbox>
+      </md-cell>
+    </ng-container>
+
+    <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+    <md-row *mdRowDef="let row; columns: displayedColumns;"
+            [class.example-selected-row]="selection.isSelected(row.position)"
+            (click)="selection.toggle(row.position)">
+    </md-row>
+  </md-table>
+  <div class="example-container">
+    <form class="example-form" novalidate [formGroup]="rpForm" (ngSubmit)="onSubmitRPForm()">
+      <md-select mdInput formControlName="fromRP" placeholder="From RP">
+        <md-option *ngFor="let rp of rps" [value]="rp" >
+          {{rp.name}}
+        </md-option>
+      </md-select>
+      <md-form-field>
+        <input mdInput formControlName="fromOffset" placeholder="Offset" >
+      </md-form-field>
+
+      <md-select mdInput formControlName="toRP" placeholder="To RP">
+        <md-option *ngFor="let rp of rps" [value]="rp" >
+          {{rp.name}}
+        </md-option>
+      </md-select>
+
+      <md-form-field>
+        <input mdInput formControlName="toOffset" placeholder="Offset">
+      </md-form-field>
+
+      <md-select mdInput formControlName="nLanes" placeholder="Lanes" multiple="true">
+        <md-option *ngFor="let number of [1,2,3,4,5,6,7,8]" [value]="number">
+          {{number}}
+        </md-option>
+      </md-select>
+
+      <md-select mdInput formControlName="treatment" placeholder="Treatment" >
+        <md-option *ngFor="let treatment of treatments" [value]="treatment">
+          {{treatment.treatmentName}}
+        </md-option>
+      </md-select>
+      <button md-raised-button type="button">New Treatment</button>
+   <div class="example-container1" align="center">
+      <button md-raised-button type="submit">Add New</button>
+      <button md-raised-button type="button" [disabled]="selection.isEmpty()" (click)="onRemoveSelected()">Remove</button>
+   </div>
+    </form>
+  </div>
+</md-card>

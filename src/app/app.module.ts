@@ -22,6 +22,8 @@ import { SelectDirectionComponent } from './select-direction/select-direction.co
 import { EditLanesComponent } from './edit-lanes/edit-lanes.component';
 import { SelectSegmentTableComponent } from './select-segment-table/select-segment-table.component';
 import { SelectProjectComponent } from './select-project/select-project.component';
+import { EditPavementLayersComponent } from './edit-pavement-layers/edit-pavement-layers.component';
+import { PavementLayerDetailTableComponent } from './pavement-layer-detail-table/pavement-layer-detail-table.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { SelectProjectComponent } from './select-project/select-project.componen
     SelectDirectionComponent,
     EditLanesComponent,
     SelectSegmentTableComponent,
-    SelectProjectComponent
+    SelectProjectComponent,
+    EditPavementLayersComponent,
+    PavementLayerDetailTableComponent
   ],
   imports: [
     BrowserModule,
