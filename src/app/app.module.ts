@@ -4,7 +4,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { RoutingModule } from './routing.module';
-import {MaterialModule, MdNativeDateModule} from '@angular/material';
+import {MaterialModule, MdDialogModule, MdNativeDateModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
@@ -24,6 +24,7 @@ import { SelectSegmentTableComponent } from './select-segment-table/select-segme
 import { SelectProjectComponent } from './select-project/select-project.component';
 import { EditPavementLayersComponent } from './edit-pavement-layers/edit-pavement-layers.component';
 import { PavementLayerDetailTableComponent } from './pavement-layer-detail-table/pavement-layer-detail-table.component';
+import { TreatmentDetailsDialogComponent } from './treatment-details-dialog/treatment-details-dialog.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { PavementLayerDetailTableComponent } from './pavement-layer-detail-table
     SelectSegmentTableComponent,
     SelectProjectComponent,
     EditPavementLayersComponent,
-    PavementLayerDetailTableComponent
+    PavementLayerDetailTableComponent,
+    TreatmentDetailsDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -50,12 +52,13 @@ import { PavementLayerDetailTableComponent } from './pavement-layer-detail-table
     MaterialModule,
     BrowserAnimationsModule,
     MdFormFieldModule,
+    MdDialogModule,
     FormsModule,
     ReactiveFormsModule,
     MdNativeDateModule
   ],
   providers: [HighwayService],
   bootstrap: [AppComponent],
-  entryComponents: [DashboardComponent]
+  entryComponents: [DashboardComponent, TreatmentDetailsDialogComponent]
 })
 export class AppModule { }

@@ -6,6 +6,8 @@ import {PavementLayer} from "../models/pavement-layer";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {Observable} from "rxjs/Observable";
 import {Treatment} from "../models/treatment";
+import {MdDialog} from "@angular/material";
+import {TreatmentDetailsDialogComponent} from "../treatment-details-dialog/treatment-details-dialog.component";
 
 @Component({
   selector: 'app-pavement-layer-detail-table',
@@ -21,7 +23,7 @@ export class PavementLayerDetailTableComponent implements OnInit {
   rpForm: FormGroup;
   treatments : Treatment[] = []
 
-  constructor(private formBuilder: FormBuilder, highwayService: HighwayService) {
+  constructor(private formBuilder: FormBuilder, highwayService: HighwayService, public dialog: MdDialog) {
     this.buildForm();
   }
 
@@ -70,6 +72,10 @@ export class PavementLayerDetailTableComponent implements OnInit {
     } else {
       this.exampleDatabase.data.forEach(data => this.selection.select(data.position));
     }
+  }
+
+  openDialog() {
+    this.dialog.open(TreatmentDetailsDialogComponent);
   }
 
 }
