@@ -45,8 +45,6 @@ export class TreatmentDetailsDialogComponent implements OnInit {
       });
   }
 
-  @Output() treatmentDetailTableChange = new EventEmitter();
-
   onSubmitTreatmentDetailForm() {
     this.exampleDatabase.addUser(new TreatmentDetail(this.rpForm.get("layerNumber").value,
       this.rpForm.get("material").value,
@@ -55,13 +53,11 @@ export class TreatmentDetailsDialogComponent implements OnInit {
 
     this.rpForm.reset();
     this.data.details = this.exampleDatabase.data;
-    this.treatmentDetailTableChange.emit(this.exampleDatabase.data);
   }
 
   onRemoveSelected() {
     this.exampleDatabase.removeUser(this.selection.selected);
     this.data.details = this.exampleDatabase.data;
-    this.treatmentDetailTableChange.emit(this.exampleDatabase.data);
   }
 
   isAllSelected(): boolean {
