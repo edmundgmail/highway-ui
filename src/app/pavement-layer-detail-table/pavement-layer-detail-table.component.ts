@@ -46,6 +46,10 @@ export class PavementLayerDetailTableComponent implements OnInit {
 
   @Output() pavementLayersTableChange = new EventEmitter();
 
+  uponTreatmentDetailTableChange($event) {
+    alert("happened");
+  }
+
   onSubmitRPForm() {
     this.exampleDatabase.addUser(new PavementLayer(0, this.rpForm.get("fromRP").value, this.rpForm.get("fromOffset").value, this.rpForm.get("toRP").value
       ,this.rpForm.get("toOffset").value, this.rpForm.get("nLanes").value, this.rpForm.get("treatment").value))
@@ -75,7 +79,9 @@ export class PavementLayerDetailTableComponent implements OnInit {
   }
 
   openDialog() {
-    this.dialog.open(TreatmentDetailsDialogComponent);
+    let dialogRef = this.dialog.open(TreatmentDetailsDialogComponent, {data: {details: ''}});
+    dialogRef.afterClosed().subscribe(value=>console.log('dialog value after=' + value));
+    dialogRef.beforeClose().subscribe(value=>console.log('dialog value before=' + value));
   }
 
 }

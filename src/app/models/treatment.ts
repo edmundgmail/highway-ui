@@ -9,15 +9,22 @@ export class Treatment {
 }
 
 export class TreatmentDetail {
+  position: number;
   layerNumber: number;
   material: string;
   materialDesign: string;
   thickness: number;
 
   constructor(layerNumber: number, material: string, materialDesign: string, thickness: number){
+    this.position = 0;
     this.layerNumber = layerNumber;
     this.material = material;
     this.materialDesign = materialDesign;
     this.thickness = thickness;
+  }
+
+  setPosition(position: number) : TreatmentDetail{
+    this.position = position;
+    return this;
   }
 }

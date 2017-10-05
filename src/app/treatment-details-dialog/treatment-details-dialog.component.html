@@ -1,5 +1,84 @@
+<div class="md-dialog-container">
 <h1 md-dialog-title>Dialog with elements</h1>
-<div md-dialog-content>This dialog showcases the title, close, content and actions elements.</div>
-<div md-dialog-actions>
-  <button md-button md-dialog-close>Close</button>
+<div md-dialog-content>
+  <md-form-field>
+  <input mdInput tabindex="1" placeholder="Please input Treatment name" [(ngModel)]="data.details">
+  </md-form-field>
+  <md-table #tableDetail [dataSource]="dataSourceDetail" class="example-half-width">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+
+    <!-- Name Column -->
+    <ng-container mdColumnDef="layerNumber">
+      <md-header-cell *mdHeaderCellDef> Layer Number </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.layerNumber}} </md-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container mdColumnDef="material">
+      <md-header-cell *mdHeaderCellDef> Material </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.material}} </md-cell>
+    </ng-container>
+
+    <!-- Color Column -->
+    <ng-container mdColumnDef="materialDesign">
+      <md-header-cell *mdHeaderCellDef> Material Design </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.materialDesign}} </md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="thickness">
+      <md-header-cell *mdHeaderCellDef> Thickness </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.thickness}} </md-cell>
+    </ng-container>
+
+
+    <ng-container mdColumnDef="checked">
+      <md-header-cell *mdHeaderCellDef>
+        <md-checkbox (change)="$event ? masterToggle() : null"
+                     [checked]="isAllSelected()"
+                     [indeterminate]="selection.hasValue() && !isAllSelected()">
+        </md-checkbox>
+      </md-header-cell>
+      <md-cell *mdCellDef="let row">
+        <md-checkbox (click)="$event.stopPropagation()"
+                     (change)="$event ? selection.toggle(row.position) : null"
+                     [checked]="selection.isSelected(row.position)">
+        </md-checkbox>
+      </md-cell>
+    </ng-container>
+
+    <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+    <md-row *mdRowDef="let row; columns: displayedColumns;"
+            [class.example-selected-row]="selection.isSelected(row.position)"
+            (click)="selection.toggle(row.position)">
+    </md-row>
+  </md-table>
+
+  <div class="example-container">
+    <form class="example-form" novalidate [formGroup]="rpForm" (ngSubmit)="onSubmitTreatmentDetailForm()">
+      <md-form-field>
+        <input mdInput formControlName="layerNumber" placeholder="Layer Number" >
+      </md-form-field>
+      <md-form-field>
+        <input mdInput formControlName="material" placeholder="Material" >
+      </md-form-field>
+      <md-form-field>
+        <input mdInput formControlName="materialDesign" placeholder="Material Design">
+      </md-form-field>
+      <md-form-field>
+        <input mdInput formControlName="thickness" placeholder="Thickness">
+      </md-form-field>
+
+      <button md-raised-button type="submit">Add New</button>
+      <button md-raised-button type="button" [disabled]="selection.isEmpty()" (click)="onRemoveSelected()">Remove</button>
+    </form>
+  </div>
+</div>
+  <div md-dialog-actions>
+    <button md-button [md-dialog-close]="data.details" tabindex="2">Ok</button>
+    <button md-button (click)="onNoClick()" tabindex="-1">No Thanks</button>
+  </div>
 </div>
