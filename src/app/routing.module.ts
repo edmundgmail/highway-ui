@@ -7,6 +7,7 @@ import {EditDirectionsComponent} from './edit-directions/edit-directions.compone
 import {AddSegmentComponent} from './add-segment/add-segment.component';
 import {EditLanesComponent} from "./edit-lanes/edit-lanes.component";
 import {EditPavementLayersComponent} from "./edit-pavement-layers/edit-pavement-layers.component";
+import {EditRoadFeaturesComponent} from "./edit-road-features/edit-road-features.component";
 
 const routes: Routes = [
   {
@@ -29,12 +30,16 @@ const routes: Routes = [
     path: 'edit-lanes',
     component: EditLanesComponent
   }
-
   ,
   {
     path: 'edit-pavement-layers',
     component: EditPavementLayersComponent
+  }  ,
+  {
+    path: 'edit-road-features',
+    component: EditRoadFeaturesComponent
   }
+
 
 
 ];
