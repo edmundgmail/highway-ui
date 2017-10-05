@@ -2,7 +2,7 @@
   <app-highway-name-select> </app-highway-name-select>
   <section class="example-full-width">
     <app-select-direction></app-select-direction>
-    <app-pavement-layer-detail-table></app-pavement-layer-detail-table>
+    <app-pavement-layer-detail-table (pavementLayersTableChange)="uponEditPavementLayersTableChange($event)"></app-pavement-layer-detail-table>
   </section>
   <p></p>
   <button md-raised-button type="submit">Submit</button>

@@ -36,7 +36,7 @@
 
     <ng-container mdColumnDef="treatment">
       <md-header-cell *mdHeaderCellDef> Treatment </md-header-cell>
-      <md-cell *mdCellDef="let element"> {{element.treatment}}  </md-cell>
+      <md-cell *mdCellDef="let element"> {{element.treatment.treatmentName}}  </md-cell>
     </ng-container>
 
     <ng-container mdColumnDef="checked">

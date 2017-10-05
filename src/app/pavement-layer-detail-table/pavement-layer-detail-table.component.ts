@@ -22,7 +22,7 @@ export class PavementLayerDetailTableComponent implements OnInit {
   displayedColumns = ['fromRP', 'fromOffset', 'toRP', 'toOffset', "nLanes", "treatment",'checked'];
   selection = new SelectionModel<number>(true, []);
   rpForm: FormGroup;
-  treatments : Treatment[] = []
+  treatments : Treatment[] = [];
 
   constructor(private formBuilder: FormBuilder, highwayService: HighwayService, public dialog: MdDialog) {
     this.buildForm();
@@ -81,7 +81,7 @@ export class PavementLayerDetailTableComponent implements OnInit {
 
   openDialog() {
     let dialogRef = this.dialog.open(TreatmentDetailsDialogComponent, {data: {name: '', details: ''}});
-    dialogRef.afterClosed().subscribe(value=>console.log('dialog value after, name=' + value.name + ', details=' + JSON.stringify(value.details)));
+    dialogRef.afterClosed().subscribe(value=> this.treatments.push(new Treatment(value.name, value.details)));
   }
 
 }
