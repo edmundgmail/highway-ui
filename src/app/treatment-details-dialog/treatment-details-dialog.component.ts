@@ -54,11 +54,13 @@ export class TreatmentDetailsDialogComponent implements OnInit {
       this.rpForm.get("thickness").value));
 
     this.rpForm.reset();
+    this.data.details = this.exampleDatabase.data;
     this.treatmentDetailTableChange.emit(this.exampleDatabase.data);
   }
 
   onRemoveSelected() {
     this.exampleDatabase.removeUser(this.selection.selected);
+    this.data.details = this.exampleDatabase.data;
     this.treatmentDetailTableChange.emit(this.exampleDatabase.data);
   }
 

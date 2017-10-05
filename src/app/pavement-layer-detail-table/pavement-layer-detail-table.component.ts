@@ -8,6 +8,7 @@ import {Observable} from "rxjs/Observable";
 import {Treatment} from "../models/treatment";
 import {MdDialog} from "@angular/material";
 import {TreatmentDetailsDialogComponent} from "../treatment-details-dialog/treatment-details-dialog.component";
+import {stringify} from "@angular/core/src/util";
 
 @Component({
   selector: 'app-pavement-layer-detail-table',
@@ -79,9 +80,8 @@ export class PavementLayerDetailTableComponent implements OnInit {
   }
 
   openDialog() {
-    let dialogRef = this.dialog.open(TreatmentDetailsDialogComponent, {data: {details: ''}});
-    dialogRef.afterClosed().subscribe(value=>console.log('dialog value after=' + value));
-    dialogRef.beforeClose().subscribe(value=>console.log('dialog value before=' + value));
+    let dialogRef = this.dialog.open(TreatmentDetailsDialogComponent, {data: {name: '', details: ''}});
+    dialogRef.afterClosed().subscribe(value=>console.log('dialog value after, name=' + value.name + ', details=' + JSON.stringify(value.details)));
   }
 
 }
