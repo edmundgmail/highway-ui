@@ -1,4 +1,4 @@
-<form class="example-form" novalidate [formGroup]="formRoadFeture">
+<form class="example-form" novalidate [formGroup]="formRoadFeture" (ngSubmit)="onSubmitForm()">
   <app-highway-name-select> </app-highway-name-select>
     <app-select-direction mytype="both"></app-select-direction>
 
