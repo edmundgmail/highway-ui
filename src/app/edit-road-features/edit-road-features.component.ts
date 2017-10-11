@@ -68,7 +68,7 @@ export class EditRoadFeaturesComponent implements OnInit {
       });
   }
 
-  private isDirBoth(){
+  private isDirBoth() {
     return this.currentDir === 'B';
   }
 
