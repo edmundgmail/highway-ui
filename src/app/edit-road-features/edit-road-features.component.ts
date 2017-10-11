@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HighwayService} from "../services/highway.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Highway} from "../models/highway";
 
 @Component({
   selector: 'app-edit-road-features',
@@ -13,9 +14,14 @@ export class EditRoadFeaturesComponent implements OnInit {
   myBarriars: string[];
   myGuardrails: string[];
   myShoulders: string[];
+  myDivisions: string[];
+  currentHighway: Highway;
+  currentDir: string;
 
-  constructor(private formBuilder: FormBuilder, highwayService: HighwayService) {
+  constructor(private formBuilder: FormBuilder, private highwayService: HighwayService) {
     this.buildForm();
+    this.highwayService.currentHighwaySelected$.subscribe(value => this.currentHighway = value);
+    this.highwayService.currentDirSelected$.subscribe(value => this.currentDir = value);
   }
 
   private buildForm() {
@@ -60,6 +66,10 @@ export class EditRoadFeaturesComponent implements OnInit {
       {
         validator: Validators.required
       });
+  }
+
+  private isDirBoth(){
+    return this.currentDir === 'B';
   }
 
   ngOnInit() {

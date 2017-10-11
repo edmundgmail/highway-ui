@@ -6,6 +6,7 @@ import {Project} from "../models/project";
 import {Subject} from "rxjs/Subject";
 import {isNullOrUndefined, isUndefined} from "util";
 import {Segment} from "../models/segment";
+import {isEmpty} from "rxjs/operator/isEmpty";
 
 @Injectable()
 export class HighwayService {
@@ -13,7 +14,8 @@ export class HighwayService {
   {value: 'E', viewValue: 'East'},
   {value: 'W', viewValue: 'West'},
   {value: 'S', viewValue: 'South'},
-  {value: 'N', viewValue: 'North'}
+  {value: 'N', viewValue: 'North'},
+  {value: 'B', viewValue: 'Both'}
   ];
 
   highways = [
@@ -47,8 +49,11 @@ constructor() { }
   {
     return this.projects;
   }
-  getDirs(): SelectObject[] {
-    return this.dirs;
+  getDirs(type: any): SelectObject[] {
+    if(type === 'both')
+      return this.dirs;
+    else
+      return this.dirs.slice(0,4);
   }
 
   getHighways(): Highway[] {

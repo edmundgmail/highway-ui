@@ -1,6 +1,6 @@
 <form class="example-form" novalidate [formGroup]="formRoadFeture">
   <app-highway-name-select> </app-highway-name-select>
-    <app-select-direction></app-select-direction>
+    <app-select-direction mytype="both"></app-select-direction>
 
     <md-form-field class="example-full-width">
       <input mdInput formControlName="COG" type="text" placeholder="COG">
@@ -116,7 +116,6 @@
       </td>
     </tr>
   </table>
-<!--
 <table>
     <tr>
       <td class="example-half-width">
@@ -127,13 +126,14 @@
         </md-select>
       </td>
       <td>
-        <md-button-toggle-group #group="mdButtonToggleGroupBarriar">
+        <md-button-toggle-group #group="mdButtonToggleGroup">
           <md-button-toggle value="left"> Left Or Cardinal  </md-button-toggle>
           <md-button-toggle value="right"> Right Or Non-Cardinal</md-button-toggle>
         </md-button-toggle-group>
       </td>
     </tr>
 </table>
+
 <table>
     <tr>
       <td class="example-half-width">
@@ -144,7 +144,7 @@
         </md-select>
       </td>
       <td>
-        <md-button-toggle-group #group="mdButtonToggleGroupGuardrail">
+        <md-button-toggle-group #group="mdButtonToggleGroup">
           <md-button-toggle value="left"> Left Or Cardinal  </md-button-toggle>
           <md-button-toggle value="right"> Right Or Non-Cardinal</md-button-toggle>
         </md-button-toggle-group>
@@ -161,26 +161,29 @@
         </md-select>
       </td>
       <td>
-        <md-button-toggle-group #group="mdButtonToggleGroupShoulder">
+        <md-button-toggle-group #group="mdButtonToggleGroup">
           <md-button-toggle value="left"> Left Or Cardinal  </md-button-toggle>
           <md-button-toggle value="right"> Right Or Non-Cardinal</md-button-toggle>
         </md-button-toggle-group>
       </td>
     </tr>
   </table>
-  -->
+<div *ngIf="isDirBoth()" >
+<table> <tr>
+ <td><md-select mdInput formControlName="Division" type="text" placeholder="Division">
+      <md-option *ngFor="let myDivision of myDivisions" [value]="myDivision">
+        {{myDivision}}
+      </md-option>
+    </md-select></td>
+<td> <md-select mdInput formControlName="MedianType" type="text" placeholder="Median Type">
+    <md-option *ngFor="let myMediaType of myMediaTypes" [value]="myMediaType">
+      {{myMediaType}}
+    </md-option>
+  </md-select></td>
+</tr>
+</table>
+</div>
   <md-form-field class="example-half-width">
-
-    <input mdInput formControlName="Barriar" type="text" placeholder="Barriar">
-  </md-form-field>    <md-form-field class="example-half-width">
-    <input mdInput formControlName="Guardrail" type="text" placeholder="Guardrail">
-  </md-form-field>    <md-form-field class="example-half-width">
-    <input mdInput formControlName="Shoulder" type="text" placeholder="Shoulder">
-  </md-form-field>    <md-form-field class="example-half-width">
-    <input mdInput formControlName="Division" type="text" placeholder="Division">
-  </md-form-field>    <md-form-field class="example-half-width">
-    <input mdInput formControlName="MedianType" type="text" placeholder="Median Type">
-  </md-form-field>    <md-form-field class="example-half-width">
     <input mdInput formControlName="MedianWidth" type="text" placeholder="Median Width">
   </md-form-field>
 

@@ -15,7 +15,7 @@ export class AddNewHighwayComponent implements OnInit {
   dirs;
 
   constructor(private formBuilder: FormBuilder, private highwayService: HighwayService) {
-    this.dirs = highwayService.getDirs();
+    this.dirs = highwayService.getDirs('no-both');
     this.buildForm();
   }
 
