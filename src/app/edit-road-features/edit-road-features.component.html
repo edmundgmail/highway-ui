@@ -2,65 +2,140 @@
   <app-highway-name-select> </app-highway-name-select>
   <section class="example-full-width">
     <app-select-direction mytype="both"></app-select-direction>
-    <app-select-segment-lanes-table></app-select-segment-lanes-table>
+    <app-select-segment-table></app-select-segment-table>
   </section>
-    <md-form-field class="example-full-width">
-      <input mdInput formControlName="COG" type="text" placeholder="COG">
-    </md-form-field>
 
-    <md-form-field class="example-half-width">
-      <input mdInput formControlName="County" type="text" placeholder="County">
-    </md-form-field>
+  <table>
+    <tr>
+      <td class="example-half-width">
+        <md-select mdInput formControlName="COG" type="text" placeholder="COG">
+          <md-option *ngFor="let myCog of myCogs" [value]="myCog">
+            {{myCog}}
+          </md-option>
+        </md-select>
+      </td>
 
-    <md-form-field class="example-half-width">
-      <input mdInput formControlName="EngineeringDistrict" type="text" placeholder="Engineering District">
-    </md-form-field>
+      <td class="example-half-width">
+        <md-select mdInput formControlName="Country" type="text" placeholder="Country">
+          <md-option *ngFor="let myCounry of myCountries" [value]="myCounry">
+            {{myCounry}}
+          </md-option>
+        </md-select>
+      </td>
 
-    <md-form-field class="example-half-width">
-      <input mdInput formControlName="IndianReservation" type="text" placeholder="Indian Reservation">
-    </md-form-field>
+      <td class="example-half-width">
+        <md-select mdInput formControlName="EngineeringDistrict" type="text" placeholder="Engineering District">
+          <md-option *ngFor="let myEngineeringDistrict of myEngineeringDistricts" [value]="myEngineeringDistrict">
+            {{myEngineeringDistrict}}
+          </md-option>
+        </md-select>
+      </td>
+    </tr>
 
-    <md-form-field class="example-half-width">
-      <input mdInput formControlName="LegislatureDistrict" type="text" placeholder="Legislature District">
-    </md-form-field>
+    <tr>
+      <td class="example-half-width">
+        <md-select mdInput formControlName="IndianReservation" type="text" placeholder="Indian Reservation">
+          <md-option *ngFor="let myIndianReservation of myIndianReservations" [value]="myIndianReservation">
+            {{myIndianReservation}}
+          </md-option>
+        </md-select>
+      </td>
 
-    <md-form-field class="example-half-width">
-      <input mdInput formControlName="NAAQSArea" type="text" placeholder="NAAQS Area">
-    </md-form-field>
+      <td class="example-half-width">
+        <md-select mdInput formControlName="LegislatureDistrict" type="text" placeholder="Legislature District">
+          <md-option *ngFor="let myLegislatureDistrict of myLegislatureDistricts" [value]="myLegislatureDistrict">
+            {{myLegislatureDistrict}}
+          </md-option>
+        </md-select>
+      </td>
 
-    <md-form-field class="example-half-width">
-      <input mdInput formControlName="NationalForest" type="text" placeholder="National Forest">
-    </md-form-field>
+      <td class="example-half-width">
+        <md-select mdInput formControlName="NAAQSArea" type="text" placeholder="NAAQS Area">
+          <md-option *ngFor="let myNAAQSArea of myNAAQSAreas" [value]="myNAAQSArea">
+            {{myNAAQSArea}}
+          </md-option>
+        </md-select>
+      </td>
 
-    <md-form-field class="example-half-width">
-      <input mdInput formControlName="UrbanArea" type="text" placeholder="Urban Area">
-    </md-form-field>
+    </tr>
 
-    <md-form-field class="example-half-width">
-      <input mdInput formControlName="CityOrTown" type="text" placeholder="City/Town">
-    </md-form-field>
+    <tr>
 
-    <md-form-field class="example-half-width">
-      <input mdInput formControlName="FunctionalClass" type="text" placeholder="Functional Class">
-    </md-form-field>
+      <td class="example-half-width">
+        <md-select mdInput formControlName="NationalForest" type="text" placeholder="National Forest">
+          <md-option *ngFor="let myNationalForest of myNationalForests" [value]="myNationalForest">
+            {{myNationalForest}}
+          </md-option>
+        </md-select>
+      </td>
+      <td class="example-half-width">
+        <md-select mdInput formControlName="UrbanArea" type="text" placeholder="Urban Area">
+          <md-option *ngFor="let myUrbanArea of myUrbanAreas" [value]="myUrbanArea">
+            {{myUrbanArea}}
+          </md-option>
+        </md-select>
+      </td>
 
-    <md-form-field class="example-half-width">
-      <input mdInput formControlName="NHS" type="text" placeholder="NHS">
-    </md-form-field>
+      <td class="example-half-width">
+        <md-select mdInput formControlName="CityOrTown" type="text" placeholder="City or Town">
+          <md-option *ngFor="let myCityOrTown of myCityOrTowns" [value]="myCityOrTown">
+            {{myCityOrTown}}
+          </md-option>
+        </md-select>
+      </td>
+    </tr>
+<tr>
 
-    <md-form-field class="example-half-width">
-      <input mdInput formControlName="TruckRoute" type="text" placeholder="Truck Route">
-    </md-form-field>
-    <md-form-field class="example-half-width">
-      <input mdInput formControlName="Park" type="text" placeholder="Park">
-    </md-form-field>
+  <td class="example-half-width">
+    <md-select mdInput formControlName="FunctionalClass" type="text" placeholder="Functional Class">
+      <md-option *ngFor="let myFunctionalClass of myFunctionalClasss" [value]="myFunctionalClass">
+        {{myFunctionalClass}}
+      </md-option>
+    </md-select>
+  </td>
+  <td class="example-half-width">
+    <md-select mdInput formControlName="NHS" type="text" placeholder="NHS">
+      <md-option *ngFor="let myNHS of myNHSs" [value]="myNHS">
+        {{myNHS}}
+      </md-option>
+    </md-select>
+  </td>
+  <td class="example-half-width">
+    <md-select mdInput formControlName="TruckRoute" type="text" placeholder="Truck Route">
+      <md-option *ngFor="let myTruckRoute of myTruckRoutes" [value]="myTruckRoute">
+        {{myTruckRoute}}
+      </md-option>
+    </md-select>
+  </td>
 
-    <md-form-field class="example-half-width">
-      <input mdInput formControlName="PrivateLand" type="text" placeholder="Private Land">
-    </md-form-field>
-    <md-form-field class="example-half-width">
-      <input mdInput formControlName="BureauOfLand" type="text" placeholder="Bureau of Land">
-    </md-form-field>
+</tr>
+
+    <tr>
+      <td class="example-half-width">
+        <md-select mdInput formControlName="Park" type="text" placeholder="Park">
+          <md-option *ngFor="let myPark of myParks" [value]="myPark">
+            {{myPark}}
+          </md-option>
+        </md-select>
+      </td>
+      <td class="example-half-width">
+        <md-select mdInput formControlName="PrivateLand" type="text" placeholder="Private Land">
+          <md-option *ngFor="let myPrivateLand of myPrivateLands" [value]="myPrivateLand">
+            {{myPrivateLand}}
+          </md-option>
+        </md-select>
+      </td>
+      <td class="example-half-width">
+        <md-select mdInput formControlName="BureauOfLand" type="text" placeholder="Bureau Of Land">
+          <md-option *ngFor="let myBureauOfLand of myBureauOfLands" [value]="myBureauOfLand">
+            {{myBureauOfLand}}
+          </md-option>
+        </md-select>
+      </td>
+
+    </tr>
+  </table>
+
     <md-form-field class="example-half-width">
       <input mdInput formControlName="WideningPotential" type="text" placeholder="Widening Potential">
     </md-form-field>

@@ -29,16 +29,6 @@
       <md-cell *mdCellDef="let element"> {{element.toOffset}} </md-cell>
     </ng-container>
 
-    <ng-container mdColumnDef="nLanes">
-      <md-header-cell *mdHeaderCellDef> # of Lanes </md-header-cell>
-      <md-cell *mdCellDef="let element"> {{element.nLanes}} </md-cell>
-    </ng-container>
-
-    <ng-container mdColumnDef="laneWidth">
-      <md-header-cell *mdHeaderCellDef> Lane Width </md-header-cell>
-      <md-cell *mdCellDef="let element"> {{element.laneWidth}} </md-cell>
-    </ng-container>
-
     <ng-container mdColumnDef="checked">
       <md-header-cell *mdHeaderCellDef>
         <md-checkbox (change)="$event ? masterToggle() : null"
@@ -79,13 +69,6 @@
 
       <md-form-field>
         <input mdInput formControlName="toOffset" placeholder="Offset">
-      </md-form-field>
-
-      <md-form-field>
-        <input mdInput formControlName="nLanes" placeholder="# of Lanes" >
-      </md-form-field>
-      <md-form-field>
-        <input mdInput formControlName="laneWidth" placeholder="laneWidth">
       </md-form-field>
 
       <button md-raised-button type="submit">Add New</button>

@@ -15,6 +15,20 @@ export class EditRoadFeaturesComponent implements OnInit {
   myGuardrails: string[];
   myShoulders: string[];
   myDivisions: string[];
+  myCogs:string[];
+  myCountries:string[];
+  myEngineeringDistricts:string[];
+  myLegislatureDistrict;
+  myNAAQSArea;
+  myNationalForests;
+  myUrbanAreas;
+  myCityOrTowns;
+  myTruckRoutes;
+  myNHSs;
+  myFunctionalClasss;
+  myBureauOfLands;
+  myPrivateLands;
+  myParks;
   currentHighway: Highway;
   currentDir: string;
 

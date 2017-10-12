@@ -5,8 +5,8 @@ import {Highway} from "../models/highway";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {Observable} from "rxjs/Observable";
 import {DataSource, SelectionModel} from "@angular/cdk/collections";
-import {LaneElement} from "../models/lane-element";
 import {RP} from "../models/segment-point";
+import {SegmentElement} from "../models/segment-element";
 
 @Component({
   selector: 'app-select-segment-table',
@@ -16,7 +16,7 @@ import {RP} from "../models/segment-point";
 export class SelectSegmentTableComponent implements OnInit {
   exampleDatabase = new ExampleDatabase();
   dataSource = new NewSegmentDataSource(this.exampleDatabase);
-  displayedColumns = ['fromRP', 'fromOffset', 'toRP', 'toOffset', "nLanes", "laneWidth",'checked'];
+  displayedColumns = ['fromRP', 'fromOffset', 'toRP', 'toOffset','checked'];
   selection = new SelectionModel<number>(true, []);
   rpForm: FormGroup;
   rps: RP[];
@@ -37,9 +37,7 @@ export class SelectSegmentTableComponent implements OnInit {
         fromRP: this.formBuilder.control(null),
         fromOffset: this.formBuilder.control(null),
         toRP: this.formBuilder.control(null),
-        toOffset: this.formBuilder.control(null),
-        nLanes: this.formBuilder.control(null),
-        laneWidth: this.formBuilder.control(null)
+        toOffset: this.formBuilder.control(null)
       },
       {
         validator: Validators.required
@@ -49,9 +47,10 @@ export class SelectSegmentTableComponent implements OnInit {
   @Output() selectSegmentTableChange = new EventEmitter();
 
   onSubmitRPForm() {
-    this.exampleDatabase.addUser(new LaneElement(0, this.rpForm.get("fromRP").value, this.rpForm.get("fromOffset").value, this.rpForm.get("toRP").value
-      ,this.rpForm.get("toOffset").value, this.rpForm.get("nLanes").value, this.rpForm.get("laneWidth").value))
-    ;
+    this.exampleDatabase.addUser(new SegmentElement(0, this.rpForm.get("fromRP").value,
+          this.rpForm.get("fromOffset").value,
+        this.rpForm.get("toRP").value
+        ,this.rpForm.get("toOffset").value));
     this.rpForm.reset();
     this.selectSegmentTableChange.emit(this.exampleDatabase.data);
   }
@@ -80,8 +79,8 @@ export class SelectSegmentTableComponent implements OnInit {
 
 class ExampleDatabase {
   /** Stream that emits whenever the data has been modified. */
-  dataChange: BehaviorSubject<LaneElement[]> = new BehaviorSubject<LaneElement[]>([]);
-  get data(): LaneElement[] { return this.dataChange.value; }
+  dataChange: BehaviorSubject<SegmentElement[]> = new BehaviorSubject<SegmentElement[]>([]);
+  get data(): SegmentElement[] { return this.dataChange.value; }
 
   constructor() {
   }
@@ -92,7 +91,7 @@ class ExampleDatabase {
   }
 
   /** Adds a new user to the database. */
-  addUser(e: LaneElement) {
+  addUser(e: SegmentElement) {
     const copiedData = this.data.slice();
     copiedData.push(e.setPosition(copiedData.length));
     this.dataChange.next(copiedData);
@@ -107,7 +106,7 @@ class NewSegmentDataSource extends DataSource<any> {
     super();
   }
 
-  connect(): Observable<LaneElement[]> {
+  connect(): Observable<SegmentElement[]> {
     const displayDataChanges = [this._exampleDatabase.dataChange];
     return Observable.merge(...displayDataChanges).map(() => {
       return this._exampleDatabase.data.slice();
