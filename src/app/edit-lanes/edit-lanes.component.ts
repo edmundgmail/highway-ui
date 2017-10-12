@@ -18,7 +18,7 @@ export class EditLanesComponent implements OnInit {
   ngOnInit() {
   }
 
-  private uponSelectSegmentTableChange($event) {
+  private uponSelectSegmentLanesTableChange($event) {
     this.newLanes = $event;
   }
 

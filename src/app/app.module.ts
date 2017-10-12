@@ -20,7 +20,7 @@ import { SelectSegmentPointComponent } from './select-segment-point/select-segme
 import { AddSegmentTableComponent } from './add-segment-table/add-segment-table.component';
 import { SelectDirectionComponent } from './select-direction/select-direction.component';
 import { EditLanesComponent } from './edit-lanes/edit-lanes.component';
-import { SelectSegmentTableComponent } from './select-segment-table/select-segment-table.component';
+import { SelectSegmentLanesTableComponent } from './select-segment-lanes-table/select-segment-lanes-table.component';
 import { SelectProjectComponent } from './select-project/select-project.component';
 import { EditPavementLayersComponent } from './edit-pavement-layers/edit-pavement-layers.component';
 import { PavementLayerDetailTableComponent } from './pavement-layer-detail-table/pavement-layer-detail-table.component';
@@ -39,7 +39,7 @@ import { EditRoadFeaturesComponent } from './edit-road-features/edit-road-featur
     AddSegmentTableComponent,
     SelectDirectionComponent,
     EditLanesComponent,
-    SelectSegmentTableComponent,
+    SelectSegmentLanesTableComponent,
     SelectProjectComponent,
     EditPavementLayersComponent,
     PavementLayerDetailTableComponent,
