@@ -1,7 +1,9 @@
 <form class="example-form" novalidate [formGroup]="formRoadFeture" (ngSubmit)="onSubmitForm()">
   <app-highway-name-select> </app-highway-name-select>
+  <section class="example-full-width">
     <app-select-direction mytype="both"></app-select-direction>
-
+    <app-select-segment-lanes-table></app-select-segment-lanes-table>
+  </section>
     <md-form-field class="example-full-width">
       <input mdInput formControlName="COG" type="text" placeholder="COG">
     </md-form-field>

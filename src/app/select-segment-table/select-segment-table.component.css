@@ -1,0 +1,7 @@
+/* Structure */
+.example-container-half {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  width: 83%
+}

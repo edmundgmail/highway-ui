@@ -26,6 +26,7 @@ import { EditPavementLayersComponent } from './edit-pavement-layers/edit-pavemen
 import { PavementLayerDetailTableComponent } from './pavement-layer-detail-table/pavement-layer-detail-table.component';
 import { TreatmentDetailsDialogComponent } from './treatment-details-dialog/treatment-details-dialog.component';
 import { EditRoadFeaturesComponent } from './edit-road-features/edit-road-features.component';
+import { SelectSegmentTableComponent } from './select-segment-table/select-segment-table.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { EditRoadFeaturesComponent } from './edit-road-features/edit-road-featur
     EditPavementLayersComponent,
     PavementLayerDetailTableComponent,
     TreatmentDetailsDialogComponent,
-    EditRoadFeaturesComponent
+    EditRoadFeaturesComponent,
+    SelectSegmentTableComponent
   ],
   imports: [
     BrowserModule,

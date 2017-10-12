@@ -9,11 +9,11 @@ import {LaneElement} from "../models/lane-element";
 import {RP} from "../models/segment-point";
 
 @Component({
-  selector: 'app-select-segment-lanes-table',
-  templateUrl: './select-segment-lanes-table.component.html',
-  styleUrls: ['./select-segment-lanes-table.component.css']
+  selector: 'app-select-segment-table',
+  templateUrl: './select-segment-table.component.html',
+  styleUrls: ['./select-segment-table.component.css']
 })
-export class SelectSegmentLanesTableComponent implements OnInit {
+export class SelectSegmentTableComponent implements OnInit {
   exampleDatabase = new ExampleDatabase();
   dataSource = new NewSegmentDataSource(this.exampleDatabase);
   displayedColumns = ['fromRP', 'fromOffset', 'toRP', 'toOffset', "nLanes", "laneWidth",'checked'];
@@ -46,19 +46,19 @@ export class SelectSegmentLanesTableComponent implements OnInit {
       });
   }
 
-  @Output() selectSegmentLanesTableChange = new EventEmitter();
+  @Output() selectSegmentTableChange = new EventEmitter();
 
   onSubmitRPForm() {
     this.exampleDatabase.addUser(new LaneElement(0, this.rpForm.get("fromRP").value, this.rpForm.get("fromOffset").value, this.rpForm.get("toRP").value
-    ,this.rpForm.get("toOffset").value, this.rpForm.get("nLanes").value, this.rpForm.get("laneWidth").value))
+      ,this.rpForm.get("toOffset").value, this.rpForm.get("nLanes").value, this.rpForm.get("laneWidth").value))
     ;
     this.rpForm.reset();
-    this.selectSegmentLanesTableChange.emit(this.exampleDatabase.data);
+    this.selectSegmentTableChange.emit(this.exampleDatabase.data);
   }
 
   onRemoveSelected() {
     this.exampleDatabase.removeUser(this.selection.selected);
-    this.selectSegmentLanesTableChange.emit(this.exampleDatabase.data);
+    this.selectSegmentTableChange.emit(this.exampleDatabase.data);
   }
 
   isAllSelected(): boolean {
