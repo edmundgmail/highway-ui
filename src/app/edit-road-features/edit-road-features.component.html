@@ -134,49 +134,129 @@
       </td>
 
     </tr>
-  </table>
+    <tr>
+      <td class="example-half-width">
+        <md-select mdInput formControlName="WideningPotential" type="text" placeholder="Widening Potential">
+          <md-option *ngFor="let myWideningPotential of myWideningPotentials" [value]="myWideningPotential">
+            {{myWideningPotential}}
+          </md-option>
+        </md-select>
+      </td>
 
-    <md-form-field class="example-half-width">
-      <input mdInput formControlName="WideningPotential" type="text" placeholder="Widening Potential">
-    </md-form-field>
-    <md-form-field class="example-half-width">
-      <input mdInput formControlName="WideningObstacle" type="text" placeholder="Widening Obstacle">
-    </md-form-field>
-    <md-form-field class="example-half-width">
-      <input mdInput formControlName="Curve" type="text" placeholder="Curve">
-    </md-form-field>
-    <md-form-field class="example-half-width">
-      <input mdInput formControlName="Grade" type="text" placeholder="Grade">
-    </md-form-field>
-    <md-form-field class="example-half-width">
-      <input mdInput formControlName="Terrain" type="text" placeholder="Terrain">
-    </md-form-field>
-    <md-form-field class="example-half-width">
-      <input mdInput formControlName="ClimateZone" type="text" placeholder="Climate Zone">
-    </md-form-field>
-    <md-form-field class="example-half-width">
-      <input mdInput formControlName="SpeedLimit" type="text" placeholder="Speed Limit">
-    </md-form-field>
-    <md-form-field class="example-half-width">
-      <input mdInput formControlName="NoPassingZone" type="text" placeholder="No Passing Zone">
-    </md-form-field>
-    <md-form-field class="example-half-width">
-      <input mdInput formControlName="TypeOfSignal" type="text" placeholder="Type of Signal">
-    </md-form-field>
-    <md-form-field class="example-half-width">
-      <input mdInput formControlName="PercentOfGreenTime" type="text" placeholder="Percent of Green Time">
-    </md-form-field>
-    <md-form-field class="example-half-width">
-      <input mdInput formControlName="PercentOfPassSight" type="text" placeholder="Percent of Pass Sight">
-    </md-form-field>
-    <md-form-field class="example-half-width">
-      <input mdInput formControlName="SurfaceType" type="text" placeholder="Surface Type">
-    </md-form-field>
-    <md-form-field class="example-half-width">
-      <input mdInput formControlName="SoilType" type="text" placeholder="Soil Type">
-    </md-form-field>
+      <td class="example-half-width">
+        <md-select mdInput formControlName="WideningObstacle" type="text" placeholder="Widening Obstacle">
+          <md-option *ngFor="let myWideningObstacle of myWideningObstacles" [value]="myWideningObstacle">
+            {{myWideningObstacle}}
+          </md-option>
+        </md-select>
+      </td>
 
-  <table>
+      <td class="example-half-width">
+        <md-select mdInput formControlName="Curve" type="text" placeholder="Curve">
+          <md-option *ngFor="let myCurve of myCurves" [value]="myCurve">
+            {{myCurve}}
+          </md-option>
+        </md-select>
+      </td>
+    </tr>
+    <tr>
+      <td class="example-half-width">
+        <md-select mdInput formControlName="Grade" type="text" placeholder="Grade">
+          <md-option *ngFor="let myGrade of myGrades" [value]="myGrade">
+            {{myGrade}}
+          </md-option>
+        </md-select>
+      </td>
+      <td class="example-half-width">
+        <md-select mdInput formControlName="Curve" type="text" placeholder="Curve">
+          <md-option *ngFor="let myCurve of myCurves" [value]="myCurve">
+            {{myCurve}}
+          </md-option>
+        </md-select>
+      </td>
+      <td class="example-half-width">
+        <md-select mdInput formControlName="Curve" type="text" placeholder="Curve">
+          <md-option *ngFor="let myCurve of myCurves" [value]="myCurve">
+            {{myCurve}}
+          </md-option>
+        </md-select>
+      </td>
+    </tr>
+    <tr>
+      <td class="example-half-width">
+        <md-select mdInput formControlName="Grade" type="text" placeholder="Grade">
+          <md-option *ngFor="let myGrade of myGrades" [value]="myGrade">
+            {{myGrade}}
+          </md-option>
+        </md-select>
+      </td>
+      <td class="example-half-width">
+        <md-select mdInput formControlName="Terrain" type="text" placeholder="Terrain">
+          <md-option *ngFor="let myTerrain of myTerrains" [value]="myTerrain">
+            {{myTerrain}}
+          </md-option>
+        </md-select>
+      </td>
+      <td class="example-half-width">
+        <md-select mdInput formControlName="ClimateZone" type="text" placeholder="Climate Zone">
+          <md-option *ngFor="let myClimateZone of myClimateZones" [value]="myClimateZone">
+            {{myClimateZone}}
+          </md-option>
+        </md-select>
+      </td>
+
+    </tr>
+    <tr>
+      <td>
+      <md-form-field class="example-half-width">
+        <input mdInput formControlName="SpeedLimit" type="text" placeholder="Speed Limit">
+      </md-form-field>
+      </td>
+      <td class="example-half-width">
+        <md-select mdInput formControlName="NoPassingZone" type="text" placeholder="NoPassing Zone">
+          <md-option *ngFor="let myNoPassingZone of myNoPassingZones" [value]="myNoPassingZone">
+            {{myNoPassingZone}}
+          </md-option>
+        </md-select>
+      </td>
+      <td class="example-half-width">
+        <md-select mdInput formControlName="TypeOfSignal" type="text" placeholder="Type Of Signal">
+          <md-option *ngFor="let myTypeOfSignal of myTypeOfSignals" [value]="myTypeOfSignal">
+            {{myTypeOfSignal}}
+          </md-option>
+        </md-select>
+      </td>
+
+    </tr>
+    <tr>
+      <td>
+      <md-form-field class="example-half-width">
+        <input mdInput formControlName="PercentOfGreenTime" type="text" placeholder="% of Green Time">
+      </md-form-field>
+      </td>
+      <td>
+      <md-form-field class="example-half-width">
+        <input mdInput formControlName="PercentOfPassSight" type="text" placeholder="% of Pass Sight">
+      </md-form-field>
+      </td>
+      <td class="example-half-width">
+        <md-select mdInput formControlName="SurfaceType" type="text" placeholder="Surface Type">
+          <md-option *ngFor="let mySurfaceType of mySurfaceTypes" [value]="mySurfaceType">
+            {{mySurfaceType}}
+          </md-option>
+        </md-select>
+      </td>
+
+    </tr>
+    <tr>
+      <td class="example-half-width">
+        <md-select mdInput formControlName="SoilType" type="text" placeholder="Soil Type">
+          <md-option *ngFor="let mySoilType of mySoilTypes" [value]="mySoilType">
+            {{mySoilType}}
+          </md-option>
+        </md-select>
+      </td>
+    </tr>
     <tr>
       <td class="example-half-width">
     <md-select mdInput formControlName="CurbAndGutter" type="text" placeholder="Curb & Gutter">
@@ -192,8 +272,6 @@
         </md-button-toggle-group>
       </td>
     </tr>
-  </table>
-<table>
     <tr>
       <td class="example-half-width">
         <md-select mdInput formControlName="Barriar" type="text" placeholder="Barriar">
@@ -209,9 +287,6 @@
         </md-button-toggle-group>
       </td>
     </tr>
-</table>
-
-<table>
     <tr>
       <td class="example-half-width">
         <md-select mdInput formControlName="Guardrail" type="text" placeholder="Guardrail">
@@ -227,8 +302,6 @@
         </md-button-toggle-group>
       </td>
     </tr>
-</table>
-  <table>
     <tr>
       <td class="example-half-width">
         <md-select mdInput formControlName="Shoulder" type="text" placeholder="Shoulder">
@@ -244,25 +317,32 @@
         </md-button-toggle-group>
       </td>
     </tr>
-  </table>
-<div *ngIf="isDirBoth()" >
-<table> <tr>
- <td><md-select mdInput formControlName="Division" type="text" placeholder="Division">
+
+<tr>
+
+  <td class="example-35-width" *ngIf="isDirBoth()">
+    <md-select mdInput formControlName="Division" type="text" placeholder="Division">
       <md-option *ngFor="let myDivision of myDivisions" [value]="myDivision">
         {{myDivision}}
       </md-option>
     </md-select></td>
-<td> <md-select mdInput formControlName="MedianType" type="text" placeholder="Median Type">
-    <md-option *ngFor="let myMediaType of myMediaTypes" [value]="myMediaType">
-      {{myMediaType}}
-    </md-option>
-  </md-select></td>
+
+  <td class="example-35-width" *ngIf="isDirBoth()">
+    <md-select mdInput formControlName="MedianType" type="text" placeholder="Median Type">
+      <md-option *ngFor="let myMediaType of myMediaTypes" [value]="myMediaType">
+        {{myMediaType}}
+      </md-option>
+    </md-select></td>
+
+  <td>
+    <md-form-field class="example-half-width">
+      <input mdInput formControlName="MedianWidth" type="text" placeholder="Median Width">
+    </md-form-field>
+  </td>
+
 </tr>
 </table>
-</div>
-  <md-form-field class="example-half-width">
-    <input mdInput formControlName="MedianWidth" type="text" placeholder="Median Width">
-  </md-form-field>
+
 
   <p></p>
   <button md-raised-button type="submit">Submit</button>

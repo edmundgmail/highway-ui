@@ -1,7 +1,9 @@
 .example-half-width {
    width: 40%;
 }
-
+.example-35-width {
+  width: 35%;
+}
 .example-radio-group {
   display: none;
   flex-direction: row;
