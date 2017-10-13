@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {HighwayService} from "../services/highway.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Highway} from "../models/highway";
+import {SelectObject} from "app/models/select-object";
 
 @Component({
   selector: 'app-edit-road-features',
@@ -31,9 +32,11 @@ export class EditRoadFeaturesComponent implements OnInit {
   myParks;
   currentHighway: Highway;
   currentDir: string;
+  sides: SelectObject[];
 
   constructor(private formBuilder: FormBuilder, private highwayService: HighwayService) {
     this.buildForm();
+    this.sides = [{value: 'left', viewValue:'Left or Carndial'} , { value: 'right', viewValue:'Right or Non-Cardinal'}];
     this.highwayService.currentHighwaySelected$.subscribe(value => this.currentHighway = value);
     this.highwayService.currentDirSelected$.subscribe(value => this.currentDir = value);
   }
@@ -72,6 +75,7 @@ export class EditRoadFeaturesComponent implements OnInit {
         Barriar: this.formBuilder.control(null),
         Guardrail: this.formBuilder.control(null),
         Shoulder: this.formBuilder.control(null),
+        sideShoulder: this.formBuilder.control(null),
         Division: this.formBuilder.control(null),
         MedianType: this.formBuilder.control(null),
         MedianWidth: this.formBuilder.control(null)

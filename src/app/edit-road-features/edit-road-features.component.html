@@ -16,7 +16,7 @@
       </td>
 
       <td class="example-half-width">
-        <md-select mdInput formControlName="Country" type="text" placeholder="Country">
+        <md-select mdInput formControlName="County" type="text" placeholder="County">
           <md-option *ngFor="let myCounry of myCountries" [value]="myCounry">
             {{myCounry}}
           </md-option>
@@ -178,8 +178,8 @@
 
   <table>
     <tr>
-      <td>
-        <md-select mdInput formControlName="CurbAndGutter" type="text" placeholder="Curb & Gutter">
+      <td class="example-half-width">
+    <md-select mdInput formControlName="CurbAndGutter" type="text" placeholder="Curb & Gutter">
           <md-option *ngFor="let myCurbAndGutter of myCurbAndGutters" [value]="myCurbAndGutter">
             {{myCurbAndGutter}}
           </md-option>
@@ -232,7 +232,7 @@
     <tr>
       <td class="example-half-width">
         <md-select mdInput formControlName="Shoulder" type="text" placeholder="Shoulder">
-          <md-option *ngFor="let myShoulder of myShoulder" [value]="myShoulder">
+          <md-option *ngFor="let myShoulder of myShoulders" [value]="myShoulder">
             {{myShoulder}}
           </md-option>
         </md-select>
