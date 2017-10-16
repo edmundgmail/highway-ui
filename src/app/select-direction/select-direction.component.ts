@@ -11,13 +11,13 @@ import elementIsSelected = until.elementIsSelected;
   styleUrls: ['./select-direction.component.css']
 })
 export class SelectDirectionComponent implements OnInit {
-  @Input('mytype') mytype : string;
+  @Input('type') type : string;
 
   directionCtrl;
   dirs;
 
   ngOnInit() {
-    console.log("mytype=" + this.mytype);
+    console.log("type=" + this.type);
     this.getDirs();
   }
 
@@ -27,7 +27,7 @@ export class SelectDirectionComponent implements OnInit {
   }
 
   private getDirs() {
-    if(this.mytype==='both')
+    if(this.type==='both')
       this.dirs = this.highwayService.getDirs('both');
     else
       this.dirs = this.highwayService.getDirs('');

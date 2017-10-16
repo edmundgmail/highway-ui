@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Highway} from "../models/highway";
 import {FormControl} from "@angular/forms";
 import {HighwayService} from "../services/highway.service";
+import {isEmpty} from "rxjs/operator/isEmpty";
 
 @Component({
   selector: 'app-highway-name-select',
@@ -9,6 +10,8 @@ import {HighwayService} from "../services/highway.service";
   styleUrls: ['./highway-name-select.component.css']
 })
 export class HighwayNameSelectComponent implements OnInit {
+  @Input('type') type : string;
+
   highwayCtrl;
   highways;
   reactiveHighways: any;
@@ -21,11 +24,17 @@ export class HighwayNameSelectComponent implements OnInit {
       .map(name => this.filterStates(name));
   }
 
-  ngOnInit() {
-  }
+  @Output() uponChange = new EventEmitter();
 
-  private onChange(event, highway){
-    this.highwayService.announceHighway(highway);
+  ngOnInit() {
+
+  }
+  private onChange(event, highway) {
+    if(this.type === 'private'){
+      this.uponChange.emit(highway);
+    }
+    else
+      this.highwayService.announceHighway(highway);
   }
 
   displayFn(value: any): string {
