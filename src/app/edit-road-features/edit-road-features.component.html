@@ -1,6 +1,6 @@
 <form class="example-form" novalidate [formGroup]="formRoadFeture" (ngSubmit)="onSubmitForm()">
   <app-highway-name-select> </app-highway-name-select>
-  <section class="example-full-width">
+  <section class="example-full-width" *ngIf="this.currentHighway">
     <app-select-direction mytype="both"></app-select-direction>
     <app-select-segment-table></app-select-segment-table>
   </section>

@@ -19,8 +19,13 @@ export class AddSegmentComponent implements OnInit {
   end;
   newseg;
   project: Project;
+  currentHighway;
+  currentDir;
 
-  constructor(private formBuilder: FormBuilder, highwayService: HighwayService) {
+  constructor(private formBuilder: FormBuilder, private highwayService: HighwayService) {
+    this.highwayService.currentHighwaySelected$.subscribe(value => this.currentHighway = value);
+    this.highwayService.currentDirSelected$.subscribe(value => this.currentDir = value);
+
   }
 
   onChange = (row) => {
