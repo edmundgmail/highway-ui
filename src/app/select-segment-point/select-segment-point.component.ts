@@ -37,6 +37,7 @@ export class SelectSegmentPointComponent implements OnInit {
     this.highwayService.currentDirSelected$.subscribe(value=>{ this.currentDir= value; this.getRps();});
   }
 
+
  private getRps() {
       if(this.type ==='start')
         this.rps = this.highwayService.getSegmentStartRPs(this.currentHighway.id, this.currentDir);
@@ -44,6 +45,14 @@ export class SelectSegmentPointComponent implements OnInit {
         this.rps = this.highwayService.getSegmentEndRPs(this.currentHighway.id, this.currentDir);
   }
 
+  private _hideConnect() {
+    if (this.hideConnect === true){
+      return true;
+    }
+    return false;
+  }
+
+  @Input()  hideConnect;
   @Input()  type;
   @Output() uponChange = new EventEmitter();
 

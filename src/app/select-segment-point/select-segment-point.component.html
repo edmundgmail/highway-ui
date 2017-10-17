@@ -13,7 +13,7 @@
     </md-form-field>
   </td>
 
-  <td class="example-1third-width">
+  <td class="example-1third-width" *ngIf="!_hideConnect()">
     <md-slide-toggle [formControl]="connectCtrl"> Connect </md-slide-toggle>
   </td>
 
