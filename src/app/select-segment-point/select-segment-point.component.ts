@@ -18,7 +18,7 @@ export class SelectSegmentPointComponent implements OnInit {
   rp;
   connect;
   rps;
-  currentHighway : Highway;
+  myCurrentHighway;
   currentDir: string;
 
   constructor(private highwayService: HighwayService) {
@@ -33,26 +33,18 @@ export class SelectSegmentPointComponent implements OnInit {
     this.offset = 0.0;
     this.connect = false;
 
-    this.highwayService.currentHighwaySelected$.subscribe(value=> {this.currentHighway=value; this.getRps();});
+    this.highwayService.currentHighwaySelected$.subscribe(value => {this.myCurrentHighway = value; console.log("highway select, value=" + value)});
     this.highwayService.currentDirSelected$.subscribe(value=>{ this.currentDir= value; this.getRps();});
   }
 
 
  private getRps() {
       if(this.type ==='start')
-        this.rps = this.highwayService.getSegmentStartRPs(this.currentHighway.id, this.currentDir);
+        this.rps = this.highwayService.getSegmentStartRPs(this.myCurrentHighway.id, this.currentDir);
       else
-        this.rps = this.highwayService.getSegmentEndRPs(this.currentHighway.id, this.currentDir);
+        this.rps = this.highwayService.getSegmentEndRPs(this.myCurrentHighway.id, this.currentDir);
   }
 
-  private _hideConnect() {
-    if (this.hideConnect === true){
-      return true;
-    }
-    return false;
-  }
-
-  @Input()  hideConnect;
   @Input()  type;
   @Output() uponChange = new EventEmitter();
 

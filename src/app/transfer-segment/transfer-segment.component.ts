@@ -14,7 +14,7 @@ export class TransferSegmentComponent implements OnInit {
   currentDirTo;
 
   constructor(private formBuilder: FormBuilder, private highwayService: HighwayService) {
-    this.highwayService.currentHighwaySelected$.subscribe(value => this.currentHighwayFrom = value);
+    this.highwayService.currentHighwaySelected$.subscribe(value => {this.currentHighwayFrom = value; console.log("highway selected")});
     this.highwayService.currentDirSelected$.subscribe(value => this.currentDirFrom = value);
     this.buildForm();
   }
@@ -22,6 +22,11 @@ export class TransferSegmentComponent implements OnInit {
   highwayNameChange($event){
     this.currentHighwayTo = $event;
   }
+
+  dirChange($event) {
+    this.currentDirTo = $event;
+  }
+
 
   buildForm()
   {
