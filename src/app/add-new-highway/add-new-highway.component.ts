@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HighwayService} from "../services/highway.service";
+import {HighwayPostService} from "../services/highway-post-service";
 
 
 @Component({
@@ -14,7 +15,7 @@ export class AddNewHighwayComponent implements OnInit {
   roadNameControl;
   dirs;
 
-  constructor(private formBuilder: FormBuilder, private highwayService: HighwayService) {
+  constructor(private formBuilder: FormBuilder, private highwayService: HighwayService, private  highwayPostService: HighwayPostService) {
     this.dirs = highwayService.getDirs('no-both');
     this.buildForm();
   }
@@ -50,6 +51,7 @@ export class AddNewHighwayComponent implements OnInit {
 
   onSubmitForm() {
     console.log(this.newRoadForm.value);
+    this.highwayPostService.postHighway(this.newRoadForm.value);
   }
 
 

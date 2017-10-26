@@ -28,6 +28,8 @@ import { TreatmentDetailsDialogComponent } from './treatment-details-dialog/trea
 import { EditRoadFeaturesComponent } from './edit-road-features/edit-road-features.component';
 import { SelectSegmentTableComponent } from './select-segment-table/select-segment-table.component';
 import { TransferSegmentComponent } from './transfer-segment/transfer-segment.component';
+import {HighwayPostService} from "./services/highway-post-service";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -48,12 +50,13 @@ import { TransferSegmentComponent } from './transfer-segment/transfer-segment.co
     TreatmentDetailsDialogComponent,
     EditRoadFeaturesComponent,
     SelectSegmentTableComponent,
-    TransferSegmentComponent
+    TransferSegmentComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    HttpClientModule,
     RoutingModule,
     MaterialModule,
     BrowserAnimationsModule,
@@ -63,7 +66,7 @@ import { TransferSegmentComponent } from './transfer-segment/transfer-segment.co
     ReactiveFormsModule,
     MdNativeDateModule
   ],
-  providers: [HighwayService],
+  providers: [HighwayService, HighwayPostService ],
   bootstrap: [AppComponent],
   entryComponents: [DashboardComponent, TreatmentDetailsDialogComponent]
 })
