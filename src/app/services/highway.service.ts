@@ -7,9 +7,25 @@ import {Subject} from "rxjs/Subject";
 import {isNullOrUndefined, isUndefined} from "util";
 import {Segment} from "../models/segment";
 import {isEmpty} from "rxjs/operator/isEmpty";
+import {Http} from "@angular/http";
+
+// Observable class extensions
+import 'rxjs/add/observable/of';
+import 'rxjs/add/observable/throw';
+
+// Observable operators
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/switchMap';
 
 @Injectable()
 export class HighwayService {
+  baseUrl = 'http://localhost:5000/';
+
   dirs = [
   {value: 'E', viewValue: 'East'},
   {value: 'W', viewValue: 'West'},
@@ -43,7 +59,9 @@ export class HighwayService {
     this.currentDir.next(dir);
   }
 
-constructor() { }
+  constructor(private http: Http){
+
+  }
 
   getProjects() : Project[]
   {
@@ -57,7 +75,9 @@ constructor() { }
   }
 
   getHighways(): Highway[] {
-    return this.highways;
+    await this.http.get(this.baseUrl+'highway').subscribe(
+      response => this.highways = response.json()
+    );
   }
 
   getRPs(roadID: number, dir: String) : RP[] {
