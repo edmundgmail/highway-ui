@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Rx';
 import {HttpClient, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
 import {Headers} from '@angular/http';
 
+
 @Injectable()
 export class HighwayPostService implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

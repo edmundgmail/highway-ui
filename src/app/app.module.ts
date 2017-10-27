@@ -30,6 +30,7 @@ import { SelectSegmentTableComponent } from './select-segment-table/select-segme
 import { TransferSegmentComponent } from './transfer-segment/transfer-segment.component';
 import {HighwayPostService} from "./services/highway-post-service";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {UtilsService} from "./services/utils-service";
 
 @NgModule({
   declarations: [
@@ -66,7 +67,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
     ReactiveFormsModule,
     MdNativeDateModule
   ],
-  providers: [HighwayService, HighwayPostService ],
+  providers: [HighwayService, HighwayPostService, UtilsService ],
   bootstrap: [AppComponent],
   entryComponents: [DashboardComponent, TreatmentDetailsDialogComponent]
 })

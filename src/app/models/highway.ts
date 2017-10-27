@@ -27,4 +27,8 @@ export class AddRoadRecord {
 export class DirectionRecord {
   dir: string;
   segments: string[];
+
+  constructor(){
+    this.segments = [];
+  }
 }

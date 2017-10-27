@@ -3,6 +3,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HighwayService} from "../services/highway.service";
 import {HighwayPostService} from "../services/highway-post-service";
 import {AddRoadRecord, DirectionRecord} from "../models/highway";
+import {UtilsService} from "../services/utils-service";
+
 
 
 @Component({
@@ -16,10 +18,12 @@ export class AddNewHighwayComponent implements OnInit {
   roadNameControl;
   dirs;
 
-  constructor(private formBuilder: FormBuilder, private highwayService: HighwayService, private  highwayPostService: HighwayPostService) {
+  constructor(private formBuilder: FormBuilder, private highwayService: HighwayService, private  highwayPostService: HighwayPostService, private utilsService: UtilsService) {
     this.dirs = highwayService.getDirs('no-both');
     this.buildForm();
   }
+
+
 
   private buildForm() {
     this.newRoadForm = this.formBuilder.group({
@@ -51,13 +55,17 @@ export class AddNewHighwayComponent implements OnInit {
   }
 
   onSubmitForm() {
+
     let record = new AddRoadRecord();
-    record.roadId=0;
-    record.roadName = this.newRoadForm.get("roadName").value;
-    record.jurisdictionType = this.newRoadForm.get("jurisdictionType").value;
     record.action = 'AddRoadRecord';
-    record.mainDir = this.newRoadForm.get("cardinalDirection").value;
     record.dateTime = this.newRoadForm.get("editDate").value;
+    record.roadName = this.newRoadForm.get("roadName").value;
+    record.roadId= this.utilsService.murmurHash(record.roadName);
+
+    record.jurisdictionType = this.newRoadForm.get("jurisdictionType").value;
+
+    record.mainDir = this.newRoadForm.get("cardinalDirection").value;
+
     let dir1 = new DirectionRecord();
     dir1.dir = this.newRoadForm.get("cardinalDirection").value;
 
