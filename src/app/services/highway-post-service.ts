@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Http, RequestOptions, Response} from '@angular/http';
 import {Observable} from 'rxjs/Rx';
 import {HttpClient, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
+import {Headers} from '@angular/http';
 
 @Injectable()
 export class HighwayPostService implements HttpInterceptor {
@@ -13,21 +14,18 @@ export class HighwayPostService implements HttpInterceptor {
     return next.handle(req);
   }
 
-  constructor(private http: HttpClient){
+  constructor(private http: Http){
 
   }
 
   postHighway(o: Object) {
     let body = JSON.stringify(o);
     console.log(body)
-    this.http.get('http://localhost:5000/highway').subscribe(
-      highways=>console.log(highways.toString()),
-      error=> console.log(error)
+    //this.http.get('http://localhost:5000/highway').forEach( res=> console.log(res));
 
-    );
-    /*this.http.post('http://localhost:5000/highway', body)
-      .map(res => res.json()) // ...and calling .json() on the response to return data
-      .catch((error:any) => Observable.throw(error.json().error || 'Server error')) //...errors if
-      .subscribe();*/
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions();
+    options.headers = headers;
+    return this.http.post('http://localhost:5000/highway', body, options).forEach(res=>console.log(res.toString()));
   }
 }

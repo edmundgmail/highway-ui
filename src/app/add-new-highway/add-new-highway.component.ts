@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HighwayService} from "../services/highway.service";
 import {HighwayPostService} from "../services/highway-post-service";
+import {AddRoadRecord, DirectionRecord} from "../models/highway";
 
 
 @Component({
@@ -50,8 +51,23 @@ export class AddNewHighwayComponent implements OnInit {
   }
 
   onSubmitForm() {
-    console.log(this.newRoadForm.value);
-    this.highwayPostService.postHighway(this.newRoadForm.value);
+    let record = new AddRoadRecord();
+    record.roadId=0;
+    record.roadName = this.newRoadForm.get("roadName").value;
+    record.jurisdictionType = this.newRoadForm.get("jurisdictionType").value;
+    record.action = 'AddRoadRecord';
+    record.mainDir = this.newRoadForm.get("cardinalDirection").value;
+    record.dateTime = this.newRoadForm.get("editDate").value;
+    let dir1 = new DirectionRecord();
+    dir1.dir = this.newRoadForm.get("cardinalDirection").value;
+
+    let dir2 = new DirectionRecord();
+    dir2.dir = this.newRoadForm.get("nonCardinalDirection").value;
+
+    record.directions.push(dir1);
+    record.directions.push(dir2);
+
+    this.highwayPostService.postHighway(record);
   }
 
 
