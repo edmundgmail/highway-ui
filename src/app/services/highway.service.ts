@@ -7,7 +7,7 @@ import {Subject} from "rxjs/Subject";
 import {isNullOrUndefined, isUndefined} from "util";
 import {Segment} from "../models/segment";
 import {isEmpty} from "rxjs/operator/isEmpty";
-import {Http} from "@angular/http";
+import {Http, Response} from "@angular/http";
 
 // Observable class extensions
 import 'rxjs/add/observable/of';
@@ -21,6 +21,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class HighwayService {
@@ -74,10 +75,8 @@ export class HighwayService {
       return this.dirs.slice(0,4);
   }
 
-  getHighways(): Highway[] {
-    await this.http.get(this.baseUrl+'highway').subscribe(
-      response => this.highways = response.json()
-    );
+  getHighways()  {
+    return this.http.get(this.baseUrl+'highway');
   }
 
   getRPs(roadID: number, dir: String) : RP[] {

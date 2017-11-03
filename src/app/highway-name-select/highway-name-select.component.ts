@@ -2,7 +2,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Highway} from "../models/highway";
 import {FormControl} from "@angular/forms";
 import {HighwayService} from "../services/highway.service";
-import {isEmpty} from "rxjs/operator/isEmpty";
+import {Http, Response} from "@angular/http";
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'app-highway-name-select',
@@ -15,9 +16,10 @@ export class HighwayNameSelectComponent implements OnInit {
   highwayCtrl;
   highways;
   reactiveHighways: any;
-  constructor(private highwayService: HighwayService) {
+  constructor(private highwayService: HighwayService, private http: Http) {
     this.highwayCtrl = new FormControl();
-    this.highways = highwayService.getHighways();
+    //this.http.get(this.highwayService.baseUrl +'highway').map((res) => this.extractHighway(res)).catch((res) => this.handleError(res));
+    this.http.get(this.highwayService.baseUrl +'highway').subscribe((res:Response) => console.log(res.json()));
     this.reactiveHighways = this.highwayCtrl.valueChanges
       .startWith(this.highwayCtrl.value)
       .map(val => this.displayFn(val))
@@ -25,6 +27,16 @@ export class HighwayNameSelectComponent implements OnInit {
   }
 
   @Output() uponChange = new EventEmitter();
+
+  private extractHighway(res: Response) {
+    const body = res.json();
+    return body || {};
+  }
+
+  private handleError(error: Response){
+    console.error(error);
+    return Observable.throw(error.json().error || 'Server error');
+  }
 
   ngOnInit() {
 
