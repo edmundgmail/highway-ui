@@ -1,6 +1,6 @@
 export class Highway {
-  id: number;
-  name: string;
+  roadId: number;
+  roadName: string;
 }
 
 export class AddRoadRecord {

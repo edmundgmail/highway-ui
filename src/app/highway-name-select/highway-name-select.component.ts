@@ -12,14 +12,13 @@ import {Observable} from "rxjs/Observable";
 })
 export class HighwayNameSelectComponent implements OnInit {
   @Input('type') type : string;
-
   highwayCtrl;
   highways;
   reactiveHighways: any;
   constructor(private highwayService: HighwayService, private http: Http) {
     this.highwayCtrl = new FormControl();
-    //this.http.get(this.highwayService.baseUrl +'highway').map((res) => this.extractHighway(res)).catch((res) => this.handleError(res));
-    this.http.get(this.highwayService.baseUrl +'highway').subscribe((res:Response) => console.log(res.json()));
+    //this.http.get(this.highwayService.baseUrl +'highway').map(res=>res.json() as Highway[]).catch(this.handleError);
+    this.http.get(this.highwayService.baseUrl +'highways').subscribe(res=> this.highways = res.json() as Highway[]);
     this.reactiveHighways = this.highwayCtrl.valueChanges
       .startWith(this.highwayCtrl.value)
       .map(val => this.displayFn(val))
@@ -49,16 +48,16 @@ export class HighwayNameSelectComponent implements OnInit {
       this.highwayService.announceHighway(highway);
   }
 
-  displayFn(value: any): string {
+  private displayFn(value: any): string {
     return value && typeof value === 'object' ? value.name : value;
   }
 
-  filterStates(val: string) {
+  private filterStates(val: string) {
     return val ? this._filter(this.highways, val) : this.highways;
   }
 
   private _filter(highways: Highway[], val: string) {
     const filterValue = val.toLowerCase();
-    return highways.filter(highway => highway.name.toLowerCase().startsWith(filterValue));
+    return highways.filter(highway => highway.roadName.toLowerCase().startsWith(filterValue));
   }
 }

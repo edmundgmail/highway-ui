@@ -27,12 +27,12 @@ export class SelectSegmentTableComponent implements OnInit {
     this.buildForm();
     this.highwayService.currentHighwaySelected$.subscribe(value=> {
       this.currentHighway = value;
-      console.log("currentHighway.id=" + this.currentHighway.id);
-      this.rps = this.highwayService.getRPs(this.currentHighway.id, this.currentDir);});
+      console.log("currentHighway.id=" + this.currentHighway.roadId);
+      this.rps = this.highwayService.getRPs(this.currentHighway.roadId, this.currentDir);});
     this.highwayService.currentDirSelected$.subscribe(value=> {
       this.currentDir= value;
       console.log("currentDir = " + this.currentDir);
-      this.rps = this.highwayService.getRPs(this.currentHighway.id, this.currentDir);});
+      this.rps = this.highwayService.getRPs(this.currentHighway.roadId, this.currentDir);});
   }
 
   ngOnInit() {
