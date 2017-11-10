@@ -17,6 +17,11 @@ export class AddRoadRecord {
   mainlineCode: string;
   routeTypeCode: string;
   routeOfficialName: string;
+  routeFullName: string;
+  routeAlternateName: string;
+  beginPlace: string;
+  endPlace: string;
+
   directions: DirectionRecord[];
 
   constructor(){

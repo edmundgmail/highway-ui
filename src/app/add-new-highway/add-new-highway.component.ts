@@ -29,7 +29,7 @@ export class AddNewHighwayComponent implements OnInit {
     this.newRoadForm = this.formBuilder.group({
         roadName: this.formBuilder.control(null, [Validators.required, Validators.minLength(20)]),
         jurisdictionType: this.formBuilder.control(null),
-        ownership: this.formBuilder.control(null),
+        ownerShip: this.formBuilder.control(null),
         prefixCode: this.formBuilder.control(null),
         routeNumber: this.formBuilder.control(null),
         modifierCode: this.formBuilder.control(null),
@@ -61,8 +61,18 @@ export class AddNewHighwayComponent implements OnInit {
     record.dateTime = this.newRoadForm.get("editDate").value;
     record.roadName = this.newRoadForm.get("roadName").value;
     record.roadId= this.utilsService.murmurHash(record.roadName);
-
     record.jurisdictionType = this.newRoadForm.get("jurisdictionType").value;
+    record.ownerShip = this.newRoadForm.get("ownerShip").value;
+    record.prefixCode = this.newRoadForm.get("prefixCode").value;
+    record.routeNumber = this.newRoadForm.get("routeNumber").value;
+    record.modifierCode = this.newRoadForm.get("modifierCode").value;
+    record.mainlineCode = this.newRoadForm.get("mainlineCode").value;
+    record.routeTypeCode = this.newRoadForm.get("routeTypeCode").value;
+    record.routeOfficialName = this.newRoadForm.get("routeOfficialName").value;
+    record.routeFullName = this.newRoadForm.get("routeFullName").value;
+    record.routeAlternateName = this.newRoadForm.get("routeAlternateName").value;
+    record.beginPlace = this.newRoadForm.get("beginPlace").value;
+    record.endPlace = this.newRoadForm.get("endPlace").value;
 
     record.mainDir = this.newRoadForm.get("cardinalDirection").value;
 

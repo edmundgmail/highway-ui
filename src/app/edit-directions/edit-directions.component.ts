@@ -19,7 +19,7 @@ export class EditDirectionsComponent implements OnInit {
     this.newRoadForm = this.formBuilder.group({
         roadName: this.formBuilder.control(null, [Validators.required, Validators.minLength(2)]),
         jurisdictionType: this.formBuilder.control(null),
-        ownership: this.formBuilder.control(null),
+        ownerShip: this.formBuilder.control(null),
         prefixCode: this.formBuilder.control(null),
         routeNumber: this.formBuilder.control(null),
         modifierCode: this.formBuilder.control(null),
