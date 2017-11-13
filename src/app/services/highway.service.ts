@@ -75,26 +75,23 @@ export class HighwayService {
       return this.dirs.slice(0,4);
   }
 
-  getHighways()  {
-    return this.http.get(this.baseUrl+'highway');
-  }
-
-  getRPs(roadID: number, dir: String) : RP[] {
+  getRPs(road: Highway, dir: String) : RP[] {
+    if(isNullOrUndefined(road) || isNullOrUndefined(dir)) return [];
     return [{"name":"rp1", "id":1}, {"name":"rp2", "id":2}];
   }
 
-  getSegmentStartRPs(roadID: number, dir: string): RP[]{
-    if(isNullOrUndefined(roadID) || isNullOrUndefined(dir)) return [];
-    return this.getRPs(roadID, dir);
+  getSegmentStartRPs(road: Highway, dir: string): RP[]{
+    if(isNullOrUndefined(road) || isNullOrUndefined(dir)) return [];
+    return this.getRPs(road, dir);
   }
 
-  getSegmentEndRPs(roadID: number, dir: string): RP[] {
-    if(isNullOrUndefined(roadID) || isNullOrUndefined(dir)) return [];
-    return this.getRPs(roadID, dir);
+  getSegmentEndRPs(road: Highway, dir: string): RP[] {
+    if(isNullOrUndefined(road) || isNullOrUndefined(dir)) return [];
+    return this.getRPs(road, dir);
   }
 
-  getSegments(roadID : number, dir: string)  : Segment[]{
-    if(isNullOrUndefined(roadID) || isNullOrUndefined(dir)) return [];
+  getSegments(road : Highway, dir: string)  : Segment[]{
+    if(isNullOrUndefined(road) || isNullOrUndefined(dir)) return [];
     return [];
   }
 

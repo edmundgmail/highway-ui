@@ -7,6 +7,8 @@ import {Observable} from "rxjs/Observable";
 import {DataSource, SelectionModel} from "@angular/cdk/collections";
 import {RP} from "../models/segment-point";
 import {SegmentElement} from "../models/segment-element";
+import {isNullOrUndefined} from "util";
+import {Http} from "@angular/http";
 
 @Component({
   selector: 'app-select-segment-table',
@@ -23,16 +25,20 @@ export class SelectSegmentTableComponent implements OnInit {
   currentHighway : Highway;
   currentDir: string;
 
-  constructor(private formBuilder: FormBuilder, private highwayService: HighwayService) {
+  constructor(private formBuilder: FormBuilder, private highwayService: HighwayService, private http: Http) {
     this.buildForm();
     this.highwayService.currentHighwaySelected$.subscribe(value=> {
       this.currentHighway = value;
-      console.log("currentHighway.id=" + this.currentHighway.roadId);
-      this.rps = this.highwayService.getRPs(this.currentHighway.roadId, this.currentDir);});
+      this.rps = this.highwayService.getRPs(this.currentHighway, this.currentDir);});
     this.highwayService.currentDirSelected$.subscribe(value=> {
       this.currentDir= value;
       console.log("currentDir = " + this.currentDir);
-      this.rps = this.highwayService.getRPs(this.currentHighway.roadId, this.currentDir);});
+      this.rps = this.highwayService.getRPs(this.currentHighway, this.currentDir);});
+  }
+
+  getRPs(road: Highway, dir: string)  {
+    if(isNullOrUndefined(road) || isNullOrUndefined(dir)) return [];
+    this.http.get(this.highwayService.baseUrl +'highway').subscribe(res=> this.rps = res.json() as RP[]);
   }
 
   ngOnInit() {

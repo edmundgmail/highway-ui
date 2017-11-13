@@ -40,9 +40,9 @@ export class SelectSegmentPointComponent implements OnInit {
 
  private getRps() {
       if(this.type ==='start')
-        this.rps = this.highwayService.getSegmentStartRPs(this.myCurrentHighway.id, this.currentDir);
+        this.rps = this.highwayService.getSegmentStartRPs(this.myCurrentHighway, this.currentDir);
       else
-        this.rps = this.highwayService.getSegmentEndRPs(this.myCurrentHighway.id, this.currentDir);
+        this.rps = this.highwayService.getSegmentEndRPs(this.myCurrentHighway, this.currentDir);
   }
 
   @Input()  type;
