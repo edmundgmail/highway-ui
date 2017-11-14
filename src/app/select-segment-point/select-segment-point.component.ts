@@ -3,6 +3,7 @@ import {HighwayService} from "../services/highway.service";
 import {FormControl} from "@angular/forms";
 import {RP, SegmentPoint} from "../models/segment-point";
 import {Highway} from "../models/highway";
+import {Http} from "@angular/http";
 
 @Component({
   selector: 'app-select-segment-point',

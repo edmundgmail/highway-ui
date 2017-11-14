@@ -38,7 +38,7 @@ export class SelectSegmentTableComponent implements OnInit {
 
   getRPs(road: Highway, dir: string)  {
     if(isNullOrUndefined(road) || isNullOrUndefined(dir)) return [];
-    this.http.get(this.highwayService.baseUrl +'highway').subscribe(res=> this.rps = res.json() as RP[]);
+    this.http.get(this.highwayService.baseUrl +'highway/rps/'+road.roadId+"/"+dir).subscribe(res=> this.rps = res.json() as RP[]);
   }
 
   ngOnInit() {

@@ -68,16 +68,12 @@ export class HighwayService {
   {
     return this.projects;
   }
+
   getDirs(type: any): SelectObject[] {
     if(type === 'both')
       return this.dirs;
     else
       return this.dirs.slice(0,4);
-  }
-
-  getRPs(road: Highway, dir: String) : RP[] {
-    if(isNullOrUndefined(road) || isNullOrUndefined(dir)) return [];
-    return [{"name":"rp1", "id":1}, {"name":"rp2", "id":2}];
   }
 
   getSegmentStartRPs(road: Highway, dir: string): RP[]{
