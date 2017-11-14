@@ -4,6 +4,7 @@ import {FormControl} from "@angular/forms";
 import {RP, SegmentPoint} from "../models/segment-point";
 import {Highway} from "../models/highway";
 import {Http} from "@angular/http";
+import {isNullOrUndefined} from "util";
 
 @Component({
   selector: 'app-select-segment-point',
@@ -19,10 +20,10 @@ export class SelectSegmentPointComponent implements OnInit {
   rp;
   connect;
   rps;
-  myCurrentHighway;
+  currentHighway;
   currentDir: string;
 
-  constructor(private highwayService: HighwayService) {
+  constructor(private highwayService: HighwayService, private http: Http) {
     this.rpCtrl = new FormControl();
     this.offsetCtrl = new FormControl();
     this.connectCtrl = new FormControl();
@@ -34,16 +35,20 @@ export class SelectSegmentPointComponent implements OnInit {
     this.offset = 0.0;
     this.connect = false;
 
-    this.highwayService.currentHighwaySelected$.subscribe(value => {this.myCurrentHighway = value; console.log("highway select, value=" + value)});
+    this.highwayService.currentHighwaySelected$.subscribe(value => {this.currentHighway = value; this.getRps();});
     this.highwayService.currentDirSelected$.subscribe(value=>{ this.currentDir= value; this.getRps();});
   }
 
 
  private getRps() {
-      if(this.type ==='start')
-        this.rps = this.highwayService.getSegmentStartRPs(this.myCurrentHighway, this.currentDir);
-      else
-        this.rps = this.highwayService.getSegmentEndRPs(this.myCurrentHighway, this.currentDir);
+   if(isNullOrUndefined(this.currentHighway) || isNullOrUndefined(this.currentDir))
+     this.rps = [];
+   else {
+     if(this.type ==='start')
+       this.http.get(this.highwayService.baseUrl + "highway/segmentstartrps/"+this.currentHighway.roadId + "/" + this.currentDir).subscribe(res=> this.rps = res.json() as RP[]);
+     else
+       this.http.get(this.highwayService.baseUrl + "highway/segmentendrps/"+this.currentHighway.roadId + "/" + this.currentDir).subscribe(res=> this.rps = res.json() as RP[]);
+   }
   }
 
   @Input()  type;

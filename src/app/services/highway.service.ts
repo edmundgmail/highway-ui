@@ -76,16 +76,6 @@ export class HighwayService {
       return this.dirs.slice(0,4);
   }
 
-  getSegmentStartRPs(road: Highway, dir: string): RP[]{
-    if(isNullOrUndefined(road) || isNullOrUndefined(dir)) return [];
-    return this.getRPs(road, dir);
-  }
-
-  getSegmentEndRPs(road: Highway, dir: string): RP[] {
-    if(isNullOrUndefined(road) || isNullOrUndefined(dir)) return [];
-    return this.getRPs(road, dir);
-  }
-
   getSegments(road : Highway, dir: string)  : Segment[]{
     if(isNullOrUndefined(road) || isNullOrUndefined(dir)) return [];
     return [];

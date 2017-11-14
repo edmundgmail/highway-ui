@@ -29,15 +29,15 @@ export class SelectSegmentTableComponent implements OnInit {
     this.buildForm();
     this.highwayService.currentHighwaySelected$.subscribe(value=> {
       this.currentHighway = value;
-      this.rps = this.highwayService.getRPs(this.currentHighway, this.currentDir);});
+      this.getRPs(this.currentHighway, this.currentDir);});
     this.highwayService.currentDirSelected$.subscribe(value=> {
       this.currentDir= value;
       console.log("currentDir = " + this.currentDir);
-      this.rps = this.highwayService.getRPs(this.currentHighway, this.currentDir);});
+      this.getRPs(this.currentHighway, this.currentDir);});
   }
 
   getRPs(road: Highway, dir: string)  {
-    if(isNullOrUndefined(road) || isNullOrUndefined(dir)) return [];
+    if(isNullOrUndefined(road) || isNullOrUndefined(dir)) this.rps = [];
     this.http.get(this.highwayService.baseUrl +'highway/rps/'+road.roadId+"/"+dir).subscribe(res=> this.rps = res.json() as RP[]);
   }
 
