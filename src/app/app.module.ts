@@ -12,7 +12,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { AddNewHighwayComponent } from './add-new-highway/add-new-highway.component';
 import { MdFormFieldModule } from '@angular/material';
-import { EditDirectionsComponent } from './edit-directions/edit-directions.component';
 import { AddSegmentComponent } from './add-segment/add-segment.component';
 import {HighwayService} from "app/services/highway.service";
 import { HighwayNameSelectComponent } from './highway-name-select/highway-name-select.component';
@@ -37,7 +36,6 @@ import {UtilsService} from "./services/utils-service";
     AppComponent,
     DashboardComponent,
     AddNewHighwayComponent,
-    EditDirectionsComponent,
     AddSegmentComponent,
     HighwayNameSelectComponent,
     SelectSegmentPointComponent,

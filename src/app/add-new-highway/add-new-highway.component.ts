@@ -15,19 +15,17 @@ import {UtilsService} from "../services/utils-service";
 
 export class AddNewHighwayComponent implements OnInit {
   newRoadForm: FormGroup;
-  roadNameControl;
   dirs;
+  currentHighway;
 
   constructor(private formBuilder: FormBuilder, private highwayService: HighwayService, private  highwayPostService: HighwayPostService, private utilsService: UtilsService) {
+    this.highwayService.currentHighwaySelected$.subscribe(value => this.currentHighway = value);
     this.dirs = highwayService.getDirs('no-both');
     this.buildForm();
   }
 
-
-
   private buildForm() {
     this.newRoadForm = this.formBuilder.group({
-        roadName: this.formBuilder.control(null, [Validators.required, Validators.minLength(20)]),
         jurisdictionType: this.formBuilder.control(null),
         ownerShip: this.formBuilder.control(null),
         prefixCode: this.formBuilder.control(null),
@@ -47,7 +45,6 @@ export class AddNewHighwayComponent implements OnInit {
       {
         validator: Validators.required
       });
-    this.roadNameControl = this.newRoadForm.get('roadName');
   }
 
   onResetForm() {
@@ -59,7 +56,6 @@ export class AddNewHighwayComponent implements OnInit {
     let record = new AddRoadRecord();
     record.action = 'AddRoadRecord';
     record.dateTime = this.newRoadForm.get("editDate").value;
-    record.roadName = this.newRoadForm.get("roadName").value;
     record.roadId= this.utilsService.murmurHash(record.roadName);
     record.jurisdictionType = this.newRoadForm.get("jurisdictionType").value;
     record.ownerShip = this.newRoadForm.get("ownerShip").value;

@@ -1,16 +1,5 @@
 <form class="example-form" novalidate [formGroup]="newRoadForm">
-
-  <md-form-field class="example-full-width">
-    <input mdInput formControlName="roadName" type="text" placeholder="New Road Name">
-    <div *ngIf="roadNameControl.errors" class="errors">
-      <div *ngIf="roadNameControl.errors.required && (roadNameControl.touched || roadNameControl.dirty)">
-        Required!
-      </div>
-      <div *ngIf="roadNameControl.errors.minlength">
-        Must be at least {{roadNameControl.errors.minlength.requiredLength}} letters
-      </div>
-    </div>
-  </md-form-field>
+<app-highway-name-select></app-highway-name-select>
 
   <table class="example-full-width" cellspacing="0"><tr>
     <td><md-form-field class="example-full-width">
