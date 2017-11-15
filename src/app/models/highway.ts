@@ -37,3 +37,30 @@ export class DirectionRecord {
     this.segments = [];
   }
 }
+
+export class AddSegmentRecord{
+  action: string;
+  dateTime: string;
+  roadId: number;
+  dir: string;
+  afterRP: string;
+  beforeRP: string;
+  segment: string;
+  leftConnect: boolean;
+  rightConnect: boolean;
+}
+
+export class PointRecord {
+  rpName: string;
+  offset: number;
+}
+
+export class RemoveSegmentRecord{
+  action: string;
+  dateTime: string;
+  roadId: number;
+  dir: string;
+
+  startPoint: PointRecord;
+  endPoint: PointRecord;
+}
