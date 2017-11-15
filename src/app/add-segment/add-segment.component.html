@@ -6,7 +6,15 @@
     <app-select-segment-point id="start"  type="start" (uponChange)="onSegmentPointChange($event,'start')"></app-select-segment-point>
     <app-select-segment-point id="end" type="end" (uponChange)="onSegmentPointChange($event, 'end')"></app-select-segment-point>
   <app-add-segment-table (segmentTableChange)="onSegmentTableChange($event)"></app-add-segment-table>
-    <app-select-project (uponChange)="onProjectChange($event)"></app-select-project>
+  <app-select-project (uponChange)="onProjectChange($event)"></app-select-project>
+
+  <div class="example-full-width">
+  <md-form-field>
+    <input mdInput [formControl]="editDate"  [mdDatepicker]="picker" placeholder="Choose a date">
+    <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
+    <md-datepicker #picker></md-datepicker>
+  </md-form-field>
+  </div>
   <p></p>
   <button md-raised-button type="submit" >Submit</button>
   <button md-raised-button type="button" (click)="onResetForm()">Reset</button>

@@ -1,7 +1,7 @@
 <table class="example-full-width" cellspacing="0">
   <td>
 <md-select mdInput [formControl]="rpCtrl" placeholder="Select {{type}} RP">
-  <md-option *ngFor="let rp of rps" [value]="rp.name" >
+  <md-option *ngFor="let rp of rps" [value]="rp" >
     {{rp.name}}
   </md-option>
 </md-select>
