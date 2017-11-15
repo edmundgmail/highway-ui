@@ -35,19 +35,23 @@ export class SelectSegmentPointComponent implements OnInit {
     this.offset = 0.0;
     this.connect = false;
 
-    this.highwayService.currentHighwaySelected$.subscribe(value => {this.currentHighway = value; this.getRps();});
-    this.highwayService.currentDirSelected$.subscribe(value=>{ this.currentDir= value; this.getRps();});
+    this.highwayService.currentHighwaySelected$.subscribe(value => {console.log(value); this.currentHighway = value; this.getRps();});
+    this.highwayService.currentDirSelected$.subscribe(value=>{console.log(value); this.currentDir= value; this.getRps();});
   }
 
 
- private getRps() {
+  ngOnInit() {
+    console.log("ngOnInit");
+  }
+
+  private getRps() {
    if(isNullOrUndefined(this.currentHighway) || isNullOrUndefined(this.currentDir))
      this.rps = [];
    else {
      if(this.type ==='start')
-       this.http.get(this.highwayService.baseUrl + "highway/segmentstartrps/"+this.currentHighway.roadId + "/" + this.currentDir).subscribe(res=> this.rps = res.json() as RP[]);
-     else
        this.http.get(this.highwayService.baseUrl + "highway/segmentendrps/"+this.currentHighway.roadId + "/" + this.currentDir).subscribe(res=> this.rps = res.json() as RP[]);
+     else
+       this.http.get(this.highwayService.baseUrl + "highway/segmentstartrps/"+this.currentHighway.roadId + "/" + this.currentDir).subscribe(res=> this.rps = res.json() as RP[]);
    }
   }
 
@@ -74,8 +78,5 @@ export class SelectSegmentPointComponent implements OnInit {
     this.emitChange();
   }
 
-
-  ngOnInit() {
-  }
 
 }
