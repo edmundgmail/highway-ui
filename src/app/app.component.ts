@@ -17,6 +17,12 @@ export class AppComponent{
       let pathToTitle = {};
       pathToTitle["/add-new-highway"] = "Add New Highway";
       pathToTitle["/add-segment"] = "Add New Segment";
+      pathToTitle["/remove-segment"] = "Remove Segment";
+      pathToTitle["/edit-lanes"] = "Edit Lanes";
+      pathToTitle["/edit-pavement-layers"] = "Edit Pavement Layers";
+      pathToTitle["/edit-road-features"] = "Edit Road Features";
+      pathToTitle["/add-segment"] = "Add New Segment";
+      pathToTitle["/transfer-segment"] = "Transfer Segment";
 
       router.events.subscribe(
         (event)=>{

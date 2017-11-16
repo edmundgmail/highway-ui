@@ -50,8 +50,10 @@ export class SelectSegmentPointComponent implements OnInit {
    else {
      if(this.datatype ==='start')
        this.http.get(this.highwayService.baseUrl + "highway/segmentendrps/"+this.currentHighway.roadId + "/" + this.currentDir).subscribe(res=> this.rps = res.json() as RP[]);
-     else
+     else if(this.datatype==='end')
        this.http.get(this.highwayService.baseUrl + "highway/segmentstartrps/"+this.currentHighway.roadId + "/" + this.currentDir).subscribe(res=> this.rps = res.json() as RP[]);
+     else if(this.datatype === 'all')
+       this.http.get(this.highwayService.baseUrl + "highway/rps/"+this.currentHighway.roadId + "/" + this.currentDir).subscribe(res=> this.rps = res.json() as RP[]);
    }
   }
 

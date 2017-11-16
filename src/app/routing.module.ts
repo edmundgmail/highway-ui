@@ -8,6 +8,7 @@ import {EditLanesComponent} from "./edit-lanes/edit-lanes.component";
 import {EditPavementLayersComponent} from "./edit-pavement-layers/edit-pavement-layers.component";
 import {EditRoadFeaturesComponent} from "./edit-road-features/edit-road-features.component";
 import {TransferSegmentComponent} from "./transfer-segment/transfer-segment.component";
+import {RemoveSegmentComponent} from "./remove-segment/remove-segment.component";
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'add-segment',
     component: AddSegmentComponent
+  },
+  {
+    path: 'remove-segment',
+    component: RemoveSegmentComponent
   },
   {
     path: 'edit-lanes',
@@ -39,6 +44,8 @@ const routes: Routes = [
     path: 'transfer-segment',
     component: TransferSegmentComponent
   }
+
+
 
 
 

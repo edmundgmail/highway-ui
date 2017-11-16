@@ -30,6 +30,7 @@ import { TransferSegmentComponent } from './transfer-segment/transfer-segment.co
 import {HighwayPostService} from "./services/highway-post-service";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {UtilsService} from "./services/utils-service";
+import { RemoveSegmentComponent } from './remove-segment/remove-segment.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import {UtilsService} from "./services/utils-service";
     EditRoadFeaturesComponent,
     SelectSegmentTableComponent,
     TransferSegmentComponent,
+    RemoveSegmentComponent,
   ],
   imports: [
     BrowserModule,
