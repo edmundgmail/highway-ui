@@ -48,14 +48,17 @@ export class SelectSegmentPointComponent implements OnInit {
    if(isNullOrUndefined(this.currentHighway) || isNullOrUndefined(this.currentDir))
      this.rps = [];
    else {
-     if(this.type ==='start')
+     if(this.datatype ==='start')
        this.http.get(this.highwayService.baseUrl + "highway/segmentendrps/"+this.currentHighway.roadId + "/" + this.currentDir).subscribe(res=> this.rps = res.json() as RP[]);
      else
        this.http.get(this.highwayService.baseUrl + "highway/segmentstartrps/"+this.currentHighway.roadId + "/" + this.currentDir).subscribe(res=> this.rps = res.json() as RP[]);
    }
   }
 
-  @Input()  type;
+  @Input()
+  type;
+  datatype;
+
   @Output() uponChange = new EventEmitter();
 
 

@@ -3,8 +3,8 @@
   <section class="example-full-width" *ngIf="this.currentHighway">
     <app-select-direction></app-select-direction>
   </section>
-    <app-select-segment-point id="start"  type="start" (uponChange)="onSegmentPointChange($event,'start')"></app-select-segment-point>
-    <app-select-segment-point id="end" type="end" (uponChange)="onSegmentPointChange($event, 'end')"></app-select-segment-point>
+    <app-select-segment-point datatype="end"  type="start" (uponChange)="onSegmentPointChange($event,'start')"></app-select-segment-point>
+    <app-select-segment-point datatype="start" type="end" (uponChange)="onSegmentPointChange($event, 'end')"></app-select-segment-point>
   <app-add-segment-table (segmentTableChange)="onSegmentTableChange($event)"></app-add-segment-table>
   <app-select-project (uponChange)="onProjectChange($event)"></app-select-project>
 
