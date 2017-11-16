@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {AddSegmentRecord, Highway} from '../models/highway';
+import {AddSegmentRecord} from '../models/data-record';
 import {HighwayService} from "../services/highway.service";
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';

@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {HighwayService} from "../services/highway.service";
 import {FormControl} from "@angular/forms";
 import {RP, SegmentPoint} from "../models/segment-point";
-import {Highway} from "../models/highway";
+import {SimpleHighway} from "../models/highway";
 import {Http} from "@angular/http";
 import {isNullOrUndefined} from "util";
 

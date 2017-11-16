@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {SelectObject} from "../models/select-object";
-import {Highway} from "../models/highway";
+import {SimpleHighway} from "../models/highway";
 import {RP} from "../models/segment-point";
 import {Project} from "../models/project";
 import {Subject} from "rxjs/Subject";
@@ -46,13 +46,13 @@ export class HighwayService {
     {'id' : 3, 'name' : '403 project'}
   ];
 
-  private currentHighway = new Subject<Highway>();
+  private currentHighway = new Subject<SimpleHighway>();
   private currentDir = new Subject<string> ();
 
   currentHighwaySelected$ = this.currentHighway.asObservable();
   currentDirSelected$ = this.currentDir.asObservable();
 
-  announceHighway(highway : Highway) {
+  announceHighway(highway : SimpleHighway) {
     this.currentHighway.next(highway);
   }
 
@@ -76,7 +76,7 @@ export class HighwayService {
       return this.dirs.slice(0,4);
   }
 
-  getSegments(road : Highway, dir: string)  : Segment[]{
+  getSegments(road : SimpleHighway, dir: string)  : Segment[]{
     if(isNullOrUndefined(road) || isNullOrUndefined(dir)) return [];
     return [];
   }

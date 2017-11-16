@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Highway} from "../models/highway";
+import {SimpleHighway} from "../models/highway";
 import {FormControl} from "@angular/forms";
 import {HighwayService} from "../services/highway.service";
 import {Http, Response} from "@angular/http";
@@ -15,10 +15,10 @@ export class HighwayNameSelectComponent implements OnInit {
   highwayCtrl;
   highways;
   reactiveHighways: any;
+
   constructor(private highwayService: HighwayService, private http: Http) {
     this.highwayCtrl = new FormControl();
-    //this.http.get(this.highwayService.baseUrl +'highway').map(res=>res.json() as Highway[]).catch(this.handleError);
-    this.http.get(this.highwayService.baseUrl +'highways').subscribe(res=> this.highways = res.json() as Highway[]);
+    this.http.get(this.highwayService.baseUrl +'highways').subscribe(res=> this.highways = res.json() as SimpleHighway[]);
     this.reactiveHighways = this.highwayCtrl.valueChanges
       .startWith(this.highwayCtrl.value)
       .map(val => this.displayFn(val))
@@ -56,7 +56,7 @@ export class HighwayNameSelectComponent implements OnInit {
     return val ? this._filter(this.highways, val) : this.highways;
   }
 
-  private _filter(highways: Highway[], val: string) {
+  private _filter(highways: SimpleHighway[], val: string) {
     const filterValue = val.toLowerCase();
     return highways.filter(highway => highway.roadName.toLowerCase().startsWith(filterValue));
   }

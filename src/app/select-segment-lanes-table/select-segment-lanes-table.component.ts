@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {HighwayService} from "../services/highway.service";
-import {Highway} from "../models/highway";
+import {SimpleHighway} from "../models/highway";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {Observable} from "rxjs/Observable";
 import {DataSource, SelectionModel} from "@angular/cdk/collections";
@@ -22,7 +22,7 @@ export class SelectSegmentLanesTableComponent implements OnInit {
   selection = new SelectionModel<number>(true, []);
   rpForm: FormGroup;
   rps: RP[];
-  currentHighway : Highway;
+  currentHighway : SimpleHighway;
   currentDir: string;
 
   constructor(private formBuilder: FormBuilder, private highwayService: HighwayService, private http: Http) {
@@ -32,7 +32,7 @@ export class SelectSegmentLanesTableComponent implements OnInit {
   }
 
 
-  getRPs(road: Highway, dir: string)  {
+  getRPs(road: SimpleHighway, dir: string)  {
     if(isNullOrUndefined(road) || isNullOrUndefined(dir)) this.rps = [];
     this.http.get(this.highwayService.baseUrl +'highway/rps/'+road.roadId+"/"+dir).subscribe(res=> this.rps = res.json() as RP[]);
   }

@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import {Project} from "../models/project";
-import {Highway} from "../models/highway";
+import {SimpleHighway} from "../models/highway";
 import {HighwayService} from "../services/highway.service";
 
 @Component({

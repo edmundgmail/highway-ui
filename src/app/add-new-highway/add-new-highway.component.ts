@@ -2,8 +2,11 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HighwayService} from "../services/highway.service";
 import {HighwayPostService} from "../services/highway-post-service";
-import {AddRoadRecord, DirectionRecord} from "../models/highway";
+import {AddRoadRecord, DirectionRecord} from "../models/data-record";
 import {UtilsService} from "../services/utils-service";
+import {logger} from "codelyzer/util/logger";
+import {Http} from "@angular/http";
+import {Highway, SimpleHighway} from "../models/highway";
 
 
 
@@ -14,15 +17,41 @@ import {UtilsService} from "../services/utils-service";
 })
 
 export class AddNewHighwayComponent implements OnInit {
+  data : Highway;
   newRoadForm: FormGroup;
   dirs;
-  currentHighway;
+  currentHighway : SimpleHighway;
 
-  constructor(private formBuilder: FormBuilder, private highwayService: HighwayService, private  highwayPostService: HighwayPostService, private utilsService: UtilsService) {
-    this.highwayService.currentHighwaySelected$.subscribe(value => this.currentHighway = value);
+  constructor(private formBuilder: FormBuilder, private http: Http, private highwayService: HighwayService, private  highwayPostService: HighwayPostService, private utilsService: UtilsService) {
+    this.highwayService.currentHighwaySelected$.subscribe(value => {console.log(value); this.currentHighway = value; this.getHighwayDetails();});
     this.dirs = highwayService.getDirs('no-both');
+
     this.buildForm();
   }
+
+  private getHighwayDetails() {
+      console.info("currenthighway = " + this.currentHighway);
+      this.http.get(this.highwayService.baseUrl + "highway/" + this.currentHighway.roadId).subscribe(res=> {this.data = res.json() as Highway; this.loadForm();});;
+  }
+
+  private loadForm() {
+    this.newRoadForm.patchValue({"jurisdictionType": this.data.jurisdictionType});
+    this.newRoadForm.patchValue({"ownerShip": this.data.ownerShip});
+    this.newRoadForm.patchValue({"prefixCode": this.data.prefixCode});
+    this.newRoadForm.patchValue({"routeNumber": this.data.routeNumber});
+    this.newRoadForm.patchValue({"modifierCode": this.data.modifierCode});
+    this.newRoadForm.patchValue({"mainlineCode": this.data.mainlineCode});
+    this.newRoadForm.patchValue({"routeTypeCode": this.data.routeTypeCode});
+    this.newRoadForm.patchValue({"cardinalDirection": this.data.mainDir});
+    this.newRoadForm.patchValue({"nonCardinalDirection": this.data.mainDir});
+    this.newRoadForm.patchValue({"routeOfficialName": this.data.routeOfficialName});
+    this.newRoadForm.patchValue({"routeFullName": this.data.routeFullName});
+    this.newRoadForm.patchValue({"routeAlternateName": this.data.routeAlternateName});
+    this.newRoadForm.patchValue({"beginPlace": this.data.beginPlace});
+    this.newRoadForm.patchValue({"endPlace": this.data.endPlace});
+    this.newRoadForm.patchValue({"editDate": this.data});
+  }
+
 
   private buildForm() {
     this.newRoadForm = this.formBuilder.group({

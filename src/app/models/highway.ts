@@ -1,11 +1,25 @@
-export class Highway {
+import {RP, SegmentPoint} from "./segment-point";
+import {Segment} from "./segment";
+
+export class SimpleHighway {
   roadId: number;
   roadName: string;
 }
 
-export class AddRoadRecord {
-  action: string;
-  dateTime: string;
+export class Direction {
+  dir: string;
+  segments: Segment[];
+  rps: RP[];
+  lanes: Lane[];
+}
+
+export class Lane{
+  start: SegmentPoint;
+  end: SegmentPoint;
+  indexes: number[];
+}
+
+export class Highway{
   roadId: number;
   roadName: string;
   mainDir: string;
@@ -21,46 +35,6 @@ export class AddRoadRecord {
   routeAlternateName: string;
   beginPlace: string;
   endPlace: string;
-
-  directions: DirectionRecord[];
-
-  constructor(){
-    this.directions = [];
-  }
+  direcitons: Direction[];
 }
 
-export class DirectionRecord {
-  dir: string;
-  segments: string[];
-
-  constructor(){
-    this.segments = [];
-  }
-}
-
-export class AddSegmentRecord{
-  action: string;
-  dateTime: string;
-  roadId: number;
-  dir: string;
-  afterRP: string;
-  beforeRP: string;
-  segment: string;
-  leftConnect: boolean;
-  rightConnect: boolean;
-}
-
-export class PointRecord {
-  rpName: string;
-  offset: number;
-}
-
-export class RemoveSegmentRecord{
-  action: string;
-  dateTime: string;
-  roadId: number;
-  dir: string;
-
-  startPoint: PointRecord;
-  endPoint: PointRecord;
-}

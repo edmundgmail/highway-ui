@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HighwayService} from "../services/highway.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Highway} from "../models/highway";
+import {SimpleHighway} from "../models/highway";
 import {SelectObject} from "app/models/select-object";
 
 @Component({
@@ -40,7 +40,7 @@ export class EditRoadFeaturesComponent implements OnInit {
   mySoilTypes;
   myTypeOfSignals;
   myNoPassingZones;
-  currentHighway: Highway;
+  currentHighway: SimpleHighway;
   currentDir: string;
   sides: SelectObject[];
 
