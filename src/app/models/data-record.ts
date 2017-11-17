@@ -48,6 +48,11 @@ export class AddSegmentRecord{
 export class PointRecord {
   rpName: string;
   offset: number;
+
+  constructor(rpName:string, offset:number) {
+    this.rpName =rpName;
+    this.offset = offset;
+  }
 }
 
 export class RemoveSegmentRecord {

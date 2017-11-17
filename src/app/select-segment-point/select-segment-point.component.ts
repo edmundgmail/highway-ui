@@ -57,9 +57,8 @@ export class SelectSegmentPointComponent implements OnInit {
    }
   }
 
-  @Input()
-  type;
-  datatype;
+  @Input('datatype') datatype;
+  @Input('type') type;
 
   @Output() uponChange = new EventEmitter();
 

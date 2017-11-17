@@ -6,8 +6,8 @@ import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
 import {Project} from "../models/project";
 import {SegmentPoint} from "../models/segment-point";
-import {Http, RequestOptions, Response} from '@angular/http';
-import {Headers} from '@angular/http';
+import {Http, RequestOptions,Headers} from "@angular/http";
+
 
 @Component({
   selector: 'app-add-segment',
@@ -28,10 +28,6 @@ export class AddSegmentComponent implements OnInit {
     this.editDate = new FormControl();
     this.highwayService.currentHighwaySelected$.subscribe(value => this.currentHighway = value);
     this.highwayService.currentDirSelected$.subscribe(value => this.currentDir = value);
-  }
-
-  onChange = (row) => {
-    console.log(row);
   }
 
   private onProjectChange($event) {
@@ -57,7 +53,6 @@ export class AddSegmentComponent implements OnInit {
   onSubmitForm() {
     console.log('startRP=' + JSON.stringify(this.start));
     console.log('endRP=' + JSON.stringify(this.end));
-    console.log('newseg=' + this.newseg);
     console.log("project=" + this.project);
 
     let record = new AddSegmentRecord();
