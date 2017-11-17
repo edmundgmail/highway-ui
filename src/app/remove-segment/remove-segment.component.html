@@ -1,4 +1,4 @@
-<form class="example-form" novalidate (ngSubmit)="onSubmitForm()">
+<form class="example-form " novalidate [formGroup]="removeSegmentForm" (ngSubmit)="onSubmitForm()">
   <app-highway-name-select> </app-highway-name-select>
   <section class="example-full-width" *ngIf="this.currentHighway">
     <app-select-direction></app-select-direction>
@@ -6,18 +6,35 @@
   <app-select-segment-point datatype="all"  type="start" (uponChange)="onSegmentPointChange($event,'start')"></app-select-segment-point>
   <app-select-segment-point datatype="all" type="end" (uponChange)="onSegmentPointChange($event, 'end')"></app-select-segment-point>
   <app-select-project (uponChange)="onProjectChange($event)"></app-select-project>
+  <p></p>
+  <p></p>
 
   <div class="example-full-width">
     <md-form-field>
-      <input mdInput [formControl]="editDate"  [mdDatepicker]="picker" placeholder="Choose a date">
+      <input mdInput formControlName="editDate"  [mdDatepicker]="picker" placeholder="Choose a date">
       <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
       <md-datepicker #picker></md-datepicker>
     </md-form-field>
   </div>
   <p></p>
+
+
+  <div class="radioButtondemoBasicUsage">
+    <span>Please choose a reason</span> <p></p>
+    <md-radio-group formControlName="reason" layout-align="start start" >
+      <md-radio-button class="my-radio" value="1">Change Jurisdiction</md-radio-button>
+      <md-radio-button class="my-radio" value="2">Abandon</md-radio-button>
+      <md-radio-button class="my-radio" value="3">Retire</md-radio-button>
+      <md-radio-button class="my-radio" value="4">Other</md-radio-button>
+    </md-radio-group>
+  </div>
+
+  <p></p>
+
   <button md-raised-button type="submit" >Submit</button>
   <button md-raised-button type="button" (click)="onResetForm()">Reset</button>
 </form>
+
 
 
 

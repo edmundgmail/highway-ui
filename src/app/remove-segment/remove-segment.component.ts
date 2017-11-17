@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {HighwayService} from "../services/highway.service";
 import {Http, RequestOptions,Headers} from "@angular/http";
 import {SegmentPoint} from "../models/segment-point";
@@ -17,10 +17,13 @@ export class RemoveSegmentComponent implements OnInit {
   project: Project;
   currentHighway;
   currentDir;
-  editDate: FormControl;
+  removeSegmentForm : FormGroup;
 
   constructor(private formBuilder: FormBuilder, private highwayService: HighwayService, private http: Http) {
-    this.editDate = new FormControl();
+    this.removeSegmentForm = this.formBuilder.group({
+      reason: this.formBuilder.control(null),
+      editDate: this.formBuilder.control(null)
+    });
     this.highwayService.currentHighwaySelected$.subscribe(value => this.currentHighway = value);
     this.highwayService.currentDirSelected$.subscribe(value => this.currentDir = value);
   }
@@ -50,11 +53,12 @@ export class RemoveSegmentComponent implements OnInit {
     console.log('startRP=' + JSON.stringify(this.start));
     console.log('endRP=' + JSON.stringify(this.end));
     console.log("project=" + this.project);
+    console.log("reason=" + this.removeSegmentForm.get("reason").value);
+    console.log("editDate=" + this.removeSegmentForm.get("editDate").value);
 
     let record = new RemoveSegmentRecord();
     record.roadId = this.currentHighway.roadId;
     record.action = 'RemoveSegmentRecord';
-    record.dateTime = this.editDate.value;
     record.dir = this.currentDir;
     record.startPoint = new PointRecord(this.start.rp.name, this.start.offset);
     record.endPoint = new PointRecord(this.end.rp.name, this.end.offset);
