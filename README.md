@@ -6,7 +6,6 @@
 # Steps to install and run
 * install [NodeJS](https://nodejs.org/en/)
 * npm install -g @angular/cli
-* git clone https://github.com/jamzi/Angular2Workshop-material2.git
+  npm install --save @angular/material@2.0.0-beta.10 @angular/cdk@2.0.0-beta.10
 * npm install 
-* npm install enhanced-resolve@3.3.0
 * ng serve
