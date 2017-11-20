@@ -5,6 +5,8 @@ import {Http, RequestOptions,Headers} from "@angular/http";
 import {SegmentPoint} from "../models/segment-point";
 import {Project} from "../models/project";
 import {PointRecord, RemoveSegmentRecord} from "../models/data-record";
+import {Observable} from "rxjs/Observable";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-remove-segment',
@@ -19,6 +21,7 @@ export class RemoveSegmentComponent implements OnInit {
   currentDir;
   removeSegmentForm : FormGroup;
   reasons = ["Change Jurisdiction", "Abandon", "Retire","Other"];
+  httpresult='';
   constructor(private formBuilder: FormBuilder, private highwayService: HighwayService, private http: Http) {
     this.removeSegmentForm = this.formBuilder.group({
       reason: this.formBuilder.control(null),
@@ -65,6 +68,21 @@ export class RemoveSegmentComponent implements OnInit {
 
   }
 
+
+  private handleError (error: Response | any) {
+    // In a real world app, you might use a remote logging infrastructure
+    let errMsg: string;
+    if (error instanceof Response) {
+      const body = error.json() || '';
+      const err = body || JSON.stringify(body);
+      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+    } else {
+      errMsg = error.message ? error.message : error.toString();
+    }
+    console.error(errMsg);
+    return Observable.throw(errMsg);
+  }
+
   postRemoveSegment(o: Object) {
     let body = JSON.stringify(o);
     console.log(body)
@@ -73,7 +91,14 @@ export class RemoveSegmentComponent implements OnInit {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions();
     options.headers = headers;
-    return this.http.post('http://localhost:5000/highway', body, options).forEach(res=>console.log(res.toString()));
+    return this.http.post('http://localhost:5000/highway', body, options).subscribe(
+      data => {console.log(data.json())},
+      (err: Response) => {
+          console.log(`Backend returned code ${err.status}, body was: ${err.text()}`);
+          err.text().then(res=>this.httpresult = res);
+      }
+    );
+
   }
 
   ngOnInit() {
