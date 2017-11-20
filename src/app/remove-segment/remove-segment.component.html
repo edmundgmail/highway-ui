@@ -22,10 +22,7 @@
   <div class="radioButtondemoBasicUsage">
     <span>Please choose a reason</span> <p></p>
     <md-radio-group formControlName="reason" layout-align="start start" >
-      <md-radio-button class="my-radio" value="1">Change Jurisdiction</md-radio-button>
-      <md-radio-button class="my-radio" value="2">Abandon</md-radio-button>
-      <md-radio-button class="my-radio" value="3">Retire</md-radio-button>
-      <md-radio-button class="my-radio" value="4">Other</md-radio-button>
+      <md-radio-button class="my-radio" *ngFor="let f of reasons" [value]="f">{{f}}</md-radio-button>
     </md-radio-group>
   </div>
 

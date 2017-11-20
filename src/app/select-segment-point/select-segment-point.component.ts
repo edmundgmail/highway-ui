@@ -64,7 +64,7 @@ export class SelectSegmentPointComponent implements OnInit {
 
 
   private emitChange(){
-    this.uponChange.emit(new SegmentPoint(this.rp, this.offset, this.connect));
+    this.uponChange.emit(new SegmentPoint(this.rp, 1.0 * this.offset, this.connect));
   }
 
   private onConnectChange(value) {

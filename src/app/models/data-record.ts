@@ -60,7 +60,7 @@ export class RemoveSegmentRecord {
   dateTime: string;
   roadId: number;
   dir: string;
-
+  reason: string;
   startPoint: PointRecord;
   endPoint: PointRecord;
 }

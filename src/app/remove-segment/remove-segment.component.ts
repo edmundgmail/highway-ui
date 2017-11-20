@@ -18,7 +18,7 @@ export class RemoveSegmentComponent implements OnInit {
   currentHighway;
   currentDir;
   removeSegmentForm : FormGroup;
-
+  reasons = ["Change Jurisdiction", "Abandon", "Retire","Other"];
   constructor(private formBuilder: FormBuilder, private highwayService: HighwayService, private http: Http) {
     this.removeSegmentForm = this.formBuilder.group({
       reason: this.formBuilder.control(null),
@@ -50,19 +50,17 @@ export class RemoveSegmentComponent implements OnInit {
   }
 
   onSubmitForm() {
-    console.log('startRP=' + JSON.stringify(this.start));
-    console.log('endRP=' + JSON.stringify(this.end));
-    console.log("project=" + this.project);
-    console.log("reason=" + this.removeSegmentForm.get("reason").value);
-    console.log("editDate=" + this.removeSegmentForm.get("editDate").value);
-
     let record = new RemoveSegmentRecord();
     record.roadId = this.currentHighway.roadId;
     record.action = 'RemoveSegmentRecord';
     record.dir = this.currentDir;
+    record.dateTime = this.removeSegmentForm.get("editDate").value;
+    record.reason = this.removeSegmentForm.get("reason").value;
     record.startPoint = new PointRecord(this.start.rp.name, this.start.offset);
     record.endPoint = new PointRecord(this.end.rp.name, this.end.offset);
 
+    let body = JSON.stringify(record);
+    console.log(body)
     this.postRemoveSegment(record);
 
   }
