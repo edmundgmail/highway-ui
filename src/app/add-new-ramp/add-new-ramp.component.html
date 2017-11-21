@@ -1,0 +1,128 @@
+<form class="example-form " novalidate [formGroup]="addNewRampForm" (ngSubmit)="onSubmitForm()">
+
+  <div class="radioButtondemoBasicUsage">
+    <span class="mat-title">Please select from point of the Ramp</span> <p></p>
+
+    <div class="example-full-width">
+    <md-radio-group formControlName="fromPointType" layout-align="start start" >
+      <md-radio-button class="my-radio" *ngFor="let f of pointTypes" [value]="f.id">{{f.name}}</md-radio-button>
+    </md-radio-group>
+    </div>
+
+    <md-form-field>
+      <input mdInput formControlName="fromPointName" placeholder="Point name">
+    </md-form-field>
+
+    <table class="example-1third-width" cellspacing="0"><tr>
+      <td><md-form-field class="example-full-width">
+        <input mdInput formControlName="fromX" type="text" placeholder="Coordinate X">
+      </md-form-field></td>
+      <td><md-form-field class="example-1third-width">
+        <input mdInput formControlName="fromY" type="text" placeholder="Coordinate Y">
+      </md-form-field></td>
+
+      <td><md-form-field class="example-1third-width">
+        <input mdInput formControlName="fromZ" type="text" placeholder="Altitude Z">
+      </md-form-field></td>
+
+    </tr></table>
+    <section [hidden]="!this.isFromOnRoad()">
+        <app-highway-name-select type="private" (uponChange)="fromHighwayNameChange($event)"></app-highway-name-select>
+        <div *ngIf="this.currentHighwayFrom">
+          <app-select-direction [type]="private" (uponChange)="fromDirChange($event)"></app-select-direction>
+
+          <md-select mdInput formControlName="fromRpCtrl" placeholder="Select RP">
+            <md-option *ngFor="let rp of fromRps" [value]="rp" >
+              {{rp.name}}
+            </md-option>
+          </md-select>
+
+          <md-form-field>
+              <input mdInput formControlName="fromOffsetCtrl"  placeholder="Offset">
+          </md-form-field>
+
+        </div>
+    </section>
+
+    <span class="mat-title">Please select to point of the Ramp</span> <p></p>
+    <div class="example-full-width">
+      <md-radio-group formControlName="toPointType" layout-align="start start" >
+        <md-radio-button class="my-radio" *ngFor="let f of pointTypes" [value]="f.id">{{f.name}}</md-radio-button>
+      </md-radio-group>
+    </div>
+
+    <md-form-field>
+      <input mdInput formControlName="toPointName" placeholder="Point name">
+    </md-form-field>
+
+    <table class="example-1third-width" cellspacing="0"><tr>
+      <td><md-form-field class="example-full-width">
+        <input mdInput formControlName="toX" type="text" placeholder="Coordinate X">
+      </md-form-field></td>
+      <td><md-form-field class="example-1third-width">
+        <input mdInput formControlName="toY" type="text" placeholder="Coordinate Y">
+      </md-form-field></td>
+
+      <td><md-form-field class="example-1third-width">
+        <input mdInput formControlName="toZ" type="text" placeholder="Altitude Z">
+      </md-form-field></td>
+
+    </tr></table>
+
+    <section [hidden]="!this.isToOnRoad()">
+      <app-highway-name-select type="private" (uponChange)="toHighwayNameChange($event)"></app-highway-name-select>
+      <div *ngIf="this.currentHighwayTo">
+        <app-select-direction [type]="private" (uponChange)="toDirChange($event)"></app-select-direction>
+
+        <md-select mdInput formControlName="toRpCtrl" placeholder="Select RP">
+          <md-option *ngFor="let rp of toRps" [value]="rp" >
+            {{rp.name}}
+          </md-option>
+        </md-select>
+
+        <md-form-field>
+          <input mdInput formControlName="toOffsetCtrl"  placeholder="Offset">
+        </md-form-field>
+
+      </div>
+    </section>
+  </div>
+
+  <div class="example-full-width" >
+  <md-form-field>
+    <input mdInput formControlName="rampName" placeholder="Ramp name">
+  </md-form-field>
+  </div>
+
+  <div class="example-full-width" >
+  <md-form-field>
+    <input mdInput formControlName="length" placeholder="Length">
+  </md-form-field>
+  </div>
+
+  <div class="example-full-width" >
+  <md-select formControlName="pavementType" placeholder="Pavement Type">
+    <md-option *ngFor="let p of pavementTypes" [value]="p">
+      {{p}}
+    </md-option>
+  </md-select>
+
+  <md-select formControlName="metered" placeholder="Metered">
+    <md-option *ngFor="let p of metereds" [value]="p">
+      {{p}}
+    </md-option>
+  </md-select>
+  </div>
+
+  <md-form-field class="example-full-width">
+      <input mdInput formControlName="editDate"  [mdDatepicker]="picker" placeholder="Choose a date">
+      <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
+      <md-datepicker #picker></md-datepicker>
+    </md-form-field>
+
+  <p></p>
+
+  <button md-raised-button type="submit" >Submit</button>
+  <button md-raised-button type="button" (click)="onResetForm()">Reset</button>
+</form>
+

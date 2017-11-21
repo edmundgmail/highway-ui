@@ -31,6 +31,7 @@ import {HighwayPostService} from "./services/highway-post-service";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {UtilsService} from "./services/utils-service";
 import { RemoveSegmentComponent } from './remove-segment/remove-segment.component';
+import { AddNewRampComponent } from './add-new-ramp/add-new-ramp.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { RemoveSegmentComponent } from './remove-segment/remove-segment.componen
     SelectSegmentTableComponent,
     TransferSegmentComponent,
     RemoveSegmentComponent,
+    AddNewRampComponent,
   ],
   imports: [
     BrowserModule,
