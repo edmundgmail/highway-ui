@@ -1,7 +1,8 @@
 <form class="example-form " novalidate [formGroup]="addNewRampForm" (ngSubmit)="onSubmitForm()">
 
   <div class="radioButtondemoBasicUsage">
-    <span class="mat-title">Please select from point of the Ramp</span> <p></p>
+    <md-expansion-panel>
+      <md-expansion-panel-header>Please select from point of the Ramp</md-expansion-panel-header>
 
     <div class="example-full-width">
     <md-radio-group formControlName="fromPointType" layout-align="start start" >
@@ -43,8 +44,10 @@
 
         </div>
     </section>
+    </md-expansion-panel>
 
-    <span class="mat-title">Please select to point of the Ramp</span> <p></p>
+    <md-expansion-panel>
+      <md-expansion-panel-header>Please select to point of the Ramp</md-expansion-panel-header>
     <div class="example-full-width">
       <md-radio-group formControlName="toPointType" layout-align="start start" >
         <md-radio-button class="my-radio" *ngFor="let f of pointTypes" [value]="f.value">{{f.name}}</md-radio-button>
@@ -86,6 +89,7 @@
 
       </div>
     </section>
+    </md-expansion-panel>
   </div>
 
   <div class="example-full-width" >
