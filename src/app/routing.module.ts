@@ -9,6 +9,7 @@ import {EditPavementLayersComponent} from "./edit-pavement-layers/edit-pavement-
 import {EditRoadFeaturesComponent} from "./edit-road-features/edit-road-features.component";
 import {TransferSegmentComponent} from "./transfer-segment/transfer-segment.component";
 import {RemoveSegmentComponent} from "./remove-segment/remove-segment.component";
+import {AddNewRampComponent} from "./add-new-ramp/add-new-ramp.component";
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
   }
   ,
   {
+    path: 'add-new-ramp',
+    component: AddNewRampComponent
+  }
+  , {
     path: 'edit-pavement-layers',
     component: EditPavementLayersComponent
   }  ,

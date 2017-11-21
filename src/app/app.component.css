@@ -19,3 +19,16 @@
 .example-1third-width {
   width: 33%;
 }
+
+.example-container-half {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  width: 73%
+}
+
+example-container1{
+  min-width: 280px;
+  width: 60%
+}
+
