@@ -5,7 +5,7 @@
 
     <div class="example-full-width">
     <md-radio-group formControlName="fromPointType" layout-align="start start" >
-      <md-radio-button class="my-radio" *ngFor="let f of pointTypes" [value]="f.id">{{f.name}}</md-radio-button>
+      <md-radio-button class="my-radio" *ngFor="let f of pointTypes" [value]="f.value">{{f.name}}</md-radio-button>
     </md-radio-group>
     </div>
 
@@ -47,7 +47,7 @@
     <span class="mat-title">Please select to point of the Ramp</span> <p></p>
     <div class="example-full-width">
       <md-radio-group formControlName="toPointType" layout-align="start start" >
-        <md-radio-button class="my-radio" *ngFor="let f of pointTypes" [value]="f.id">{{f.name}}</md-radio-button>
+        <md-radio-button class="my-radio" *ngFor="let f of pointTypes" [value]="f.value">{{f.name}}</md-radio-button>
       </md-radio-group>
     </div>
 
