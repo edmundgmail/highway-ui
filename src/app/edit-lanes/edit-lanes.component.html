@@ -4,6 +4,15 @@
     <app-select-direction></app-select-direction>
     <app-select-segment-lanes-table (selectSegmentLanesTableChange)="uponSelectSegmentLanesTableChange($event)"></app-select-segment-lanes-table>
   </section>
+
+
+  <md-form-field class="example-full-width">
+    <input mdInput formControlName="editDate"  [mdDatepicker]="picker" placeholder="Choose a date">
+    <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
+    <md-datepicker #picker></md-datepicker>
+  </md-form-field>
+
+  <p></p>
   <p></p>
   <button md-raised-button type="submit">Submit</button>
   <button md-raised-button type="button" (click)="onResetForm()">Reset</button>

@@ -65,4 +65,10 @@ export class RemoveSegmentRecord {
   endPoint: PointRecord;
 }
 
-
+export class UpdateLaneRecord {
+  action: string;
+  dateTime: string;
+  roadId: number;
+  dir: string;
+  lane: string;
+}

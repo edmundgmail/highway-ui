@@ -10,6 +10,8 @@ import {EditRoadFeaturesComponent} from "./edit-road-features/edit-road-features
 import {TransferSegmentComponent} from "./transfer-segment/transfer-segment.component";
 import {RemoveSegmentComponent} from "./remove-segment/remove-segment.component";
 import {AddNewRampComponent} from "./add-new-ramp/add-new-ramp.component";
+import {AddNewCoupletComponent} from "./add-new-couplet/add-new-couplet.component";
+
 
 const routes: Routes = [
   {
@@ -49,7 +51,11 @@ const routes: Routes = [
     path: 'transfer-segment',
     component: TransferSegmentComponent
   }
-
+  ,
+  {
+    path: 'add-new-couplet',
+    component: AddNewCoupletComponent
+  }
 
 
 

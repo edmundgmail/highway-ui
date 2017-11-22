@@ -32,6 +32,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {UtilsService} from "./services/utils-service";
 import { RemoveSegmentComponent } from './remove-segment/remove-segment.component';
 import { AddNewRampComponent } from './add-new-ramp/add-new-ramp.component';
+import { AddNewCoupletComponent } from './add-new-couplet/add-new-couplet.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { AddNewRampComponent } from './add-new-ramp/add-new-ramp.component';
     TransferSegmentComponent,
     RemoveSegmentComponent,
     AddNewRampComponent,
+    AddNewCoupletComponent,
   ],
   imports: [
     BrowserModule,
