@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder} from "@angular/forms";
 import {HighwayService} from "../services/highway.service";
-import {Http} from "@angular/http";
+import {Http, RequestOptions,Headers} from "@angular/http";
 import {Ramp, RampPoint} from "../models/ramp";
 import {SimpleHighway} from "../models/highway";
 import {isNullOrUndefined} from "util";
@@ -28,7 +28,7 @@ export class AddNewRampComponent implements OnInit {
   toRps = [];
   pavementTypes = ['A','B'];
   metereds = ['true', 'false'];
-
+  httpresult;
 
   constructor(private formBuilder: FormBuilder, private highwayService: HighwayService, private http: Http,  private utilsService: UtilsService) {
     this.addNewRampForm = this.formBuilder.group({
@@ -146,10 +146,10 @@ export class AddNewRampComponent implements OnInit {
     ramp.pavementType = this.addNewRampForm.get("pavementType").value;
     ramp.metered = this.addNewRampForm.get("metered").value;
 
-    console.log( JSON.stringify(ramp));
+    this.postNewRamp(ramp);
   }
 
-  postNewSegment(o: Object) {
+  postNewRamp(o: Object) {
     let body = JSON.stringify(o);
     console.log(body)
     //this.http.get('http://localhost:5000/highway').forEach( res=> console.log(res));
@@ -157,7 +157,14 @@ export class AddNewRampComponent implements OnInit {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions();
     options.headers = headers;
-    return this.http.post('http://localhost:5000/highway', body, options).forEach(res=>console.log(res.toString()));
+    return this.http.post('http://localhost:5000/ramp', body, options)
+      .subscribe(
+        data => {this.httpresult='success'; console.log("succeeded")},
+        (err: Response) => {
+          console.log(`Backend returned code ${err.status}, body was: ${err.text()}`);
+          err.text().then(res=>this.httpresult = res);
+        }
+      );
   }
 
 }

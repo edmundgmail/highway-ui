@@ -75,7 +75,7 @@
     <section [hidden]="!this.isToOnRoad()">
       <app-highway-name-select type="private" (uponChange)="toHighwayNameChange($event)"></app-highway-name-select>
       <div *ngIf="this.currentHighwayTo">
-        <app-select-direction [type]="private" (uponChange)="toDirChange($event)"></app-select-direction>
+        <app-select-direction type="private" (uponChange)="toDirChange($event)"></app-select-direction>
 
         <md-select mdInput formControlName="toRpCtrl" placeholder="Select RP">
           <md-option *ngFor="let rp of toRps" [value]="rp" >
@@ -128,5 +128,6 @@
 
   <button md-raised-button type="submit" >Submit</button>
   <button md-raised-button type="button" (click)="onResetForm()">Reset</button>
+  <span>{{httpresult}}</span>
 </form>
 
