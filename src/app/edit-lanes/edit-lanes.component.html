@@ -5,9 +5,9 @@
     <app-select-segment-lanes-table (selectSegmentLanesTableChange)="uponSelectSegmentLanesTableChange($event)"></app-select-segment-lanes-table>
   </section>
 
-
+<p></p>
   <md-form-field class="example-full-width">
-    <input mdInput formControlName="editDate"  [mdDatepicker]="picker" placeholder="Choose a date">
+    <input mdInput [formControl]="editDate"  [mdDatepicker]="picker" placeholder="Choose a date">
     <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
     <md-datepicker #picker></md-datepicker>
   </md-form-field>

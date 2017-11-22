@@ -34,7 +34,7 @@ export class SelectSegmentLanesTableComponent implements OnInit {
 
   getRPs(road: SimpleHighway, dir: string)  {
     if(isNullOrUndefined(road) || isNullOrUndefined(dir)) this.rps = [];
-    this.http.get(this.highwayService.baseUrl +'highway/rps/'+road.roadId+"/"+dir).subscribe(res=> this.rps = res.json() as RP[]);
+    else this.http.get(this.highwayService.baseUrl +'highway/rps/'+road.roadId+"/"+dir).subscribe(res=> this.rps = res.json() as RP[]);
   }
 
 

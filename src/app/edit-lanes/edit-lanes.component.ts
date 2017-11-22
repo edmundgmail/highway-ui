@@ -34,7 +34,7 @@ export class EditLanesComponent implements OnInit {
     lane.roadId = this.currentHighway.roadId;
     lane.dir = this.currentDir;
     lane.dateTime = this.editDate.value();
-    lane.lane = this.newLanes;
+    //lane.lane = this.newLanes;
 
 
   }
