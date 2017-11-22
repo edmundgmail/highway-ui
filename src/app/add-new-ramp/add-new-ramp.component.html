@@ -30,7 +30,7 @@
     <section [hidden]="!this.isFromOnRoad()">
         <app-highway-name-select type="private" (uponChange)="fromHighwayNameChange($event)"></app-highway-name-select>
         <div *ngIf="this.currentHighwayFrom">
-          <app-select-direction [type]="private" (uponChange)="fromDirChange($event)"></app-select-direction>
+          <app-select-direction type="private" (uponChange)="fromDirChange($event)"></app-select-direction>
 
           <md-select mdInput formControlName="fromRpCtrl" placeholder="Select RP">
             <md-option *ngFor="let rp of fromRps" [value]="rp" >
