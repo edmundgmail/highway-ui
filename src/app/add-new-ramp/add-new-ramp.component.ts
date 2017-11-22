@@ -65,16 +65,17 @@ export class AddNewRampComponent implements OnInit {
   }
 
   getFromRps(){
-    this.getRPs(this.currentHighwayFrom, this.currentDirFrom, this.fromRps);
+    if(!isNullOrUndefined(this.currentHighwayFrom) &&  !isNullOrUndefined(this.currentDirFrom))
+    this.getRPs(this.currentHighwayFrom, this.currentDirFrom).subscribe(res => { console.log(res); this.fromRps = res;});
   }
 
   getToRps() {
-    this.getRPs(this.currentHighwayTo, this.currentDirTo, this.toRps);
+    if(!isNullOrUndefined(this.currentHighwayTo) &&  !isNullOrUndefined(this.currentDirTo))
+      this.getRPs(this.currentHighwayTo, this.currentDirTo).subscribe(res=>this.toRps = res);
   }
 
-  getRPs(road: SimpleHighway, dir: string, rps: RP[])  {
-    if(isNullOrUndefined(road) || isNullOrUndefined(dir)) rps = [];
-    this.http.get(this.highwayService.baseUrl +'highway/rps/'+road.roadId+"/"+dir).subscribe(res=> rps = res.json() as RP[]);
+  getRPs(road: SimpleHighway, dir: string)  {
+      return this.http.get(this.highwayService.baseUrl +'highway/rps/'+road.roadId+"/"+dir).map(res=> res.json() as RP[]);
   }
 
 
@@ -147,4 +148,16 @@ export class AddNewRampComponent implements OnInit {
 
     console.log( JSON.stringify(ramp));
   }
+
+  postNewSegment(o: Object) {
+    let body = JSON.stringify(o);
+    console.log(body)
+    //this.http.get('http://localhost:5000/highway').forEach( res=> console.log(res));
+
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions();
+    options.headers = headers;
+    return this.http.post('http://localhost:5000/highway', body, options).forEach(res=>console.log(res.toString()));
+  }
+
 }
