@@ -1,3 +1,71 @@
-<p>
-  add-new-couplet works!
-</p>
+<form class="example-form " novalidate [formGroup]="addNewCoupletForm" (ngSubmit)="onSubmitForm()">
+
+    <md-expansion-panel>
+      <md-expansion-panel-header>Please select primary side </md-expansion-panel-header>
+        <app-highway-name-select type="private" (uponChange)="primaryHighwayNameChange($event)"></app-highway-name-select>
+        <div *ngIf="this.primaryHighway">
+          <app-select-direction type="private" (uponChange)="primaryDirChange($event)"></app-select-direction>
+        </div>
+
+          <div class="example-full-width">
+          <md-select mdInput formControlName="primaryFromRpCtrl" placeholder="Select From RP">
+            <md-option *ngFor="let rp of primaryRps" [value]="rp" >
+              {{rp.name}}
+            </md-option>
+          </md-select>
+
+          <md-form-field>
+            <input mdInput formControlName="primaryFromOffsetCtrl"  placeholder="Offset">
+          </md-form-field>
+          </div>
+
+          <div class="example-full-width">
+          <md-select mdInput formControlName="primaryToRpCtrl" placeholder="Select To RP">
+            <md-option *ngFor="let rp of primaryRps" [value]="rp" >
+              {{rp.name}}
+            </md-option>
+          </md-select>
+
+          <md-form-field>
+            <input mdInput formControlName="primaryToOffsetCtrl"  placeholder="Offset">
+          </md-form-field>
+          </div>
+    </md-expansion-panel>
+
+  <div class="example-full-width" >
+    <md-form-field>
+      <input mdInput formControlName="coupletType" placeholder="Select couplet type">
+    </md-form-field>
+  </div>
+
+  <div *ngIf="isMedian()" class="example-full-width" >
+    <md-select formControlName="medianType" placeholder="Median Type">
+      <md-option *ngFor="let p of medianTypes" [value]="p">
+        {{p}}
+      </md-option>
+    </md-select>
+
+    <md-form-field>
+      <input mdInput formControlName="medianWidth" placeholder="Median Width">
+    </md-form-field>
+  </div>
+
+ <div *ngIf="isDivision()" class="example-full-width" >
+      <md-form-field>
+        <input mdInput formControlName="dividerType" placeholder="Divider Type">
+      </md-form-field>
+ </div>
+
+  <md-form-field class="example-full-width">
+    <input mdInput formControlName="editDate"  [mdDatepicker]="picker" placeholder="Choose a date">
+    <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
+    <md-datepicker #picker></md-datepicker>
+  </md-form-field>
+
+  <p></p>
+
+  <button md-raised-button type="submit" >Submit</button>
+  <button md-raised-button type="button" (click)="onResetForm()">Reset</button>
+  <span>{{httpresult}}</span>
+</form>
+
