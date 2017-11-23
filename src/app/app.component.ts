@@ -25,6 +25,7 @@ export class AppComponent{
       pathToTitle["/edit-road-features"] = "Edit Road Features";
       pathToTitle["/add-segment"] = "Add New Segment";
       pathToTitle["/transfer-segment"] = "Transfer Segment";
+      pathToTitle["/add-new-project"] = "Add New Project";
 
       router.events.subscribe(
         (event)=>{

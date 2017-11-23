@@ -33,7 +33,6 @@ export class AddNewCoupletComponent implements OnInit {
       primaryFromOffsetCtrl: this.formBuilder.control('0.0'),
       primaryToRpCtrl: this.formBuilder.control(null),
       primaryToOffsetCtrl: this.formBuilder.control('0.0'),
-
       secondaryFromRpCtrl: this.formBuilder.control(null),
       secondaryFromOffsetCtrl: this.formBuilder.control('0.0'),
       secondaryToRpCtrl: this.formBuilder.control(null),

@@ -11,6 +11,7 @@ import {TransferSegmentComponent} from "./transfer-segment/transfer-segment.comp
 import {RemoveSegmentComponent} from "./remove-segment/remove-segment.component";
 import {AddNewRampComponent} from "./add-new-ramp/add-new-ramp.component";
 import {AddNewCoupletComponent} from "./add-new-couplet/add-new-couplet.component";
+import {AddNewProjectComponent} from "./add-new-project/add-new-project.component";
 
 
 const routes: Routes = [
@@ -55,7 +56,12 @@ const routes: Routes = [
   {
     path: 'add-new-couplet',
     component: AddNewCoupletComponent
+  },
+  {
+    path: 'add-new-project',
+    component: AddNewProjectComponent
   }
+
 
 
 

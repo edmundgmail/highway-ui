@@ -1,0 +1,51 @@
+<form class="example-form" novalidate [formGroup]="addNewProjectForm">
+  <app-highway-name-select></app-highway-name-select>
+  <div class="example-full-width" >
+    <md-select formControlName="projectType" placeholder="Project Type">
+      <md-option *ngFor="let p of projectTypes" [value]="p">
+        {{p}}
+      </md-option>
+    </md-select>
+  </div>
+  <md-form-field class="example-full-width">
+    <input mdInput formControlName="projectCode" placeholder="Project Code">
+  </md-form-field>
+
+  <md-form-field class="example-full-width">
+    <input mdInput formControlName="federalNumber" placeholder="Federal Number">
+  </md-form-field>
+
+  <md-form-field class="example-full-width">
+    <input mdInput formControlName="stateNumber" placeholder="State Number">
+  </md-form-field>
+
+
+  <md-form-field class="example-full-width">
+    <input mdInput formControlName="projectName" placeholder="Project Name">
+  </md-form-field>
+
+  <div class="example-full-width" >
+    <md-select formControlName="program" placeholder="Program">
+      <md-option *ngFor="let p of programs" [value]="p">
+        {{p}}
+      </md-option>
+    </md-select>
+  </div>
+
+  <md-form-field class="example-full-width">
+    <input mdInput formControlName="cost" placeholder="Cost">
+  </md-form-field>
+
+  <md-form-field class="example-full-width">
+    <input mdInput formControlName="projectManager" placeholder="Project Manager">
+  </md-form-field>
+
+  <md-form-field class="example-full-width">
+    <input mdInput formControlName="completionDate"  [mdDatepicker]="picker" placeholder="Completion Date">
+    <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
+    <md-datepicker #picker></md-datepicker>
+  </md-form-field>
+  <p></p>
+  <button md-raised-button type="submit" (click)="onSubmitForm()" [disabled]="!addNewProjectForm.valid">Submit</button>
+  <button md-raised-button type="button" (click)="onResetForm()">Reset</button>
+</form>

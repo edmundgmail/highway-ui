@@ -33,6 +33,7 @@ import {UtilsService} from "./services/utils-service";
 import { RemoveSegmentComponent } from './remove-segment/remove-segment.component';
 import { AddNewRampComponent } from './add-new-ramp/add-new-ramp.component';
 import { AddNewCoupletComponent } from './add-new-couplet/add-new-couplet.component';
+import { AddNewProjectComponent } from './add-new-project/add-new-project.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { AddNewCoupletComponent } from './add-new-couplet/add-new-couplet.compon
     RemoveSegmentComponent,
     AddNewRampComponent,
     AddNewCoupletComponent,
+    AddNewProjectComponent,
   ],
   imports: [
     BrowserModule,
