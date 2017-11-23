@@ -14,10 +14,12 @@
             </md-option>
           </md-select>
 
-          <md-form-field>
-            <input mdInput formControlName="primaryFromOffsetCtrl"  placeholder="Offset">
-          </md-form-field>
+            <md-form-field>
+              <input mdInput formControlName="primaryFromOffsetCtrl"  placeholder="Offset">
+            </md-form-field>
+
           </div>
+
 
           <div class="example-full-width">
           <md-select mdInput formControlName="primaryToRpCtrl" placeholder="Select To RP">
@@ -26,19 +28,61 @@
             </md-option>
           </md-select>
 
-          <md-form-field>
-            <input mdInput formControlName="primaryToOffsetCtrl"  placeholder="Offset">
-          </md-form-field>
+            <md-form-field>
+              <input mdInput formControlName="primaryToOffsetCtrl"  placeholder="Offset">
+            </md-form-field>
+
           </div>
+
     </md-expansion-panel>
 
-  <div class="example-full-width" >
-    <md-form-field>
-      <input mdInput formControlName="coupletType" placeholder="Select couplet type">
-    </md-form-field>
-  </div>
 
-  <div *ngIf="isMedian()" class="example-full-width" >
+  <md-expansion-panel>
+    <md-expansion-panel-header>Please select secondary side </md-expansion-panel-header>
+    <app-highway-name-select type="private" (uponChange)="secondaryHighwayNameChange($event)"></app-highway-name-select>
+    <div *ngIf="this.secondaryHighway">
+      <app-select-direction type="private" (uponChange)="secondaryDirChange($event)"></app-select-direction>
+    </div>
+
+    <div class="example-full-width">
+      <md-select mdInput formControlName="secondaryFromRpCtrl" placeholder="Select From RP">
+        <md-option *ngFor="let rp of secondaryRps" [value]="rp" >
+          {{rp.name}}
+        </md-option>
+      </md-select>
+
+      <md-form-field>
+        <input mdInput formControlName="secondaryFromOffsetCtrl"  placeholder="Offset">
+      </md-form-field>
+
+    </div>
+
+
+    <div class="example-full-width">
+      <md-select mdInput formControlName="secondaryToRpCtrl" placeholder="Select To RP">
+        <md-option *ngFor="let rp of secondaryRps" [value]="rp" >
+          {{rp.name}}
+        </md-option>
+      </md-select>
+
+      <md-form-field>
+        <input mdInput formControlName="secondaryToOffsetCtrl"  placeholder="Offset">
+      </md-form-field>
+
+    </div>
+
+  </md-expansion-panel>
+
+  <p></p><p></p>
+    <div class="example-full-width">
+      <md-select formControlName="coupletType" placeholder="Select couplet type">
+        <md-option *ngFor="let p of coupletTypes" [value]="p">
+          {{p}}
+        </md-option>
+      </md-select>
+    </div>
+
+  <div [hidden]="!isMedian()" class="example-full-width" >
     <md-select formControlName="medianType" placeholder="Median Type">
       <md-option *ngFor="let p of medianTypes" [value]="p">
         {{p}}
@@ -50,10 +94,12 @@
     </md-form-field>
   </div>
 
- <div *ngIf="isDivision()" class="example-full-width" >
-      <md-form-field>
-        <input mdInput formControlName="dividerType" placeholder="Divider Type">
-      </md-form-field>
+ <div [hidden]="!isDivision()" class="example-full-width" >
+        <md-select formControlName="divisionType" placeholder="Divison Type">
+          <md-option *ngFor="let p of divisionTypes" [value]="p">
+            {{p}}
+          </md-option>
+        </md-select>
  </div>
 
   <md-form-field class="example-full-width">

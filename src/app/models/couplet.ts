@@ -1,14 +1,16 @@
 import {RP} from "./segment-point";
-export class CoupletPoint{
+export class CoupletSegment{
   roadId: number;
   dir: string;
-  rp: RP;
-  offset: number;
+  startRpName: string;
+  startOffset: number;
+  endRpName: string;
+  endOffset: number;
 }
 
 export class Couplet {
-  from: CoupletPoint;
-  to: CoupletPoint;
+  primary: CoupletSegment;
+  secondary: CoupletSegment;
   coupletTpye: string;
   medianType: string;
   medianWidth: number;

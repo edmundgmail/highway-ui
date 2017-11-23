@@ -6,6 +6,7 @@ import {UtilsService} from "../services/utils-service";
 import {isNullOrUndefined} from "util";
 import {SimpleHighway} from "../models/highway";
 import {RP} from "../models/segment-point";
+import {Couplet, CoupletSegment} from "../models/couplet";
 
 @Component({
   selector: 'app-add-new-couplet',
@@ -17,7 +18,14 @@ export class AddNewCoupletComponent implements OnInit {
   primaryHighway;
   primaryDir;
   primaryRps = [];
+  secondaryHighway;
+  secondaryDir;
+  secondaryRps=[];
+
   httpresult;
+  coupletTypes = ['Median','Division'];
+  medianTypes = ['MedianA', 'MedianB','MedianC'];
+  divisionTypes = ['Division1','Division2','Divison3'];
 
   constructor(private formBuilder: FormBuilder, private highwayService: HighwayService, private http: Http,  private utilsService: UtilsService) {
     this.addNewCoupletForm = this.formBuilder.group({
@@ -25,10 +33,16 @@ export class AddNewCoupletComponent implements OnInit {
       primaryFromOffsetCtrl: this.formBuilder.control(null),
       primaryToRpCtrl: this.formBuilder.control(null),
       primaryToOffsetCtrl: this.formBuilder.control(null),
+
+      secondaryFromRpCtrl: this.formBuilder.control(null),
+      secondaryFromOffsetCtrl: this.formBuilder.control(null),
+      secondaryToRpCtrl: this.formBuilder.control(null),
+      secondaryToOffsetCtrl: this.formBuilder.control(null),
+
       coupletType: this.formBuilder.control(null),
       medianType: this.formBuilder.control(null),
       medianWidth: this.formBuilder.control(null),
-      dividerType: this.formBuilder.control(null),
+      divisionType: this.formBuilder.control(null),
       editDate: this.formBuilder.control(null)
     });
   }
@@ -58,6 +72,22 @@ export class AddNewCoupletComponent implements OnInit {
     this.getPrimaryRps();
   }
 
+  getsecondaryRps(){
+    if(!isNullOrUndefined(this.secondaryHighway) &&  !isNullOrUndefined(this.secondaryDir))
+      this.getRPs(this.secondaryHighway, this.secondaryDir).subscribe(res => { console.log(res); this.secondaryRps = res;});
+  }
+
+  secondaryHighwayNameChange(event){
+    this.secondaryHighway = event;
+    this.getsecondaryRps();
+  }
+
+  secondaryDirChange(event){
+    this.secondaryDir = event;
+    this.getsecondaryRps();
+  }
+
+
   getRPs(road: SimpleHighway, dir: string)  {
     return this.http.get(this.highwayService.baseUrl +'highway/rps/'+road.roadId+"/"+dir).map(res=> res.json() as RP[]);
   }
@@ -70,7 +100,38 @@ export class AddNewCoupletComponent implements OnInit {
   }
 
   onSubmitForm() {
+    let couplet = new Couplet();
+    let primary = new CoupletSegment();
+    let secondary  = new CoupletSegment();
+    couplet.dateTime = this.addNewCoupletForm.get("editDate").value;
+    couplet.coupletTpye = this.addNewCoupletForm.get("coupletType").value;
 
+    primary.roadId = this.primaryHighway.roadId;
+    primary.dir = this.primaryDir;
+    let primaryStartRp = this.addNewCoupletForm.get("primaryFromRpCtrl").value;
+    primary.startRpName = primaryStartRp.name;
+
+    primary.startOffset = this.addNewCoupletForm.get("primaryFromOffsetCtrl").value;
+    let primaryEndRp = this.addNewCoupletForm.get("primaryToRpCtrl").value;
+    primary.endRpName = primaryEndRp.name;
+
+    primary.endOffset = this.addNewCoupletForm.get("primaryToOffsetCtrl").value;
+
+
+    secondary.roadId = this.secondaryHighway.roadId;
+    secondary.dir = this.secondaryDir;
+    let secondaryStartRp = this.addNewCoupletForm.get("secondaryFromRpCtrl").value;
+    secondary.startRpName = secondaryStartRp.name;
+
+    secondary.startOffset = this.addNewCoupletForm.get("secondaryFromOffsetCtrl").value;
+    let secondaryEndRp = this.addNewCoupletForm.get("secondaryToRpCtrl").value;
+    secondary.endRpName = primaryEndRp.name;
+
+    secondary.endOffset = this.addNewCoupletForm.get("secondaryToOffsetCtrl").value;
+
+    couplet.primary = primary;
+    couplet.secondary = secondary;
+    console.log(JSON.stringify(couplet));
   }
 
   postNewCouplet(o: Object) {
