@@ -9,9 +9,10 @@ export class CoupletSegment{
 }
 
 export class Couplet {
+  coupletName: string;
   primary: CoupletSegment;
   secondary: CoupletSegment;
-  coupletTpye: string;
+  coupletType: string;
   medianType: string;
   medianWidth: number;
   divisionType: string;

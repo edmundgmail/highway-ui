@@ -74,6 +74,14 @@
   </md-expansion-panel>
 
   <p></p><p></p>
+
+
+
+
+    <md-form-field class="example-full-width">
+        <input mdInput formControlName="coupletName" placeholder="Couplet Name">
+    </md-form-field>
+
     <div class="example-full-width">
       <md-select formControlName="coupletType" placeholder="Select couplet type">
         <md-option *ngFor="let p of coupletTypes" [value]="p">

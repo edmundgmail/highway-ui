@@ -38,7 +38,7 @@ export class AddNewCoupletComponent implements OnInit {
       secondaryFromOffsetCtrl: this.formBuilder.control(null),
       secondaryToRpCtrl: this.formBuilder.control(null),
       secondaryToOffsetCtrl: this.formBuilder.control(null),
-
+      coupletName: this.formBuilder.control(null),
       coupletType: this.formBuilder.control(null),
       medianType: this.formBuilder.control(null),
       medianWidth: this.formBuilder.control(null),
@@ -104,18 +104,21 @@ export class AddNewCoupletComponent implements OnInit {
     let primary = new CoupletSegment();
     let secondary  = new CoupletSegment();
     couplet.dateTime = this.addNewCoupletForm.get("editDate").value;
-    couplet.coupletTpye = this.addNewCoupletForm.get("coupletType").value;
-
+    couplet.coupletName = this.addNewCoupletForm.get("coupletName").value;
+    couplet.coupletType = this.addNewCoupletForm.get("coupletType").value;
+    couplet.medianType = this.addNewCoupletForm.get("medianType").value;
+    couplet.medianWidth = this.addNewCoupletForm.get("medianWidth").value * 1.0;
+    couplet.divisionType = this.addNewCoupletForm.get("divisionType").value;
     primary.roadId = this.primaryHighway.roadId;
     primary.dir = this.primaryDir;
     let primaryStartRp = this.addNewCoupletForm.get("primaryFromRpCtrl").value;
     primary.startRpName = primaryStartRp.name;
 
-    primary.startOffset = this.addNewCoupletForm.get("primaryFromOffsetCtrl").value;
+    primary.startOffset = this.addNewCoupletForm.get("primaryFromOffsetCtrl").value * 1.0;
     let primaryEndRp = this.addNewCoupletForm.get("primaryToRpCtrl").value;
     primary.endRpName = primaryEndRp.name;
 
-    primary.endOffset = this.addNewCoupletForm.get("primaryToOffsetCtrl").value;
+    primary.endOffset = this.addNewCoupletForm.get("primaryToOffsetCtrl").value * 1.0;
 
 
     secondary.roadId = this.secondaryHighway.roadId;
@@ -123,14 +126,15 @@ export class AddNewCoupletComponent implements OnInit {
     let secondaryStartRp = this.addNewCoupletForm.get("secondaryFromRpCtrl").value;
     secondary.startRpName = secondaryStartRp.name;
 
-    secondary.startOffset = this.addNewCoupletForm.get("secondaryFromOffsetCtrl").value;
+    secondary.startOffset = this.addNewCoupletForm.get("secondaryFromOffsetCtrl").value  * 1.0;
     let secondaryEndRp = this.addNewCoupletForm.get("secondaryToRpCtrl").value;
     secondary.endRpName = primaryEndRp.name;
 
-    secondary.endOffset = this.addNewCoupletForm.get("secondaryToOffsetCtrl").value;
+    secondary.endOffset = this.addNewCoupletForm.get("secondaryToOffsetCtrl").value * 1.0;
 
     couplet.primary = primary;
     couplet.secondary = secondary;
+
     console.log(JSON.stringify(couplet));
   }
 
