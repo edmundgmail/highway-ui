@@ -30,20 +30,20 @@ export class AddNewCoupletComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private highwayService: HighwayService, private http: Http,  private utilsService: UtilsService) {
     this.addNewCoupletForm = this.formBuilder.group({
       primaryFromRpCtrl: this.formBuilder.control(null),
-      primaryFromOffsetCtrl: this.formBuilder.control(null),
+      primaryFromOffsetCtrl: this.formBuilder.control('0.0'),
       primaryToRpCtrl: this.formBuilder.control(null),
-      primaryToOffsetCtrl: this.formBuilder.control(null),
+      primaryToOffsetCtrl: this.formBuilder.control('0.0'),
 
       secondaryFromRpCtrl: this.formBuilder.control(null),
-      secondaryFromOffsetCtrl: this.formBuilder.control(null),
+      secondaryFromOffsetCtrl: this.formBuilder.control('0.0'),
       secondaryToRpCtrl: this.formBuilder.control(null),
-      secondaryToOffsetCtrl: this.formBuilder.control(null),
+      secondaryToOffsetCtrl: this.formBuilder.control('0.0'),
       coupletName: this.formBuilder.control(null),
       coupletType: this.formBuilder.control(null),
-      medianType: this.formBuilder.control(null),
-      medianWidth: this.formBuilder.control(null),
-      divisionType: this.formBuilder.control(null),
-      editDate: this.formBuilder.control(null)
+      medianType: this.formBuilder.control(''),
+      medianWidth: this.formBuilder.control('0.0'),
+      divisionType: this.formBuilder.control(''),
+      editDate: this.formBuilder.control(new Date())
     });
   }
 
@@ -135,7 +135,7 @@ export class AddNewCoupletComponent implements OnInit {
     couplet.primary = primary;
     couplet.secondary = secondary;
 
-    console.log(JSON.stringify(couplet));
+    this.postNewCouplet(couplet);
   }
 
   postNewCouplet(o: Object) {
