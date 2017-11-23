@@ -22,4 +22,10 @@ export class LaneElement {
     this.position = position;
     return this;
   }
+
+  toString() : string {
+    let str= this.fromRP.name + "," + this.fromOffset + "," + this.toRP.name + "," + this.toOffset + "," + this.nLanes + ",out";
+    console.log(str);
+    return str;
+  }
 }

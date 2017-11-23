@@ -70,5 +70,5 @@ export class UpdateLaneRecord {
   dateTime: string;
   roadId: number;
   dir: string;
-  lane: string;
+  lanes: string[];
 }

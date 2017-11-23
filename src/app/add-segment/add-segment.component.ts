@@ -23,6 +23,7 @@ export class AddSegmentComponent implements OnInit {
   currentHighway;
   currentDir;
   editDate: FormControl;
+  httpresult;
 
   constructor(private formBuilder: FormBuilder, private highwayService: HighwayService, private http: Http) {
     this.editDate = new FormControl();
@@ -78,7 +79,14 @@ export class AddSegmentComponent implements OnInit {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions();
     options.headers = headers;
-    return this.http.post('http://localhost:5000/highway', body, options).forEach(res=>console.log(res.toString()));
+    return this.http.post('http://localhost:5000/highway', body, options)
+      .subscribe(
+        data => {this.httpresult='success'; console.log("succeeded")},
+        (err: Response) => {
+          console.log(`Backend returned code ${err.status}, body was: ${err.text()}`);
+          err.text().then(res=>this.httpresult = res);
+        }
+      );
   }
 
   ngOnInit() {

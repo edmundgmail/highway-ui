@@ -27,14 +27,17 @@ export class SelectSegmentLanesTableComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private highwayService: HighwayService, private http: Http) {
     this.buildForm();
-    this.highwayService.currentHighwaySelected$.subscribe(value=> {this.currentHighway = value;  this.getRPs(this.currentHighway, this.currentDir);});
+    this.highwayService.currentHighwaySelected$.subscribe(value=> {this.currentHighway = value; this.getRPs(this.currentHighway, this.currentDir);});
     this.highwayService.currentDirSelected$.subscribe(value=> { this.currentDir= value; this.getRPs(this.currentHighway, this.currentDir);});
   }
 
 
-  getRPs(road: SimpleHighway, dir: string)  {
-    if(isNullOrUndefined(road) || isNullOrUndefined(dir)) this.rps = [];
-    else this.http.get(this.highwayService.baseUrl +'highway/rps/'+road.roadId+"/"+dir).subscribe(res=> this.rps = res.json() as RP[]);
+  getRPs(road: SimpleHighway, dir: string)
+  {
+    if(!isNullOrUndefined(road) && !isNullOrUndefined(dir))
+    {
+        this.http.get(this.highwayService.baseUrl +'highway/rps/'+road.roadId+"/"+dir).subscribe(res=> this.rps = res.json() as RP[]);
+    }
   }
 
 

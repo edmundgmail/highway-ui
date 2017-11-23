@@ -18,7 +18,7 @@ export class AppComponent{
       pathToTitle["/add-new-highway"] = "Add New Highway";
       pathToTitle["/add-segment"] = "Add New Segment";
       pathToTitle["/remove-segment"] = "Remove Segment";
-      pathToTitle["/edit-lanes"] = "Edit Lanes";
+      pathToTitle["/add-lanes"] = "Add Lanes";
       pathToTitle["/add-new-ramp"] = "Add New Ramp";
       pathToTitle["/add-new-couplet"] = "Add New Couplet";
       pathToTitle["/edit-pavement-layers"] = "Edit Pavement Layers";

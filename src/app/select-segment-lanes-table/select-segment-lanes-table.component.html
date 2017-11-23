@@ -9,7 +9,7 @@
     <!-- Name Column -->
     <ng-container mdColumnDef="fromRP">
       <md-header-cell *mdHeaderCellDef> From RP </md-header-cell>
-      <md-cell *mdCellDef="let element"> {{element.fromRP}} </md-cell>
+      <md-cell *mdCellDef="let element"> {{element.fromRP.name}} </md-cell>
     </ng-container>
 
     <ng-container mdColumnDef="fromOffset">
@@ -20,7 +20,7 @@
     <!-- Weight Column -->
     <ng-container mdColumnDef="toRP">
       <md-header-cell *mdHeaderCellDef> To RP </md-header-cell>
-      <md-cell *mdCellDef="let element"> {{element.toRP}} </md-cell>
+      <md-cell *mdCellDef="let element"> {{element.toRP.name}} </md-cell>
     </ng-container>
 
     <!-- Color Column -->

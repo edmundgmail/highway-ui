@@ -18,7 +18,7 @@ import { HighwayNameSelectComponent } from './highway-name-select/highway-name-s
 import { SelectSegmentPointComponent } from './select-segment-point/select-segment-point.component';
 import { AddSegmentTableComponent } from './add-segment-table/add-segment-table.component';
 import { SelectDirectionComponent } from './select-direction/select-direction.component';
-import { EditLanesComponent } from './edit-lanes/edit-lanes.component';
+import { AddLanesComponent } from './edit-lanes/add-lanes.component';
 import { SelectSegmentLanesTableComponent } from './select-segment-lanes-table/select-segment-lanes-table.component';
 import { SelectProjectComponent } from './select-project/select-project.component';
 import { EditPavementLayersComponent } from './edit-pavement-layers/edit-pavement-layers.component';
@@ -44,7 +44,7 @@ import { AddNewCoupletComponent } from './add-new-couplet/add-new-couplet.compon
     SelectSegmentPointComponent,
     AddSegmentTableComponent,
     SelectDirectionComponent,
-    EditLanesComponent,
+    AddLanesComponent,
     SelectSegmentLanesTableComponent,
     SelectProjectComponent,
     EditPavementLayersComponent,
