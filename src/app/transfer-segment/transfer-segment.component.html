@@ -2,7 +2,7 @@
   <md-expansion-panel>
     <md-expansion-panel-header>Transfer from</md-expansion-panel-header>
   <app-highway-name-select></app-highway-name-select>
-  <div *ngIf="this.currentHighwayFrom">
+  <div [hidden]="!this.currentHighwayFrom">
     <app-select-direction></app-select-direction>
   </div>
   </md-expansion-panel>
@@ -10,7 +10,7 @@
   <md-expansion-panel>
     <md-expansion-panel-header>Transfer to</md-expansion-panel-header>
     <app-highway-name-select type="private" (uponChange)="highwayNameChange($event)"></app-highway-name-select>
-    <div *ngIf="this.currentHighwayTo">
+    <div [hidden]="!this.currentHighwayTo">
       <app-select-direction [type]="private" (uponChange)="dirChange($event)"></app-select-direction>
     </div>
   </md-expansion-panel>

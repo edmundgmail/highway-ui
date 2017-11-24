@@ -29,7 +29,7 @@
     </tr></table>
     <section [hidden]="!this.isFromOnRoad()">
         <app-highway-name-select type="private" (uponChange)="fromHighwayNameChange($event)"></app-highway-name-select>
-        <div *ngIf="this.currentHighwayFrom">
+        <div [hidden]="!this.currentHighwayFrom">
           <app-select-direction type="private" (uponChange)="fromDirChange($event)"></app-select-direction>
 
           <md-select mdInput formControlName="fromRpCtrl" placeholder="Select RP">
@@ -74,7 +74,7 @@
 
     <section [hidden]="!this.isToOnRoad()">
       <app-highway-name-select type="private" (uponChange)="toHighwayNameChange($event)"></app-highway-name-select>
-      <div *ngIf="this.currentHighwayTo">
+      <div [hidden]="!this.currentHighwayTo">
         <app-select-direction type="private" (uponChange)="toDirChange($event)"></app-select-direction>
 
         <md-select mdInput formControlName="toRpCtrl" placeholder="Select RP">

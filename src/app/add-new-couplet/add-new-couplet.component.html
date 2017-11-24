@@ -3,7 +3,7 @@
     <md-expansion-panel>
       <md-expansion-panel-header>Please select primary side </md-expansion-panel-header>
         <app-highway-name-select type="private" (uponChange)="primaryHighwayNameChange($event)"></app-highway-name-select>
-        <div *ngIf="this.primaryHighway">
+        <div [hidden]="!this.primaryHighway">
           <app-select-direction type="private" (uponChange)="primaryDirChange($event)"></app-select-direction>
         </div>
 
@@ -40,7 +40,7 @@
   <md-expansion-panel>
     <md-expansion-panel-header>Please select secondary side </md-expansion-panel-header>
     <app-highway-name-select type="private" (uponChange)="secondaryHighwayNameChange($event)"></app-highway-name-select>
-    <div *ngIf="this.secondaryHighway">
+    <div [hidden]="!this.secondaryHighway">
       <app-select-direction type="private" (uponChange)="secondaryDirChange($event)"></app-select-direction>
     </div>
 
