@@ -6,11 +6,13 @@
         {{p}}
       </md-option>
     </md-select>
-  </div>
+
   <md-form-field class="example-full-width">
     <input mdInput formControlName="projectCode" placeholder="Project Code">
   </md-form-field>
+  </div>
 
+  <div class="example-full-width">
   <md-form-field class="example-full-width">
     <input mdInput formControlName="federalNumber" placeholder="Federal Number">
   </md-form-field>
@@ -18,34 +20,40 @@
   <md-form-field class="example-full-width">
     <input mdInput formControlName="stateNumber" placeholder="State Number">
   </md-form-field>
+  </div>
 
-
+  <div class="example-full-width">
   <md-form-field class="example-full-width">
     <input mdInput formControlName="projectName" placeholder="Project Name">
   </md-form-field>
 
-  <div class="example-full-width" >
+    <md-form-field class="example-full-width">
+      <input mdInput formControlName="projectManager" placeholder="Project Manager">
+    </md-form-field>
+
+  </div>
+  <div class="example-full-width">
     <md-select formControlName="program" placeholder="Program">
       <md-option *ngFor="let p of programs" [value]="p">
         {{p}}
       </md-option>
     </md-select>
-  </div>
+
 
   <md-form-field class="example-full-width">
     <input mdInput formControlName="cost" placeholder="Cost">
   </md-form-field>
+  </div>
 
-  <md-form-field class="example-full-width">
-    <input mdInput formControlName="projectManager" placeholder="Project Manager">
-  </md-form-field>
-
+  <div class="example-full-width">
   <md-form-field class="example-full-width">
     <input mdInput formControlName="completionDate"  [mdDatepicker]="picker" placeholder="Completion Date">
     <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
     <md-datepicker #picker></md-datepicker>
   </md-form-field>
+  </div>
   <p></p>
   <button md-raised-button type="submit" (click)="onSubmitForm()" [disabled]="!addNewProjectForm.valid">Submit</button>
   <button md-raised-button type="button" (click)="onResetForm()">Reset</button>
+  <span>{{httpresult}}</span>
 </form>

@@ -40,12 +40,6 @@ export class HighwayService {
     {'id': 400, 'name' : 'Barrie Highway'},
     {'id': 404, 'name' : 'Queen Elizabeth Way'}];
 
-  projects = [
-    {'id' : 1, 'name' : '401 project'},
-    {'id' : 2, 'name' : '402 project'},
-    {'id' : 3, 'name' : '403 project'}
-  ];
-
   private currentHighway = new Subject<SimpleHighway>();
   private currentDir = new Subject<string> ();
 
@@ -62,11 +56,6 @@ export class HighwayService {
 
   constructor(private http: Http){
 
-  }
-
-  getProjects() : Project[]
-  {
-    return this.projects;
   }
 
   getDirs(type: any): SelectObject[] {

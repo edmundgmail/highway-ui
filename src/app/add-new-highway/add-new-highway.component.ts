@@ -5,7 +5,7 @@ import {HighwayPostService} from "../services/highway-post-service";
 import {AddRoadRecord, DirectionRecord} from "../models/data-record";
 import {UtilsService} from "../services/utils-service";
 import {logger} from "codelyzer/util/logger";
-import {Http} from "@angular/http";
+import {Http, RequestOptions, Headers} from "@angular/http";
 import {Highway, SimpleHighway} from "../models/highway";
 
 
@@ -21,6 +21,7 @@ export class AddNewHighwayComponent implements OnInit {
   newRoadForm: FormGroup;
   dirs;
   currentHighway : SimpleHighway;
+  httpresult;
 
   constructor(private formBuilder: FormBuilder, private http: Http, private highwayService: HighwayService, private  highwayPostService: HighwayPostService, private utilsService: UtilsService) {
     this.highwayService.currentHighwaySelected$.subscribe(value => {console.log(value); this.currentHighway = value; this.getHighwayDetails();});
@@ -110,10 +111,26 @@ export class AddNewHighwayComponent implements OnInit {
     record.directions.push(dir1);
     record.directions.push(dir2);
 
-    this.highwayPostService.postHighway(record);
+    this.postHighway(record);
   }
 
 
+  postHighway(o: Object) {
+    let body = JSON.stringify(o);
+    console.log(body)
+
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions();
+    options.headers = headers;
+    return this.http.post(this.highwayService.baseUrl+'/highway', body, options)
+      .subscribe(
+        data => {this.httpresult='success'; console.log("succeeded")},
+        (err: Response) => {
+          console.log(`Backend returned code ${err.status}, body was: ${err.text()}`);
+          err.text().then(res=>this.httpresult = res);
+        }
+      );
+  }
 
   ngOnInit() {
   }

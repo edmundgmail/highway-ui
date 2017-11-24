@@ -49,7 +49,7 @@ export class AddLanesComponent implements OnInit {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions();
     options.headers = headers;
-    return this.http.post('http://localhost:5000/highway', body, options)
+    return this.http.post(this.highwayService.baseUrl+'highway', body, options)
       .subscribe(
         data => {this.httpresult='success'; console.log("succeeded")},
         (err: Response) => {

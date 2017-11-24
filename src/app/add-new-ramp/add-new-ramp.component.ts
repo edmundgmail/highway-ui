@@ -152,12 +152,11 @@ export class AddNewRampComponent implements OnInit {
   postNewRamp(o: Object) {
     let body = JSON.stringify(o);
     console.log(body)
-    //this.http.get('http://localhost:5000/highway').forEach( res=> console.log(res));
 
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions();
     options.headers = headers;
-    return this.http.post('http://localhost:5000/ramp', body, options)
+    return this.http.post(this.highwayService.baseUrl+'ramp', body, options)
       .subscribe(
         data => {this.httpresult='success'; console.log("succeeded")},
         (err: Response) => {

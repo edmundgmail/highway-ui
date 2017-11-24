@@ -18,15 +18,4 @@ export class HighwayPostService implements HttpInterceptor {
   constructor(private http: Http){
 
   }
-
-  postHighway(o: Object) {
-    let body = JSON.stringify(o);
-    console.log(body)
-    //this.http.get('http://localhost:5000/highway').forEach( res=> console.log(res));
-
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions();
-    options.headers = headers;
-    return this.http.post('http://localhost:5000/highway', body, options).forEach(res=>console.log(res.toString()));
-  }
 }
