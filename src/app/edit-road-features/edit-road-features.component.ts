@@ -119,6 +119,6 @@ export class EditRoadFeaturesComponent implements OnInit {
   onSubmitForm() {
     console.log(this.currentHighway);
     console.log(this.currentDir);
-    console.log(this.formRoadFeture.value);
+    console.log(this.formRoadFeture.get("SoilType").value);
   }
 }

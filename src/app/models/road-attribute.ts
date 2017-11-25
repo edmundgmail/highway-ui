@@ -1,4 +1,6 @@
 export class RoadAttributeCode{
+  categoryId: number;
+  attributeId: number;
   code: string;
   desc: string;
   source: string;
