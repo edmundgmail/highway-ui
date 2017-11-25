@@ -22,6 +22,7 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 import {Observable} from "rxjs/Observable";
+import {RoadAttribute} from "../models/road-attribute";
 
 @Injectable()
 export class HighwayService {
@@ -57,6 +58,12 @@ export class HighwayService {
   constructor(private http: Http){
 
   }
+
+  getAttribute(catno: number, attrno: number) {
+    return this.http.get(this.baseUrl + 'attribute/' + catno + '/' + attrno)
+      .map(res=> (res.json() as RoadAttribute).codes)
+  }
+
 
   getDirs(type: any): SelectObject[] {
     if(type === 'both')

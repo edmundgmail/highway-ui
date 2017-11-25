@@ -11,14 +11,14 @@ import {SelectObject} from "app/models/select-object";
 })
 export class EditRoadFeaturesComponent implements OnInit {
   formRoadFeture: FormGroup;
-  myCurbAndGuttes: string[];
-  myBarriars: string[];
-  myGuardrails: string[];
-  myShoulders: string[];
-  myDivisions: string[];
-  myCogs: string[];
-  myCountries: string[];
-  myEngineeringDistricts: string[];
+  myCurbAndGutters;
+  myBarriars;
+  myGuardrails;
+  myShoulders;
+  myDivisions;
+  myCogs;
+  myCountries;
+  myEngineeringDistricts;
   myLegislatureDistricts;
   myNAAQSAreas;
   myNationalForests;
@@ -43,13 +43,25 @@ export class EditRoadFeaturesComponent implements OnInit {
   currentHighway: SimpleHighway;
   currentDir: string;
   sides: SelectObject[];
+  myMedianTypes;
 
   constructor(private formBuilder: FormBuilder, private highwayService: HighwayService) {
     this.buildForm();
     this.sides = [{value: 'left', viewValue:'Left or Carndial'} , { value: 'right', viewValue:'Right or Non-Cardinal'}];
     this.highwayService.currentHighwaySelected$.subscribe(value => this.currentHighway = value);
     this.highwayService.currentDirSelected$.subscribe(value => this.currentDir = value);
+    this.highwayService.getAttribute(4,2).subscribe(res=>this.myFunctionalClasss = res);
+    this.highwayService.getAttribute(6,7).subscribe(res=>this.myWideningObstacles = res);
+    this.highwayService.getAttribute(6,1).subscribe(res=>this.myCurves = res);
+    this.highwayService.getAttribute(6,2).subscribe(res=>this.myGrades = res);
+    this.highwayService.getAttribute(6,6).subscribe(res=>this.myTerrains = res);
+    this.highwayService.getAttribute(4,1).subscribe(res=>this.myClimateZones = res);
+    this.highwayService.getAttribute(7,6).subscribe(res=>this.mySurfaceTypes = res);
+    this.highwayService.getAttribute(7,5).subscribe(res=>this.mySoilTypes = res);
+    this.highwayService.getAttribute(6,5).subscribe(res=>this.myShoulders = res);
+    this.highwayService.getAttribute(6,3).subscribe(res=>this.myMedianTypes = res);
   }
+
 
   private buildForm() {
     this.formRoadFeture = this.formBuilder.group({
@@ -101,6 +113,7 @@ export class EditRoadFeaturesComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log("hello")
   }
 
   onSubmitForm() {

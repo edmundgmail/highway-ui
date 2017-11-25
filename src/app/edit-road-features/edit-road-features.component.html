@@ -90,7 +90,7 @@
   <td class="example-half-width">
     <md-select mdInput formControlName="FunctionalClass" type="text" placeholder="Functional Class">
       <md-option *ngFor="let myFunctionalClass of myFunctionalClasss" [value]="myFunctionalClass">
-        {{myFunctionalClass}}
+        {{myFunctionalClass.desc}}
       </md-option>
     </md-select>
   </td>
@@ -147,7 +147,7 @@
       <td class="example-half-width">
         <md-select mdInput formControlName="WideningObstacle" type="text" placeholder="Widening Obstacle">
           <md-option *ngFor="let myWideningObstacle of myWideningObstacles" [value]="myWideningObstacle">
-            {{myWideningObstacle}}
+            {{myWideningObstacle.desc}}
           </md-option>
         </md-select>
       </td>
@@ -155,7 +155,7 @@
       <td class="example-half-width">
         <md-select mdInput formControlName="Curve" type="text" placeholder="Curve">
           <md-option *ngFor="let myCurve of myCurves" [value]="myCurve">
-            {{myCurve}}
+            {{myCurve.desc}}
           </md-option>
         </md-select>
       </td>
@@ -164,44 +164,21 @@
       <td class="example-half-width">
         <md-select mdInput formControlName="Grade" type="text" placeholder="Grade">
           <md-option *ngFor="let myGrade of myGrades" [value]="myGrade">
-            {{myGrade}}
-          </md-option>
-        </md-select>
-      </td>
-      <td class="example-half-width">
-        <md-select mdInput formControlName="Curve" type="text" placeholder="Curve">
-          <md-option *ngFor="let myCurve of myCurves" [value]="myCurve">
-            {{myCurve}}
-          </md-option>
-        </md-select>
-      </td>
-      <td class="example-half-width">
-        <md-select mdInput formControlName="Curve" type="text" placeholder="Curve">
-          <md-option *ngFor="let myCurve of myCurves" [value]="myCurve">
-            {{myCurve}}
-          </md-option>
-        </md-select>
-      </td>
-    </tr>
-    <tr>
-      <td class="example-half-width">
-        <md-select mdInput formControlName="Grade" type="text" placeholder="Grade">
-          <md-option *ngFor="let myGrade of myGrades" [value]="myGrade">
-            {{myGrade}}
+            {{myGrade.desc}}
           </md-option>
         </md-select>
       </td>
       <td class="example-half-width">
         <md-select mdInput formControlName="Terrain" type="text" placeholder="Terrain">
           <md-option *ngFor="let myTerrain of myTerrains" [value]="myTerrain">
-            {{myTerrain}}
+            {{myTerrain.desc}}
           </md-option>
         </md-select>
       </td>
       <td class="example-half-width">
         <md-select mdInput formControlName="ClimateZone" type="text" placeholder="Climate Zone">
           <md-option *ngFor="let myClimateZone of myClimateZones" [value]="myClimateZone">
-            {{myClimateZone}}
+            {{myClimateZone.desc}}
           </md-option>
         </md-select>
       </td>
@@ -243,7 +220,7 @@
       <td class="example-half-width">
         <md-select mdInput formControlName="SurfaceType" type="text" placeholder="Surface Type">
           <md-option *ngFor="let mySurfaceType of mySurfaceTypes" [value]="mySurfaceType">
-            {{mySurfaceType}}
+            {{mySurfaceType.desc}}
           </md-option>
         </md-select>
       </td>
@@ -253,7 +230,7 @@
       <td class="example-half-width">
         <md-select mdInput formControlName="SoilType" type="text" placeholder="Soil Type">
           <md-option *ngFor="let mySoilType of mySoilTypes" [value]="mySoilType">
-            {{mySoilType}}
+            {{mySoilType.desc}}
           </md-option>
         </md-select>
       </td>
@@ -307,7 +284,7 @@
       <td class="example-half-width">
         <md-select mdInput formControlName="Shoulder" type="text" placeholder="Shoulder">
           <md-option *ngFor="let myShoulder of myShoulders" [value]="myShoulder">
-            {{myShoulder}}
+            {{myShoulder.desc}}
           </md-option>
         </md-select>
       </td>
@@ -330,8 +307,8 @@
 
   <td class="example-35-width" *ngIf="isDirBoth()">
     <md-select mdInput formControlName="MedianType" type="text" placeholder="Median Type">
-      <md-option *ngFor="let myMediaType of myMediaTypes" [value]="myMediaType">
-        {{myMediaType}}
+      <md-option *ngFor="let myMedianType of myMedianTypes" [value]="myMedianType">
+        {{myMedianType.desc}}
       </md-option>
     </md-select></td>
 
