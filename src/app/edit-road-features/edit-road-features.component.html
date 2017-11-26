@@ -4,7 +4,7 @@
     <app-select-direction withBoth="true"></app-select-direction>
   </section>
 
-  <app-select-segment-table></app-select-segment-table>
+  <app-select-segment-table (selectSegmentTableChange)="onSegmentTableChange($event)"></app-select-segment-table>
 
   <table>
     <tr>
@@ -18,8 +18,8 @@
 
       <td class="example-half-width">
         <md-select mdInput formControlName="County" type="text" placeholder="County">
-          <md-option *ngFor="let myCounry of myCountries" [value]="myCounry">
-            {{myCounry}}
+          <md-option *ngFor="let myCounty of myCounties" [value]="myCounty">
+            {{myCounty}}
           </md-option>
         </md-select>
       </td>
@@ -244,7 +244,7 @@
         </md-select>
       </td>
       <td>
-        <md-button-toggle-group #group="mdButtonToggleGroup">
+        <md-button-toggle-group formControlName="CurbAndGutterToggle" #group="mdButtonToggleGroup">
           <md-button-toggle value="left"> Left Or Cardinal  </md-button-toggle>
           <md-button-toggle value="right"> Right Or Non-Cardinal</md-button-toggle>
         </md-button-toggle-group>
@@ -259,7 +259,7 @@
         </md-select>
       </td>
       <td>
-        <md-button-toggle-group #group="mdButtonToggleGroup">
+        <md-button-toggle-group formControlName="BarriarToggle" #group="mdButtonToggleGroup">
           <md-button-toggle value="left"> Left Or Cardinal  </md-button-toggle>
           <md-button-toggle value="right"> Right Or Non-Cardinal</md-button-toggle>
         </md-button-toggle-group>
@@ -274,7 +274,7 @@
         </md-select>
       </td>
       <td>
-        <md-button-toggle-group #group="mdButtonToggleGroup">
+        <md-button-toggle-group formControlName="GuardrailToggle" #group="mdButtonToggleGroup">
           <md-button-toggle value="left"> Left Or Cardinal  </md-button-toggle>
           <md-button-toggle value="right"> Right Or Non-Cardinal</md-button-toggle>
         </md-button-toggle-group>
@@ -289,7 +289,7 @@
         </md-select>
       </td>
       <td>
-        <md-button-toggle-group #group="mdButtonToggleGroup">
+        <md-button-toggle-group formControlName="ShoulderToggle" #group="mdButtonToggleGroup">
           <md-button-toggle value="left"> Left Or Cardinal  </md-button-toggle>
           <md-button-toggle value="right"> Right Or Non-Cardinal</md-button-toggle>
         </md-button-toggle-group>

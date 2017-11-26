@@ -3,6 +3,7 @@ import {HighwayService} from "../services/highway.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {SimpleHighway} from "../models/highway";
 import {SelectObject} from "app/models/select-object";
+import {RoadFeatureDetail, RoadFeatureDetailAdmin, RoadFeatureDetailNonAdmin} from "../models/road-feature-detail";
 
 @Component({
   selector: 'app-edit-road-features',
@@ -17,7 +18,7 @@ export class EditRoadFeaturesComponent implements OnInit {
   myShoulders;
   myDivisions;
   myCogs;
-  myCountries;
+  myCounties;
   myEngineeringDistricts;
   myLegislatureDistricts;
   myNAAQSAreas;
@@ -63,44 +64,51 @@ export class EditRoadFeaturesComponent implements OnInit {
   }
 
 
+  private onSegmentTableChange($event) {
+    console.log($event);
+  }
+
   private buildForm() {
     this.formRoadFeture = this.formBuilder.group({
-        COG: this.formBuilder.control(null),
-        County: this.formBuilder.control(null),
-        EngineeringDistrict: this.formBuilder.control(null),
-        IndianReservation: this.formBuilder.control(null),
-        LegislatureDistrict: this.formBuilder.control(null),
-        NAAQSArea: this.formBuilder.control(null),
-        NationalForest: this.formBuilder.control(null),
-        UrbanArea: this.formBuilder.control(null),
-        CityOrTown: this.formBuilder.control(null),
+        COG: this.formBuilder.control(''),
+        County: this.formBuilder.control(''),
+        EngineeringDistrict: this.formBuilder.control(''),
+        IndianReservation: this.formBuilder.control(''),
+        LegislatureDistrict: this.formBuilder.control(''),
+        NAAQSArea: this.formBuilder.control(''),
+        NationalForest: this.formBuilder.control(''),
+        UrbanArea: this.formBuilder.control(''),
+        CityOrTown: this.formBuilder.control(''),
         FunctionalClass: this.formBuilder.control(null),
-        NHS: this.formBuilder.control(null),
-        TruckRoute: this.formBuilder.control(null),
-        Park: this.formBuilder.control(null),
-        PrivateLand: this.formBuilder.control(null),
-        BureauOfLand: this.formBuilder.control(null),
-        WideningPotential: this.formBuilder.control(null),
+        NHS: this.formBuilder.control(''),
+        TruckRoute: this.formBuilder.control(''),
+        Park: this.formBuilder.control(''),
+        PrivateLand: this.formBuilder.control(''),
+        BureauOfLand: this.formBuilder.control(''),
+        WideningPotential: this.formBuilder.control(''),
         WideningObstacle: this.formBuilder.control(null),
         Curve: this.formBuilder.control(null),
         Grade: this.formBuilder.control(null),
         Terrain: this.formBuilder.control(null),
         ClimateZone: this.formBuilder.control(null),
-        SpeedLimit: this.formBuilder.control(null),
-        NoPassingZone: this.formBuilder.control(null),
-        TypeOfSignal: this.formBuilder.control(null),
-        PercentOfGreenTime: this.formBuilder.control(null),
-        PercentOfPassSight: this.formBuilder.control(null),
+        SpeedLimit: this.formBuilder.control(0.0),
+        NoPassingZone: this.formBuilder.control(''),
+        TypeOfSignal: this.formBuilder.control(''),
+        PercentOfGreenTime: this.formBuilder.control(0),
+        PercentOfPassSight: this.formBuilder.control(0),
         SurfaceType: this.formBuilder.control(null),
         SoilType: this.formBuilder.control(null),
-        CurbAndGutter: this.formBuilder.control(null),
-        Barriar: this.formBuilder.control(null),
-        Guardrail: this.formBuilder.control(null),
+        CurbAndGutter: this.formBuilder.control(''),
+        CurbAndGutterToggle: this.formBuilder.control(null),
+        Barriar: this.formBuilder.control(''),
+        BarriarToggle: this.formBuilder.control(null),
+        Guardrail: this.formBuilder.control(''),
+        GuardrailToggle: this.formBuilder.control(null),
         Shoulder: this.formBuilder.control(null),
-        sideShoulder: this.formBuilder.control(null),
-        Division: this.formBuilder.control(null),
+        ShoulderToggle: this.formBuilder.control(null),
+        Division: this.formBuilder.control(''),
         MedianType: this.formBuilder.control(null),
-        MedianWidth: this.formBuilder.control(null)
+        MedianWidth: this.formBuilder.control(0)
 
       },
       {
@@ -117,8 +125,50 @@ export class EditRoadFeaturesComponent implements OnInit {
   }
 
   onSubmitForm() {
-    console.log(this.currentHighway);
-    console.log(this.currentDir);
-    console.log(this.formRoadFeture.get("SoilType").value);
+
+    const detail = new RoadFeatureDetail();
+    detail.admin = new RoadFeatureDetailAdmin();
+    detail.nonAdmin = new RoadFeatureDetailNonAdmin();
+    detail.admin.functionalClass = this.formRoadFeture.get('FunctionalClass').value;
+    detail.admin.COG = this.formRoadFeture.get('COG').value;
+    detail.admin.county = this.formRoadFeture.get('County').value;
+    detail.admin.engineeringDistrict = this.formRoadFeture.get('EngineeringDistrict').value;
+    detail.admin.indianReservation = this.formRoadFeture.get('IndianReservation').value;
+    detail.admin.legislatureDistrict = this.formRoadFeture.get('LegislatureDistrict').value;
+    detail.admin.naaqsArea = this.formRoadFeture.get('NAAQSArea').value;
+    detail.admin.nationalForest = this.formRoadFeture.get('NationalForest').value;
+    detail.admin.urbanArea = this.formRoadFeture.get('UrbanArea').value;
+    detail.admin.cityOrTown = this.formRoadFeture.get('CityOrTown').value;
+    detail.admin.nhs = this.formRoadFeture.get('NHS').value;
+    detail.admin.truckRoute = this.formRoadFeture.get('TruckRoute').value;
+    detail.admin.park = this.formRoadFeture.get('Park').value;
+    detail.admin.privateLand = this.formRoadFeture.get('PrivateLand').value;
+    detail.admin.bureauOfLand = this.formRoadFeture.get('BureauOfLand').value;
+    detail.admin.speedLimit = this.formRoadFeture.get('SpeedLimit').value * 1.0;
+    detail.admin.noPassingZone = this.formRoadFeture.get('NoPassingZone').value;
+    detail.admin.typeOfSignal = this.formRoadFeture.get('TypeOfSignal').value;
+
+    detail.nonAdmin.wideningObstacle = this.formRoadFeture.get('WideningObstacle').value;
+    detail.nonAdmin.curve = this.formRoadFeture.get('Curve').value;
+    detail.nonAdmin.grade = this.formRoadFeture.get('Grade').value;
+    detail.nonAdmin.terrain = this.formRoadFeture.get('Terrain').value;
+    detail.nonAdmin.climateZone = this.formRoadFeture.get('ClimateZone').value;
+    detail.nonAdmin.surfaceType = this.formRoadFeture.get('SurfaceType').value;
+    detail.nonAdmin.soilType = this.formRoadFeture.get('SoilType').value;
+    detail.nonAdmin.shoulder = this.formRoadFeture.get('Shoulder').value;
+    detail.nonAdmin.shoulderToggle = this.formRoadFeture.get('ShoulderToggle').value;
+    detail.nonAdmin.medianType = this.formRoadFeture.get('MedianType').value;
+    detail.nonAdmin.wideningPotential = this.formRoadFeture.get('WideningPotential').value;
+    detail.nonAdmin.percentOfGreenTime = this.formRoadFeture.get('PercentOfGreenTime').value;
+    detail.nonAdmin.percentOfPassSight = this.formRoadFeture.get('PercentOfPassSight').value;
+    detail.nonAdmin.curbAndGutter = this.formRoadFeture.get('CurbAndGutter').value;
+    detail.nonAdmin.curbAndGutterToggle = this.formRoadFeture.get('CurbAndGutterToggle').value;
+    detail.nonAdmin.barriar = this.formRoadFeture.get('Barriar').value;
+    detail.nonAdmin.barriarToggle = this.formRoadFeture.get('BarriarToggle').value;
+    detail.nonAdmin.guardrail = this.formRoadFeture.get('Guardrail').value;
+    detail.nonAdmin.guardrailToggle = this.formRoadFeture.get('GuardrailToggle').value;
+    detail.nonAdmin.division = this.formRoadFeture.get('Division').value;
+
+    console.log(JSON.stringify(detail));
   }
 }
