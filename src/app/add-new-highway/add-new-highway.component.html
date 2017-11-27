@@ -1,5 +1,5 @@
 <form class="example-form" novalidate [formGroup]="newRoadForm">
-<app-highway-name-select></app-highway-name-select>
+<app-highway-name-select (newHighwayName)="onNewHighwayName($event)"></app-highway-name-select>
 
   <table class="example-full-width" cellspacing="0"><tr>
     <td><md-form-field class="example-full-width">

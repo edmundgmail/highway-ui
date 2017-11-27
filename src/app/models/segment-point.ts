@@ -1,21 +1,21 @@
 export class RP {
   name: string;
-  id: number;
-
-  constructor(name:string, id:number){
-    this.name=name;
-    this.id=id;
-  }
+  rpId: number;
 };
 
 export class SegmentPoint {
-  rp: RP;
+  name: string;
+  rpName: string;
+  referencePoint: number;
   offset: number;
   connect: boolean;
 
-  constructor(rp: RP, offset: number, connect:boolean) {
-    this.rp  = rp;
+  constructor(name: string, referencePoint: number, rpName: string, offset: number, connect: boolean)
+  {
+    this.name = name;
+    this.referencePoint = referencePoint;
+    this.rpName = rpName;
     this.offset = offset;
-    this.connect=connect;
+    this.connect = connect;
   }
 }

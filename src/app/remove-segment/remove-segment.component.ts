@@ -59,8 +59,8 @@ export class RemoveSegmentComponent implements OnInit {
     record.dir = this.currentDir;
     record.dateTime = this.removeSegmentForm.get("editDate").value;
     record.reason = this.removeSegmentForm.get("reason").value;
-    record.startPoint = new PointRecord(this.start.rp.name, this.start.offset);
-    record.endPoint = new PointRecord(this.end.rp.name, this.end.offset);
+    record.startPoint = new PointRecord(this.start.rpName, this.start.offset);
+    record.endPoint = new PointRecord(this.end.rpName, this.end.offset);
 
     let body = JSON.stringify(record);
     console.log(body)

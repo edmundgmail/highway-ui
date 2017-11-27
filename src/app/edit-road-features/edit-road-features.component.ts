@@ -4,6 +4,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {SimpleHighway} from "../models/highway";
 import {SelectObject} from "app/models/select-object";
 import {RoadFeatureDetail, RoadFeatureDetailAdmin, RoadFeatureDetailNonAdmin} from "../models/road-feature-detail";
+import {isNullOrUndefined} from "util";
+import {SegmentElement} from "app/models/segment-element";
 
 @Component({
   selector: 'app-edit-road-features',
@@ -45,6 +47,7 @@ export class EditRoadFeaturesComponent implements OnInit {
   currentDir: string;
   sides: SelectObject[];
   myMedianTypes;
+  segments : SegmentElement[];
 
   constructor(private formBuilder: FormBuilder, private highwayService: HighwayService) {
     this.buildForm();
@@ -65,7 +68,7 @@ export class EditRoadFeaturesComponent implements OnInit {
 
 
   private onSegmentTableChange($event) {
-    console.log($event);
+    this.segments = $event;
   }
 
   private buildForm() {
@@ -125,6 +128,10 @@ export class EditRoadFeaturesComponent implements OnInit {
   }
 
   onSubmitForm() {
+    const segments = [];
+    if(!isNullOrUndefined(this.segments)){
+       // this.segments.map(seg=>seg.toRP)
+    }
 
     const detail = new RoadFeatureDetail();
     detail.admin = new RoadFeatureDetailAdmin();

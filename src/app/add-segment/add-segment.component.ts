@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 import {Project} from "../models/project";
 import {SegmentPoint} from "../models/segment-point";
 import {Http, RequestOptions,Headers} from "@angular/http";
+import {isNullOrUndefined} from "util";
 
 
 @Component({
@@ -61,10 +62,25 @@ export class AddSegmentComponent implements OnInit {
     record.action = 'AddSegmentRecord';
     record.dateTime = this.editDate.value;
     record.dir = this.currentDir;
-    record.afterRP = this.start.rp.name;
-    record.beforeRP = this.end.rp.name;
-    record.leftConnect = this.start.connect;
-    record.rightConnect = this.end.connect;
+    if(isNullOrUndefined(this.start)){
+      record.afterRP = '';
+      record.leftConnect = false;
+    }
+    else {
+      record.afterRP = this.start.rpName;
+      record.leftConnect = this.start.connect;
+    }
+
+    if(isNullOrUndefined(this.end)){
+      record.beforeRP = '';
+      record.rightConnect = false;
+    }
+    else {
+      record.beforeRP = this.end.rpName;
+      record.rightConnect = this.end.connect;
+    }
+
+
     record.segment = this.newseg;
 
     this.postNewSegment(record);
@@ -78,7 +94,7 @@ export class AddSegmentComponent implements OnInit {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions();
     options.headers = headers;
-    return this.http.post(this.highwayService.baseUrl+'/highway', body, options)
+    return this.http.post(this.highwayService.baseUrl+'highway', body, options)
       .subscribe(
         data => {this.httpresult='success'; console.log("succeeded")},
         (err: Response) => {

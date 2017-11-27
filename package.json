@@ -26,7 +26,6 @@
     "@angular/router": "^4.0.0",
     "angular-in-memory-web-api": "0.3.1",
     "core-js": "^2.4.1",
-    "murmur-hash": "^1.0.0",
     "rxjs": "^5.1.0",
     "zone.js": "^0.8.4"
   },

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder} from "@angular/forms";
 import {HighwayService} from "../services/highway.service";
 import {Http, RequestOptions,Headers} from "@angular/http";
-import {UtilsService} from "../services/utils-service";
 import {isNullOrUndefined} from "util";
 import {SimpleHighway} from "../models/highway";
 import {RP} from "../models/segment-point";
@@ -27,7 +26,7 @@ export class AddNewCoupletComponent implements OnInit {
   medianTypes = ['MedianA', 'MedianB','MedianC'];
   divisionTypes = ['Division1','Division2','Divison3'];
 
-  constructor(private formBuilder: FormBuilder, private highwayService: HighwayService, private http: Http,  private utilsService: UtilsService) {
+  constructor(private formBuilder: FormBuilder, private highwayService: HighwayService, private http: Http) {
     this.addNewCoupletForm = this.formBuilder.group({
       primaryFromRpCtrl: this.formBuilder.control(null),
       primaryFromOffsetCtrl: this.formBuilder.control('0.0'),

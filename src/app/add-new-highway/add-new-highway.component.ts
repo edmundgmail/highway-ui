@@ -3,10 +3,10 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HighwayService} from "../services/highway.service";
 import {HighwayPostService} from "../services/highway-post-service";
 import {AddRoadRecord, DirectionRecord} from "../models/data-record";
-import {UtilsService} from "../services/utils-service";
 import {logger} from "codelyzer/util/logger";
 import {Http, RequestOptions, Headers} from "@angular/http";
 import {Highway, SimpleHighway} from "../models/highway";
+import {isNullOrUndefined} from "util";
 
 
 
@@ -21,13 +21,18 @@ export class AddNewHighwayComponent implements OnInit {
   newRoadForm: FormGroup;
   dirs;
   currentHighway : SimpleHighway;
+  newHighwayName: string;
   httpresult;
 
-  constructor(private formBuilder: FormBuilder, private http: Http, private highwayService: HighwayService, private  highwayPostService: HighwayPostService, private utilsService: UtilsService) {
+  constructor(private formBuilder: FormBuilder, private http: Http, private highwayService: HighwayService, private  highwayPostService: HighwayPostService) {
     this.highwayService.currentHighwaySelected$.subscribe(value => {console.log(value); this.currentHighway = value; this.getHighwayDetails();});
     this.dirs = highwayService.getDirs('no-both');
 
     this.buildForm();
+  }
+
+  onNewHighwayName($event){
+    this.newHighwayName = $event;
   }
 
   private getHighwayDetails() {
@@ -82,11 +87,18 @@ export class AddNewHighwayComponent implements OnInit {
   }
 
   onSubmitForm() {
-
     let record = new AddRoadRecord();
     record.action = 'AddRoadRecord';
     record.dateTime = this.newRoadForm.get("editDate").value;
-    record.roadId= this.utilsService.murmurHash(record.roadName);
+    if(!isNullOrUndefined(this.data)) {
+      record.roadId = this.data.roadId;
+      record.roadName = this.data.roadName;
+    } else
+    {
+      record.roadId = 0;
+      record.roadName = this.newHighwayName;
+    }
+
     record.jurisdictionType = this.newRoadForm.get("jurisdictionType").value;
     record.ownerShip = this.newRoadForm.get("ownerShip").value;
     record.prefixCode = this.newRoadForm.get("prefixCode").value;
@@ -122,7 +134,7 @@ export class AddNewHighwayComponent implements OnInit {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions();
     options.headers = headers;
-    return this.http.post(this.highwayService.baseUrl+'/highway', body, options)
+    return this.http.post(this.highwayService.baseUrl+'highway', body, options)
       .subscribe(
         data => {this.httpresult='success'; console.log("succeeded")},
         (err: Response) => {

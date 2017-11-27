@@ -23,9 +23,13 @@ export class HighwayNameSelectComponent implements OnInit {
       .startWith(this.highwayCtrl.value)
       .map(val => this.displayFn(val))
       .map(name => this.filterStates(name));
+
+    this.highwayCtrl.valueChanges.subscribe(value=>this.newHighwayName.emit(value));
   }
 
+
   @Output() uponChange = new EventEmitter();
+  @Output() newHighwayName = new EventEmitter();
 
   private extractHighway(res: Response) {
     const body = res.json();

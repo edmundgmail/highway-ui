@@ -29,7 +29,6 @@ import { SelectSegmentTableComponent } from './select-segment-table/select-segme
 import { TransferSegmentComponent } from './transfer-segment/transfer-segment.component';
 import {HighwayPostService} from "./services/highway-post-service";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {UtilsService} from "./services/utils-service";
 import { RemoveSegmentComponent } from './remove-segment/remove-segment.component';
 import { AddNewRampComponent } from './add-new-ramp/add-new-ramp.component';
 import { AddNewCoupletComponent } from './add-new-couplet/add-new-couplet.component';
@@ -73,7 +72,7 @@ import { AddNewProjectComponent } from './add-new-project/add-new-project.compon
     ReactiveFormsModule,
     MdNativeDateModule
   ],
-  providers: [HighwayService, HighwayPostService, UtilsService ],
+  providers: [HighwayService, HighwayPostService ],
   bootstrap: [AppComponent],
   entryComponents: [DashboardComponent, TreatmentDetailsDialogComponent]
 })

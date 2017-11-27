@@ -6,7 +6,6 @@ import {Ramp, RampPoint} from "../models/ramp";
 import {SimpleHighway} from "../models/highway";
 import {isNullOrUndefined} from "util";
 import {RP} from "../models/segment-point";
-import {UtilsService} from "../services/utils-service";
 
 @Component({
   selector: 'app-add-new-ramp',
@@ -30,7 +29,7 @@ export class AddNewRampComponent implements OnInit {
   metereds = ['true', 'false'];
   httpresult;
 
-  constructor(private formBuilder: FormBuilder, private highwayService: HighwayService, private http: Http,  private utilsService: UtilsService) {
+  constructor(private formBuilder: FormBuilder, private highwayService: HighwayService, private http: Http) {
     this.addNewRampForm = this.formBuilder.group({
       fromPointType: this.formBuilder.control(null),
       fromPointName: this.formBuilder.control(null),
@@ -141,7 +140,7 @@ export class AddNewRampComponent implements OnInit {
     ramp.fromPoint= start;
     ramp.toPoint = end;
     ramp.rampName = this.addNewRampForm.get("rampName").value;
-    ramp.rampId = this.utilsService.murmurHash(ramp.rampName);
+    ramp.rampId = 0;
     ramp.length = this.addNewRampForm.get("length").value  * 1.0;
     ramp.pavementType = this.addNewRampForm.get("pavementType").value;
     ramp.metered = this.addNewRampForm.get("metered").value;
