@@ -6,6 +6,8 @@ import {SelectObject} from "app/models/select-object";
 import {RoadFeatureDetail, RoadFeatureDetailAdmin, RoadFeatureDetailNonAdmin} from "../models/road-feature-detail";
 import {isNullOrUndefined} from "util";
 import {SegmentElement} from "app/models/segment-element";
+import {Segment} from "../models/segment";
+import {SegmentPoint} from "app/models/segment-point";
 
 @Component({
   selector: 'app-edit-road-features',
@@ -127,10 +129,20 @@ export class EditRoadFeaturesComponent implements OnInit {
     console.log("hello")
   }
 
+
+  toSegment(seg: SegmentElement): Segment{
+    const segment = new Segment();
+    const start = new SegmentPoint(seg.fromRP.name + "@" + seg.fromOffset, seg.fromRP.rpId, seg.fromRP.name, seg.fromOffset);
+    const end = new SegmentPoint(seg.toRP.name + "@" + seg.toOffset, seg.toRP.rpId, seg.toRP.name, seg.toOffset);
+    segment.start = start;
+    segment.end = end;
+    segment.length = 0;
+    return segment;
+  }
   onSubmitForm() {
     const segments = [];
     if(!isNullOrUndefined(this.segments)){
-       // this.segments.map(seg=>seg.toRP)
+       this.segments.map(seg=>this.toSegment(seg)).forEach(segment=>segments.push(segment));
     }
 
     const detail = new RoadFeatureDetail();
@@ -176,6 +188,7 @@ export class EditRoadFeaturesComponent implements OnInit {
     detail.nonAdmin.guardrailToggle = this.formRoadFeture.get('GuardrailToggle').value;
     detail.nonAdmin.division = this.formRoadFeture.get('Division').value;
 
+    
     console.log(JSON.stringify(detail));
   }
 }
