@@ -86,11 +86,19 @@ export class AddNewHighwayComponent implements OnInit {
     this.newRoadForm.reset();
   }
 
+
+  private isEditing() {
+    return !isNullOrUndefined(this.data) &&
+      !isNullOrUndefined(this.data.roadName) &&
+      (this.data.roadName === this.newHighwayName);
+  }
+
   onSubmitForm() {
     let record = new AddRoadRecord();
     record.action = 'AddRoadRecord';
     record.dateTime = this.newRoadForm.get("editDate").value;
-    if(!isNullOrUndefined(this.data)) {
+
+    if(this.isEditing()) {
       record.roadId = this.data.roadId;
       record.roadName = this.data.roadName;
     } else
