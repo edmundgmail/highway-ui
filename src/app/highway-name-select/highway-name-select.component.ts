@@ -17,7 +17,7 @@ export class HighwayNameSelectComponent implements OnInit {
   reactiveHighways: any;
 
   constructor(private highwayService: HighwayService, private http: Http) {
-    this.highwayCtrl = new FormControl(this.highwayName);
+    this.highwayCtrl = new FormControl();
     this.http.get(this.highwayService.baseUrl +'highways').subscribe(res=> this.highways = res.json() as SimpleHighway[]);
     this.reactiveHighways = this.highwayCtrl.valueChanges
       .startWith(this.highwayCtrl.value)
@@ -27,7 +27,6 @@ export class HighwayNameSelectComponent implements OnInit {
     this.highwayCtrl.valueChanges.subscribe(value=>this.newHighwayName.emit(value));
   }
 
-  @Input('highwayName') highwayName : String;
   @Output() uponChange = new EventEmitter();
   @Output() newHighwayName = new EventEmitter();
 

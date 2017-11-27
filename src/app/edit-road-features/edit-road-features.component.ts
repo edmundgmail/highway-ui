@@ -8,6 +8,8 @@ import {isNullOrUndefined} from "util";
 import {SegmentElement} from "app/models/segment-element";
 import {Segment} from "../models/segment";
 import {SegmentPoint} from "app/models/segment-point";
+import {RoadFeature} from "../models/road-feature";
+import {RequestOptions, Headers, Http} from "@angular/http";
 
 @Component({
   selector: 'app-edit-road-features',
@@ -50,8 +52,9 @@ export class EditRoadFeaturesComponent implements OnInit {
   sides: SelectObject[];
   myMedianTypes;
   segments : SegmentElement[];
+  httpresult;
 
-  constructor(private formBuilder: FormBuilder, private highwayService: HighwayService) {
+  constructor(private formBuilder: FormBuilder, private highwayService: HighwayService, private http:Http) {
     this.buildForm();
     this.sides = [{value: 'left', viewValue:'Left or Carndial'} , { value: 'right', viewValue:'Right or Non-Cardinal'}];
     this.highwayService.currentHighwaySelected$.subscribe(value => this.currentHighway = value);
@@ -132,13 +135,18 @@ export class EditRoadFeaturesComponent implements OnInit {
 
   toSegment(seg: SegmentElement): Segment{
     const segment = new Segment();
-    const start = new SegmentPoint(seg.fromRP.name + "@" + seg.fromOffset, seg.fromRP.rpId, seg.fromRP.name, seg.fromOffset);
-    const end = new SegmentPoint(seg.toRP.name + "@" + seg.toOffset, seg.toRP.rpId, seg.toRP.name, seg.toOffset);
+    const start = new SegmentPoint(seg.fromRP.name + "@" + seg.fromOffset, seg.fromRP.rpId, seg.fromRP.name, seg.fromOffset * 1.0);
+    const end = new SegmentPoint(seg.toRP.name + "@" + seg.toOffset, seg.toRP.rpId, seg.toRP.name, seg.toOffset * 1.0);
     segment.start = start;
     segment.end = end;
     segment.length = 0;
     return segment;
   }
+
+  onResetForm() {
+    window.location.reload()
+  }
+
   onSubmitForm() {
     const segments = [];
     if(!isNullOrUndefined(this.segments)){
@@ -188,7 +196,31 @@ export class EditRoadFeaturesComponent implements OnInit {
     detail.nonAdmin.guardrailToggle = this.formRoadFeture.get('GuardrailToggle').value;
     detail.nonAdmin.division = this.formRoadFeture.get('Division').value;
 
-    
-    console.log(JSON.stringify(detail));
+    const record = new RoadFeature();
+    record.roadId = this.currentHighway.roadId;
+    record.dir = this.currentDir;
+    record.segments = segments;
+    record.detail = detail;
+
+    console.log(JSON.stringify(record))
+
+    this.postRoadFeature(record);
+
+  }
+
+  postRoadFeature(o: Object) {
+    let body = JSON.stringify(o);
+    console.log(body)
+
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions();
+    options.headers = headers;
+    return this.http.post(this.highwayService.baseUrl+'feature', body, options)
+      .subscribe(
+        data => {console.log("succeeded"); this.onResetForm(); this.httpresult='success';},
+        (err: Response) => {
+          this.httpresult = `Backend returned code ${err.status}, body was: ${err.text()}`
+        }
+      );
   }
 }

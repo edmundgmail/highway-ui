@@ -3,7 +3,6 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HighwayService} from "../services/highway.service";
 import {HighwayPostService} from "../services/highway-post-service";
 import {AddRoadRecord, DirectionRecord} from "../models/data-record";
-import {logger} from "codelyzer/util/logger";
 import {Http, RequestOptions, Headers} from "@angular/http";
 import {Highway, SimpleHighway} from "../models/highway";
 import {isNullOrUndefined} from "util";
