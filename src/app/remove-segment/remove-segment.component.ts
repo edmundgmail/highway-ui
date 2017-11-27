@@ -6,7 +6,6 @@ import {SegmentPoint} from "../models/segment-point";
 import {Project} from "../models/project";
 import {PointRecord, RemoveSegmentRecord} from "../models/data-record";
 import {Observable} from "rxjs/Observable";
-import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-remove-segment',
@@ -50,6 +49,7 @@ export class RemoveSegmentComponent implements OnInit {
 
 
   onResetForm() {
+    window.location.reload();
   }
 
   onSubmitForm() {
@@ -91,10 +91,9 @@ export class RemoveSegmentComponent implements OnInit {
     let options = new RequestOptions();
     options.headers = headers;
     return this.http.post(this.highwayService.baseUrl+'highway', body, options).subscribe(
-      data => {console.log(data.json())},
+      data => {console.log(data.json()); this.onResetForm(); this.httpresult='success';},
       (err: Response) => {
-          console.log(`Backend returned code ${err.status}, body was: ${err.text()}`);
-          err.text().then(res=>this.httpresult = res);
+        this.httpresult = `Backend returned code ${err.status}, body was: ${err.text()}`
       }
     );
 

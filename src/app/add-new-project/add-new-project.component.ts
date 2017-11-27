@@ -36,6 +36,7 @@ export class AddNewProjectComponent implements OnInit {
   }
 
   onResetForm() {
+    window.location.reload();
   }
 
   onSubmitForm() {
@@ -64,10 +65,9 @@ export class AddNewProjectComponent implements OnInit {
     options.headers = headers;
     return this.http.post(this.highwayService.baseUrl + 'project', body, options)
       .subscribe(
-        data => {this.httpresult='success'; console.log("succeeded")},
+        data => {console.log("succeeded"); this.onResetForm(); this.httpresult='success';},
         (err: Response) => {
-          console.log(`Backend returned code ${err.status}, body was: ${err.text()}`);
-          err.text().then(res=>this.httpresult = res);
+          this.httpresult = `Backend returned code ${err.status}, body was: ${err.text()}`
         }
       );
   }
