@@ -31,7 +31,7 @@
 
     <ng-container mdColumnDef="nLanes">
       <md-header-cell *mdHeaderCellDef> Lanes </md-header-cell>
-      <md-cell *mdCellDef="let element"> {{element.nLanes}} </md-cell>
+      <md-cell *mdCellDef="let element"> {{element.lanes.join()}} </md-cell>
     </ng-container>
 
     <ng-container mdColumnDef="treatment">

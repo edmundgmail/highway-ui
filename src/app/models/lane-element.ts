@@ -5,10 +5,10 @@ export class LaneElement {
   fromOffset: number;
   toRP: RP;
   toOffset: number;
-  nLanes: number;
+  nLanes: number[];
   laneWidth: number;
 
-  constructor(position: number, fromRP: RP, fromOffset: number, toRP: RP, toOffset: number, nLanes: number, laneWidth: number) {
+  constructor(position: number, fromRP: RP, fromOffset: number, toRP: RP, toOffset: number, nLanes: number[], laneWidth: number) {
     this.position = position;
     this.fromRP = fromRP;
     this.fromOffset = fromOffset;
