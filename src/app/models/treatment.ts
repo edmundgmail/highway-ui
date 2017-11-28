@@ -1,3 +1,5 @@
+import {Lane} from "./highway";
+
 export class Treatment {
   treatmentName: string;
   treatmentDetails: TreatmentDetail[];
@@ -27,4 +29,11 @@ export class TreatmentDetail {
     this.position = position;
     return this;
   }
+}
+
+export class TreatmentRecord{
+  roadId: number;
+  dir: string;
+  lanes: Lane[];
+  treatments: Treatment[];
 }
