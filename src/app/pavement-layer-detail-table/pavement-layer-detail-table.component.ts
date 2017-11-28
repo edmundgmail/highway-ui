@@ -9,6 +9,10 @@ import {Treatment} from "../models/treatment";
 import {MdDialog} from "@angular/material";
 import {TreatmentDetailsDialogComponent} from "../treatment-details-dialog/treatment-details-dialog.component";
 import {stringify} from "@angular/core/src/util";
+import {isNullOrUndefined} from "util";
+import {SimpleHighway} from "app/models/highway";
+import {RP} from "../models/segment-point";
+import {Http} from "@angular/http";
 
 @Component({
   selector: 'app-pavement-layer-detail-table',
@@ -23,10 +27,22 @@ export class PavementLayerDetailTableComponent implements OnInit {
   selection = new SelectionModel<number>(true, []);
   rpForm: FormGroup;
   treatments : Treatment[] = [];
+  currentHighway;
+  currentDir;
+  rps;
 
-  constructor(private formBuilder: FormBuilder, highwayService: HighwayService, public dialog: MdDialog) {
+  constructor(private formBuilder: FormBuilder, private highwayService: HighwayService, private http: Http, public dialog: MdDialog) {
+    this.highwayService.currentHighwaySelected$.subscribe(value => {this.currentHighway = value; this.getRPs(this.currentHighway, this.currentDir)});
+    this.highwayService.currentDirSelected$.subscribe(value => {this.currentDir = value; this.getRPs(this.currentHighway, this.currentDir)});
+
     this.buildForm();
   }
+
+  getRPs(road: SimpleHighway, dir: string)  {
+    if(isNullOrUndefined(road) || isNullOrUndefined(dir)) this.rps = [];
+    this.http.get(this.highwayService.baseUrl +'highway/rps/'+road.roadId+"/"+dir).subscribe(res=> this.rps = res.json() as RP[]);
+  }
+
 
   ngOnInit() {
   }
@@ -81,7 +97,8 @@ export class PavementLayerDetailTableComponent implements OnInit {
 
   openDialog() {
     let dialogRef = this.dialog.open(TreatmentDetailsDialogComponent, {data: {name: '', details: ''}});
-    dialogRef.afterClosed().subscribe(value=> this.treatments.push(new Treatment(value.name, value.details)));
+    dialogRef.afterClosed().subscribe(value=> { console.log("value=" + JSON.stringify(value));
+    this.treatments.push(new Treatment(value.name, value.details)) });
   }
 
 }

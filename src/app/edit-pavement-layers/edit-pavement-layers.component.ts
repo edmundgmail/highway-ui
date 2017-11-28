@@ -11,14 +11,19 @@ import {PavementLayer} from "../models/pavement-layer";
 })
 export class EditPavementLayersComponent implements OnInit {
   lanes: PavementLayer[];
+  currentHighway;
+  currentDir;
 
   constructor(private highwayService: HighwayService) {
+    this.highwayService.currentHighwaySelected$.subscribe(value => this.currentHighway = value);
+    this.highwayService.currentDirSelected$.subscribe(value => this.currentDir = value);
   }
 
   ngOnInit() {
   }
 
   private uponEditPavementLayersTableChange($event) {
+    console.log("event=" + JSON.stringify($event));
     this.lanes = $event;
   }
 
