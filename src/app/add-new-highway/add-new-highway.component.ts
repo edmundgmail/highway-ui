@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HighwayService} from "../services/highway.service";
-import {HighwayPostService} from "../services/highway-post-service";
 import {AddRoadRecord, DirectionRecord} from "../models/data-record";
 import {Http, RequestOptions, Headers} from "@angular/http";
 import {Highway, SimpleHighway} from "../models/highway";
@@ -23,7 +22,7 @@ export class AddNewHighwayComponent implements OnInit {
   newHighwayName: string;
   httpresult;
 
-  constructor(private formBuilder: FormBuilder, private http: Http, private highwayService: HighwayService, private  highwayPostService: HighwayPostService) {
+  constructor(private formBuilder: FormBuilder, private http: Http, private highwayService: HighwayService) {
     this.highwayService.currentHighwaySelected$.subscribe(value => {console.log(value); this.currentHighway = value; this.getHighwayDetails();});
     this.dirs = highwayService.getDirs('no-both');
 
@@ -54,7 +53,6 @@ export class AddNewHighwayComponent implements OnInit {
     this.newRoadForm.patchValue({"routeAlternateName": this.data.routeAlternateName});
     this.newRoadForm.patchValue({"beginPlace": this.data.beginPlace});
     this.newRoadForm.patchValue({"endPlace": this.data.endPlace});
-    this.newRoadForm.patchValue({"editDate": this.data});
   }
 
 

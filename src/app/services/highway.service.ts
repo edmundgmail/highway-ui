@@ -26,7 +26,7 @@ import {RoadAttribute} from "../models/road-attribute";
 
 @Injectable()
 export class HighwayService {
-  baseUrl = 'http://localhost:5000/';
+  baseUrl = '/';
 
   dirs = [
   {value: 'E', viewValue: 'East'},
