@@ -32,7 +32,7 @@ export class AddSegmentComponent implements OnInit {
     this.highwayService.currentDirSelected$.subscribe(value => this.currentDir = value);
   }
 
-  private onProjectChange($event) {
+  onProjectChange($event) {
     this.project = $event;
   }
 

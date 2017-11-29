@@ -20,6 +20,7 @@ export class EditRoadFeaturesComponent implements OnInit {
   formRoadFeture: FormGroup;
   myCurbAndGutters;
   myBarriars;
+  myIndianReservations;
   myGuardrails;
   myShoulders;
   myDivisions;
@@ -72,7 +73,7 @@ export class EditRoadFeaturesComponent implements OnInit {
   }
 
 
-  private onSegmentTableChange($event) {
+  onSegmentTableChange($event) {
     this.segments = $event;
   }
 
@@ -124,7 +125,7 @@ export class EditRoadFeaturesComponent implements OnInit {
       });
   }
 
-  private isDirBoth() {
+  isDirBoth() {
     return this.currentDir === 'B';
   }
 

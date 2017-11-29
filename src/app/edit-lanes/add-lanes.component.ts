@@ -27,7 +27,7 @@ export class AddLanesComponent implements OnInit {
   ngOnInit() {
   }
 
-  private uponSelectSegmentLanesTableChange($event) {
+  uponSelectSegmentLanesTableChange($event) {
     this.newLanes = $event;
   }
 

@@ -34,7 +34,7 @@ export class RemoveSegmentComponent implements OnInit {
     console.log(row);
   }
 
-  private onProjectChange($event) {
+  onProjectChange($event) {
     this.project = $event;
   }
 

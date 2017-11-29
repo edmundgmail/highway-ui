@@ -9,3 +9,4 @@
   npm install --save @angular/material@2.0.0-beta.10 @angular/cdk@2.0.0-beta.10
 * npm install 
 * ng serve
+* ng build --prod --aot=false

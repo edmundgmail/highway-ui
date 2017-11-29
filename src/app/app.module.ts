@@ -2,18 +2,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { RoutingModule } from './routing.module';
-import {MaterialModule, MdDialogModule, MdNativeDateModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { AddNewHighwayComponent } from './add-new-highway/add-new-highway.component';
-import { MdFormFieldModule } from '@angular/material';
 import { AddSegmentComponent } from './add-segment/add-segment.component';
-import {HighwayService} from "app/services/highway.service";
+import {HighwayService} from 'app/services/highway.service';
 import { HighwayNameSelectComponent } from './highway-name-select/highway-name-select.component';
 import { SelectSegmentPointComponent } from './select-segment-point/select-segment-point.component';
 import { AddSegmentTableComponent } from './add-segment-table/add-segment-table.component';
@@ -27,12 +24,13 @@ import { TreatmentDetailsDialogComponent } from './treatment-details-dialog/trea
 import { EditRoadFeaturesComponent } from './edit-road-features/edit-road-features.component';
 import { SelectSegmentTableComponent } from './select-segment-table/select-segment-table.component';
 import { TransferSegmentComponent } from './transfer-segment/transfer-segment.component';
-import {HighwayPostService} from "./services/highway-post-service";
-import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {HighwayPostService} from './services/highway-post-service';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { RemoveSegmentComponent } from './remove-segment/remove-segment.component';
 import { AddNewRampComponent } from './add-new-ramp/add-new-ramp.component';
 import { AddNewCoupletComponent } from './add-new-couplet/add-new-couplet.component';
 import { AddNewProjectComponent } from './add-new-project/add-new-project.component';
+import {MaterialModule, MdDialogModule, MdFormFieldModule, MdNativeDateModule} from "@angular/material";
 
 @NgModule({
   declarations: [

@@ -31,7 +31,7 @@ export class EditPavementLayersComponent implements OnInit {
     window.location.reload()
   }
 
-  private uponEditPavementLayersTableChange($event) {
+  uponEditPavementLayersTableChange($event) {
     console.log("event=" + JSON.stringify($event));
     this.lanes = $event;
   }

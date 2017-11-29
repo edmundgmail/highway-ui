@@ -51,7 +51,7 @@ export class HighwayNameSelectComponent implements OnInit {
       this.highwayService.announceHighway(highway);
   }
 
-  private displayFn(value: any): string {
+  displayFn(value: any): string {
     return value && typeof value === 'object' ? value.name : value;
   }
 
