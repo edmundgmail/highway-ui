@@ -103,7 +103,7 @@ export class AddNewRampComponent implements OnInit {
   }
 
   onResetForm() {
-    window.location.reload();
+   // window.location.reload();
   }
 
   onSubmitForm() {

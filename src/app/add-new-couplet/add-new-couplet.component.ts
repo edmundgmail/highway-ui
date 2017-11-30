@@ -95,7 +95,7 @@ export class AddNewCoupletComponent implements OnInit {
   }
 
   onResetForm() {
-    window.location.reload();
+   // window.location.reload();
   }
 
   onSubmitForm() {

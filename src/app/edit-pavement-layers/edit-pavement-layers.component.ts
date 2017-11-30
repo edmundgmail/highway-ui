@@ -28,7 +28,7 @@ export class EditPavementLayersComponent implements OnInit {
   }
 
   onResetForm(){
-    window.location.reload()
+   // window.location.reload()
   }
 
   uponEditPavementLayersTableChange($event) {

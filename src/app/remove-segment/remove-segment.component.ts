@@ -49,7 +49,7 @@ export class RemoveSegmentComponent implements OnInit {
 
 
   onResetForm() {
-    window.location.reload();
+   // window.location.reload();
   }
 
   onSubmitForm() {

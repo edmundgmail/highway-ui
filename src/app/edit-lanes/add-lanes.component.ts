@@ -46,7 +46,7 @@ export class AddLanesComponent implements OnInit {
   }
 
   onResetForm() {
-    window.location.reload();
+   // window.location.reload();
   }
 
 

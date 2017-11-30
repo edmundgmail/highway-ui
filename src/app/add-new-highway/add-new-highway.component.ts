@@ -81,7 +81,7 @@ export class AddNewHighwayComponent implements OnInit {
 
   onResetForm() {
 //    this.newRoadForm.reset();
-    window.location.reload();
+   // window.location.reload();
   }
 
 

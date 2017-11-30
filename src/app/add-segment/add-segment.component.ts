@@ -50,7 +50,7 @@ export class AddSegmentComponent implements OnInit {
   }
 
   onResetForm() {
-    window.location.reload();
+    //window.location.reload();
   }
 
   onSubmitForm() {
